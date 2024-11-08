@@ -1,0 +1,23 @@
+<!--
+      <div class="cards">
+        <div class="card">
+          <div class="card-title">Acesse mais recursos:</div>
+          <div class="card-value">Faça upgrade da sua conta</div>
+          <button>Preço</button>
+        </div>
+        <div class="card">
+          <div class="card-title">Vendas</div>
+          <div class="card-value">R$ 0,00</div>
+          <div class="card-progress">
+            <div class="progress-bar" style="width: 0%;"></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">Abandonados</div>
+          <div class="card-value">R$ 0,00</div>
+          <div class="card-progress">
+            <div class="progress-bar" style="width: 0%;"></div>
+          </div>
+          </div>
+      </div>
+          -->
