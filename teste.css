@@ -1,0 +1,75 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f5f7fa;
+  }
+
+  
+
+
+
+.container-fluid {
+    display: flex;
+    min-height: 100vh;
+  }
+  .sidebar {
+    width: 200px;
+    background-color: #343a40;
+    color: #fff;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    transition: transform 0.3s ease;
+    transform: translateX(0);
+    z-index: 1000;
+  }
+  .sidebar.hidden {
+    transform: translateX(-100%); /* Move a sidebar completamente para fora da tela */
+  }
+  .sidebar .logo img {
+    width: 50px;
+    height: 50px;
+  }
+  .sidebar ul {
+    list-style: none;
+    padding: 0;
+  }
+  .sidebar ul li {
+    padding: 15px;
+    font-size: 16px;
+    color: #bbb;
+  }
+  .sidebar ul li.active, .sidebar ul li:hover {
+    background-color: #495057;
+    color: #fff;
+  }
+  .main-content {
+    margin-left: 200px;
+    flex-grow: 1;
+    padding: 20px;
+    transition: margin-left 0.3s ease;
+  }
+  .main-content.shifted {
+    margin-left: 0; /* Ajuste o deslocamento quando a sidebar estiver oculta */
+  }
+  .shortcut-card {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    text-align: center;
+    transition: all 0.3s;
+  }
+  .shortcut-card:hover {
+    background-color: #f8f9fa;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  .toggle-button {
+    font-size: 1.5rem;
+    color: #343a40;
+    cursor: pointer;
+  }
+
+  .gold-icon {
+    color: #ff9800;
+  }

@@ -1,8 +1,17 @@
-const menuIcon = document.querySelector('.menu-icon i');
-  const sidebar = document.querySelector('.sidebar');
-
-  // Adicionando o evento de clique no ícone do menu
-  menuIcon.addEventListener('click', () => {
-    // Alterna a classe 'active' na sidebar
-    sidebar.classList.toggle('active');
-  });
+function toggleSidebar() {
+    const sidebar = document.getElementById("sidebar");
+    const toggleIcon = document.getElementById("toggle-icon");
+    const mainContent = document.getElementById("main-content");
+    
+    sidebar.classList.toggle("hidden");
+    mainContent.classList.toggle("shifted");
+    
+    // Alterna o ícone entre hambúrguer e 'X'
+    if (sidebar.classList.contains("hidden")) {
+      toggleIcon.classList.remove("fa-bars");
+      toggleIcon.classList.add("fa-times");
+    } else {
+      toggleIcon.classList.remove("fa-times");
+      toggleIcon.classList.add("fa-bars");
+    }
+  }

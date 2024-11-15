@@ -5,124 +5,139 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard</title>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="teste.css">
 </head>
 <body>
-  <div class="sidebar"> 
-    <div class="logo">
+
+<div class="container-fluid">
+  <!-- Sidebar -->
+  <nav id="sidebar" class="sidebar">
+    <div class="text-center py-4">
       <img src="https://www.figueiralaser.com.br//site/fotoTexturaMaterial?id_recorte_personalizado=3798&id_materia_prima=9299&tamanho=500x500" alt="Logo" width="50" height="50">
     </div>
     <ul>
-        <li class="active"><i class="fas fa-home"></i> Página inicial</li>
-        <li><i class="fas fa-chart-line"></i> Visão geral</li>
-        <li><i class="fas fa-clipboard-list"></i> Processos seletivos</li>
-        <li><i class="fas fa-user-plus"></i> Recrutamento e Seleção</li>
-        <li><i class="fas fa-id-card"></i> Cadastro de Colaboradores</li>
-        <li><i class="fas fa-users"></i> Equipes e Departamentos</li>
-        <li><i class="fas fa-heart"></i> Endomarketing</li>
-        <li><i class="fas fa-chart-pie"></i> Relatórios de RH</li>
-        <li><i class="fas fa-cogs"></i> Configurações</li>
+      <li class="active"><i class="fas fa-home mr-2"></i> Página inicial</li>
+      <li><i class="fas fa-chart-line mr-2"></i> Visão geral</li>
+      <li><i class="fas fa-clipboard-list mr-2"></i> Processos seletivos</li>
+      <a href="recrutamento.html"><li><i class="fas fa-user-plus mr-2"></i> Recrutamento e Seleção</li> </a>
+      <!-- <li><i class="fas fa-id-card mr-2"></i> Cadastro de Colaboradores</li>    -->
+      <li><i class="fas fa-users mr-2"></i> Equipes e Departamentos</li>
+      <li><i class="fas fa-heart mr-2"></i> Endomarketing</li>
+      <li><i class="fas fa-chart-pie mr-2"></i> Relatórios de RH</li>
+      <li><i class="fas fa-cogs mr-2"></i> Configurações</li>
     </ul>
-  </div>
+  </nav>
   
-  <div class="main-content">
-    <div class="header">
-      <div class="menu-icon">
-        
-      </div>
-      <div class="user-info">
-        <img src="https://rrsoadvogados.com.br/wp-content/uploads/2023/11/people-1.jpg" alt="User" width="40" height="40">
-        <div>
-          <div class="user-name">SEU NOME</div>
-          <!--
-          <div class="user-role">Conta: pessoa física</div>
-        -->
-        </div>
+  <!-- Main Content -->
+  <main id="main-content" class="main-content">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <!-- Toggle Button -->
+      <span class="toggle-button" onclick="toggleSidebar()">
+        <i id="toggle-icon" class="fas fa-bars"></i>
+      </span>
+      <h1>RHFacilita</h1>
+      <div class="d-flex align-items-center">
+        <img src="https://rrsoadvogados.com.br/wp-content/uploads/2023/11/people-1.jpg" alt="User" class="rounded-circle" width="40" height="40">
+        <div class="ml-3">
+          <div class="user-name">Douglas</div>
+        </div>  
       </div>
     </div>
     
-    <div class="content">
-      <h1>Bem vindo(a), SEU NOME</h1>
-      <div class="shortcuts">
-        <h2>Atalhos rápidos</h2>
-        <div class="shortcut-cards">
-          <a href="curriculo.html">
-          <div class="shortcut-card">
-            <i class="fas fa-search"></i>
-            <div class="shortcut-title">Diagnóstico organizacional</div>
-            <div class="shortcut-description"> Análise das forças, fraquezas, oportunidades e ameaças da empresa.</div>
+    <hr>
+    <div class="shortcuts">
+      <h2>Atalhos rápidos</h2>
+      <div class="row">
+        <!-- Card 1 -->
+        <div class="col-md-4 mb-3">
+          <div class="shortcut-card p-3">
+            <i class="fas fa-cogs fa-2x mb-3 gold-icon"></i>
+            <div class="shortcut-title font-weight-bold">Processo de organização</div>
+            <p class="shortcut-description text-muted">Definição de missão, visão e valores para alinhar a equipe.</p>
           </div>
-          </a>
-          <a href="#">
-          <div class="shortcut-card">
-            <i class="fas fa-cogs"></i>
-            <div class="shortcut-title">Processo de organização</div>
-            <div class="shortcut-description"> Definição de missão, visão e valores para alinhar a equipe. </div>
+        </div>
+    
+        <!-- Card 2 -->
+        <div class="col-md-4 mb-3">
+          <div class="shortcut-card p-3">
+            <i class="fas fa-bullseye fa-2x mb-3 gold-icon"></i>
+            <div class="shortcut-title font-weight-bold">Planejamento estratégico</div>
+            <p class="shortcut-description text-muted">Definição de metas e estratégias para os objetivos de longo prazo.</p>
           </div>
-          </a>
-        <a href="#">
-          <div class="shortcut-card">
-            <i class="fas fa-bullseye"></i>
-            <div class="shortcut-title">Planejamento estratégico</div>
-            <div class="shortcut-description">Definição de metas e estratégias para os objetivos de longo prazo.</div>
+        </div>
+    
+        <!-- Card 3 -->
+        <div class="col-md-4 mb-3">
+          <div class="shortcut-card p-3">
+            <i class="fas fa-sitemap fa-2x mb-3 gold-icon"></i>
+            <div class="shortcut-title font-weight-bold">Estrutura organizacional</div>
+            <p class="shortcut-description text-muted">Organização hierárquica e responsabilidades da empresa.</p>
           </div>
-        </a>
-
-        <a href="#">
-          <div class="shortcut-card">
-            <i class="fas fa-sitemap"></i>
-            <div class="shortcut-title">Estrutura organizacional </div>
-            <div class="shortcut-description">Organização hierárquica e responsabilidades da empresa.</div>
-          </div>
-        </a>
-        <a href="#">
-          <div class="shortcut-card">
-            <i class="fas fa-chart-line"></i>
-            <div class="shortcut-title">Planejamento estratégico</div>
-            <div class="shortcut-description">Definição de metas e estratégias para alcançar os objetivos de longo prazo da empresa.</div>
-          </div>
-        </a>
-
-        <a href="#">
-          <div class="shortcut-card">
-            <i class="fas fa-user-check"></i>
-            <div class="shortcut-title">Recrutamento e seleção por competências</div>
-            <div class="shortcut-description">Seleção de candidatos com habilidades e atitudes alinhadas à empresa.</div>
-          </div>
-        </a>
-        <a href="#">
-          <div class="shortcut-card">
-            <i class="fas fa-bullhorn"></i>
-            <div class="shortcut-title">Plano de endomarketing</div>
-            <div class="shortcut-description">Estratégias internas para engajar e motivar os colaboradores.</div>
-          </div>
-        </a>
-        <a href="#">
-          <div class="shortcut-card">
-            <i class="fas fa-user-times"></i>
-            <div class="shortcut-title">Gestão de desligamento</div>
-            <div class="shortcut-description">Processo de desligamento de colaboradores com suporte adequado.</div>
-          </div>
-        </a>
-       <a href="#">
-          <div class="shortcut-card">
-            <i class="fas fa-smile"></i>
-            <div class="shortcut-title">Gestão de clima</div>
-            <div class="shortcut-description">Avaliação da satisfação e motivação dos colaboradores no ambiente de trabalho.</div>
-          </div>
-        </a>
-        <a href="#">
-          <div class="shortcut-card">
-            <i class="fas fa-bell"></i>
-            <div class="shortcut-title">Acionar Suporte</div>
-            <div class="shortcut-description">Relatar alguma falha no sistema</div>
-          </div>
-        </a>
         </div>
       </div>
-     
+    
+      <div class="row">
+        <!-- Card 4 -->
+        <div class="col-md-4 mb-3">
+          <div class="shortcut-card p-3">
+            <i class="fas fa-chart-line fa-2x mb-3 gold-icon"></i>
+            <div class="shortcut-title font-weight-bold">Planejamento estratégico</div>
+            <p class="shortcut-description text-muted">Definição de metas e estratégias para alcançar os objetivos de longo prazo da empresa.</p>
+          </div>
+        </div>
+    
+        <!-- Card 5 -->
+        <div class="col-md-4 mb-3">
+          <div class="shortcut-card p-3">
+            <i class="fas fa-user-check fa-2x mb-3 gold-icon"></i>
+            <div class="shortcut-title font-weight-bold">Recrutamento e seleção por competências</div>
+            <p class="shortcut-description text-muted">Seleção de candidatos com habilidades e atitudes alinhadas à empresa.</p>
+          </div>
+        </div>
+    
+        <!-- Card 6 -->
+        <div class="col-md-4 mb-3">
+          <div class="shortcut-card p-3">
+            <i class="fas fa-bullhorn fa-2x mb-3 gold-icon"></i>
+            <div class="shortcut-title font-weight-bold">Plano de endomarketing</div>
+            <p class="shortcut-description text-muted">Estratégias internas para engajar e motivar os colaboradores.</p>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row">
+        <!-- Card 7 -->
+        <div class="col-md-4 mb-3">
+          <div class="shortcut-card p-3">
+            <i class="fas fa-user-times fa-2x mb-3 gold-icon"></i>
+            <div class="shortcut-title font-weight-bold">Gestão de desligamento</div>
+            <p class="shortcut-description text-muted">Processo de desligamento de colaboradores com suporte adequado.</p>
+          </div>
+        </div>
+    
+        <!-- Card 8 -->
+        <div class="col-md-4 mb-3">
+          <div class="shortcut-card p-3">
+            <i class="fas fa-smile fa-2x mb-3 gold-icon"></i>
+            <div class="shortcut-title font-weight-bold">Gestão de clima</div>
+            <p class="shortcut-description text-muted">Avaliação da satisfação e motivação dos colaboradores no ambiente de trabalho.</p>
+          </div>
+        </div>
+    
+        
+      </div>
     </div>
-  </div>
+    
+
+
+
+    
+  </main>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="scripts.js"></script>
 </body>
 </html>
