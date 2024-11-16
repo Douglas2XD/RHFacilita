@@ -25,6 +25,9 @@ body {
   color: white;
   margin: 0;
 }
+.titulo{
+  color: #1a2b49;
+}
 
 .user-info {
   display: flex;
@@ -102,6 +105,7 @@ body {
   border-radius: 4px; /* Bordas arredondadas para um visual mais moderno */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
+
   .main-content {
     margin-left: 200px;
     flex-grow: 1;

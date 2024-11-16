@@ -7,7 +7,12 @@
     <link rel="stylesheet" href="teste.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-</head>
+    <style>
+      body{
+        background-color: #f5f7fa;
+      }
+    </style>
+  </head>
 <body>
   <div class="container-fluid">
     <!-- Sidebar -->
@@ -54,13 +59,31 @@
           <!-- Card 1 -->
           <div class="col-md-4 mb-3">
             <div class="shortcut-card p-3">
-              <i class="fas fa-id-card mr-2 gold-icon"></i>
+              <i class="fas fa-id-card mr-2 fa-2x mb-3 gold-icon"></i>
               <a style="text-decoration: none;" href="painel_controle_colaboradores/cadastrar_colaborador.html">
                 <div class="shortcut-title font-weight-bold">Cadastro de Colaboladores</div>
               </a>
               <p class="shortcut-description text-muted">Cadastre novos funcionários aqui.</p>
             </div>
           </div>
+          
+          <div class="col-md-4 mb-3">
+            <div class="shortcut-card p-3">
+              <i class="fas fa-user fa-2x mb-3 gold-icon"></i>
+              <a href="#" style="text-decoration: none;"><div class="shortcut-title font-weight-bold">Cadastro de Colaboladores</div></a>
+              
+              <p class="shortcut-description text-muted">Visualizar funcionários</p>
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <div class="shortcut-card p-3">
+              <i class="fas fa-user-times fa-2x mb-3 gold-icon"></i>
+              <a href="#" style="text-decoration: none;"><div class="shortcut-title font-weight-bold">Desligar funcionário</div></a>
+              <p class="shortcut-description text-muted">Desligar funcionário</p>
+            </div>
+          </div>
+
           <!-- Outros cards seguem... -->
         </div>
       </div>
