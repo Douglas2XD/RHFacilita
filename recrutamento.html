@@ -6,61 +6,69 @@
     <title>Document</title>
     <link rel="stylesheet" href="teste.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-  
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+  <div class="container-fluid">
+    <!-- Sidebar -->
+    <nav id="sidebar" class="sidebar">
+      <div class="text-center py-4">
+        <img src="https://www.figueiralaser.com.br//site/fotoTexturaMaterial?id_recorte_personalizado=3798&id_materia_prima=9299&tamanho=500x500" alt="Logo" width="50" height="50">
+      </div>
+      <ul>
+        <a style="text-decoration: none;" href="index.html"><li class="active"><i class="fas fa-home mr-2"></i> Página inicial</li></a>
+        <li><i class="fas fa-chart-line mr-2"></i> Visão geral</li>
+        <li><i class="fas fa-clipboard-list mr-2"></i> Processos seletivos</li>
+        <a style="text-decoration: none;" href="recrutamento.html"><li><i class="fas fa-user-plus mr-2"></i> Recrutamento e Seleção</li></a>
+        <li><i class="fas fa-users mr-2"></i> Equipes e Departamentos</li>
+        <li><i class="fas fa-heart mr-2"></i> Endomarketing</li>
+        <li><i class="fas fa-chart-pie mr-2"></i> Relatórios de RH</li>
+        <li><i class="fas fa-cogs mr-2"></i> Configurações</li>
+      </ul>
+    </nav>
+    
+    <!-- Main Content -->
     <main id="main-content" class="main-content">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-          <!-- Toggle Button -->
-          
-          <a href="index.html"><h1>RHFacilita</h1></a>
-          <div class="d-flex align-items-center">
-            <img src="https://rrsoadvogados.com.br/wp-content/uploads/2023/11/people-1.jpg" alt="User" class="rounded-circle" width="40" height="40">
-            <div class="ml-3">
-              <div class="user-name">Douglas</div>
-            </div>  
+      <div class="navbar d-flex justify-content-between align-items-center mb-4">
+        <!-- Toggle Button -->
+        <span class="toggle-button" onclick="toggleSidebar()">
+          <i id="toggle-icon" class="fas fa-bars" style="color: #1a2b49;"></i>
+        </span>
+        
+        <!-- Título -->
+        <a style="text-decoration: none;" href="index.html"><h3 class="titulo">RHFacilita</h3></a> 
+        
+        <!-- Usuário -->
+        <div class="d-flex align-items-center user-info">
+          <img src="https://rrsoadvogados.com.br/wp-content/uploads/2023/11/people-1.jpg" alt="User" class="user-image rounded-circle">
+          <div class="user-details">
+            <div class="user-name">Douglas</div>
           </div>
         </div>
-        
-        <hr>
-        <div class="shortcuts">
-          <h2>Painel de controle de Colaboradores</h2>
-          <div class="row">
-            <!-- Card 1 -->
-            <div class="col-md-4 mb-3">
-              <div class="shortcut-card p-3">
-                <i class="fas fa-id-card mr-2 gold-icon"></i>
-                <a href="painel_controle_colaboradores/cadastrar_colaborador.html"><div class="shortcut-title font-weight-bold">Cadastro de Colaboladores</div></a>
-                <p class="shortcut-description text-muted">Descrição aqui</p>
-              </div>
-            </div>
-        
-            <!-- Card 2 -->
-            <div class="col-md-4 mb-3">
-              <div class="shortcut-card p-3">
-                <i class="fas fa-users fa-2x mb-3 gold-icon"></i>
-                <div class="shortcut-title font-weight-bold">Visualizar Colaboradores</div>
-                <p class="shortcut-description text-muted">Busque e visualize os colaboradores<p>
-              </div>
-            </div>
-        
-            <!-- Card 3 -->
-            <div class="col-md-4 mb-3">
-              <div class="shortcut-card p-3">
-                <i class="fas fa-user-slash fa-2x mb-3 gold-icon"></i>
-                <div class="shortcut-title font-weight-bold">Desligar Colaborador</div>
-                <p class="shortcut-description text-muted">DESCRIÇÃO AQUI</p>
-              </div>
+      </div>
+      
+      <hr>
+      <div class="shortcuts">
+        <h2>Painel de controle de Colaboradores</h2>
+        <div class="row">
+          <!-- Card 1 -->
+          <div class="col-md-4 mb-3">
+            <div class="shortcut-card p-3">
+              <i class="fas fa-id-card mr-2 gold-icon"></i>
+              <a style="text-decoration: none;" href="painel_controle_colaboradores/cadastrar_colaborador.html">
+                <div class="shortcut-title font-weight-bold">Cadastro de Colaboladores</div>
+              </a>
+              <p class="shortcut-description text-muted">Cadastre novos funcionários aqui.</p>
             </div>
           </div>
-          </div>
+          <!-- Outros cards seguem... -->
         </div>
-      </main>
-    </div>
-    
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
-    
+      </div>
+    </main>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="scripts.js"></script>
 </body>
 </html>

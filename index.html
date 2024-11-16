@@ -17,11 +17,10 @@
       <img src="https://www.figueiralaser.com.br//site/fotoTexturaMaterial?id_recorte_personalizado=3798&id_materia_prima=9299&tamanho=500x500" alt="Logo" width="50" height="50">
     </div>
     <ul>
-      <li class="active"><i class="fas fa-home mr-2"></i> Página inicial</li>
+      <a style="text-decoration: none;" href="index.html"><li class="active"><i class="fas fa-home mr-2"></i> Página inicial</li></a>
       <li><i class="fas fa-chart-line mr-2"></i> Visão geral</li>
       <li><i class="fas fa-clipboard-list mr-2"></i> Processos seletivos</li>
-      <a href="recrutamento.html"><li><i class="fas fa-user-plus mr-2"></i> Recrutamento e Seleção</li> </a>
-      <!-- <li><i class="fas fa-id-card mr-2"></i> Cadastro de Colaboradores</li>    -->
+      <a style="text-decoration: none;" href="recrutamento.html"><li><i class="fas fa-user-plus mr-2"></i> Recrutamento e Seleção</li> </a>
       <li><i class="fas fa-users mr-2"></i> Equipes e Departamentos</li>
       <li><i class="fas fa-heart mr-2"></i> Endomarketing</li>
       <li><i class="fas fa-chart-pie mr-2"></i> Relatórios de RH</li>
@@ -31,23 +30,29 @@
   
   <!-- Main Content -->
   <main id="main-content" class="main-content">
-    <div class="d-flex justify-content-between align-items-center mb-4">
+
+    <div class="navbar d-flex justify-content-between align-items-center mb-4">
       <!-- Toggle Button -->
       <span class="toggle-button" onclick="toggleSidebar()">
-        <i id="toggle-icon" class="fas fa-bars"></i>
+        <i id="toggle-icon" class="fas fa-bars" style="color: #1a2b49;"></i>
       </span>
-      <h1>RHFacilita</h1>
-      <div class="d-flex align-items-center">
-        <img src="https://rrsoadvogados.com.br/wp-content/uploads/2023/11/people-1.jpg" alt="User" class="rounded-circle" width="40" height="40">
-        <div class="ml-3">
+    
+      <!-- Título -->
+      <h3 class="titulo">RHFacilita</h3>
+    
+      <!-- Usuário -->
+      <div class="d-flex align-items-center user-info">
+        <img src="https://rrsoadvogados.com.br/wp-content/uploads/2023/11/people-1.jpg" alt="User" class="user-image rounded-circle">
+        <div class="user-details">
           <div class="user-name">Douglas</div>
-        </div>  
+        </div>
       </div>
     </div>
     
     <hr>
     <div class="shortcuts">
       <h2>Atalhos rápidos</h2>
+      
       <div class="row">
         <!-- Card 1 -->
         <div class="col-md-4 mb-3">
@@ -128,11 +133,7 @@
         
       </div>
     </div>
-    
 
-
-
-    
   </main>
 </div>
 

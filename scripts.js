@@ -8,10 +8,10 @@ function toggleSidebar() {
     
     // Alterna o ícone entre hambúrguer e 'X'
     if (sidebar.classList.contains("hidden")) {
-      toggleIcon.classList.remove("fa-bars");
-      toggleIcon.classList.add("fa-times");
-    } else {
       toggleIcon.classList.remove("fa-times");
       toggleIcon.classList.add("fa-bars");
+    } else { 
+      toggleIcon.classList.remove("fa-bars");
+      toggleIcon.classList.add("fa-times");
     }
   }

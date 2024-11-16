@@ -4,9 +4,63 @@ body {
     background-color: #f5f7fa;
   }
 
-  
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  padding: 10px 20px;
+  color: black;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 
+.navbar .toggle-button {
+  font-size: 24px;
+  cursor: pointer;
+  color: white;
+}
 
+.navbar-title {
+  font-size: 20px;
+  color: white;
+  margin: 0;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+.user-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+.user-name {
+  font-size: 14px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: row;
+    text-align: center;
+    gap: 10px;
+  }
+  .titulo{
+    display: none;
+  }
+  .navbar-title {
+    font-size: 18px;
+  }
+
+  .user-info {
+    justify-content: center;
+  }
+}
 
 .container-fluid {
     display: flex;
@@ -14,7 +68,8 @@ body {
   }
   .sidebar {
     width: 200px;
-    background-color: #343a40;
+    background-color: #1a2b49;
+    text-decoration: none;
     color: #fff;
     position: fixed;
     top: 0;
@@ -41,8 +96,11 @@ body {
     color: #bbb;
   }
   .sidebar ul li.active, .sidebar ul li:hover {
-    background-color: #495057;
-    color: #fff;
+    background-color: #e0e5f1; /* Tom intermediário para hover */
+  color: #1a2b49; /* Contraste suave */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Transições mais suaves */
+  border-radius: 4px; /* Bordas arredondadas para um visual mais moderno */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
   .main-content {
     margin-left: 200px;
@@ -73,3 +131,6 @@ body {
   .gold-icon {
     color: #ff9800;
   }
+
+
+  
