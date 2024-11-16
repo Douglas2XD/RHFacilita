@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../teste.css">
+</head>
+<body>
+    <div class="container-fluid">
+        <!-- Sidebar -->
+        <nav id="sidebar" class="sidebar">
+          <div class="text-center py-4">
+            <img src="https://www.figueiralaser.com.br//site/fotoTexturaMaterial?id_recorte_personalizado=3798&id_materia_prima=9299&tamanho=500x500" alt="Logo" width="50" height="50">
+          </div>
+          <ul>
+            <a style="text-decoration: none;" href="../index.html"><li class="active"><i class="fas fa-home mr-2"></i> Página inicial</li></a>
+            <li><i class="fas fa-chart-line mr-2"></i> Visão geral</li>
+            <a href="../processos_seletivos/processos_seletivos.html" style="text-decoration: none;"><li><i class="fas fa-clipboard-list mr-2"></i> Processos seletivos</li></a>
+            <a style="text-decoration: none;" href="../recrutamento.html"><li><i class="fas fa-user-plus mr-2"></i> Recrutamento e Seleção</li> </a>
+            <li><i class="fas fa-users mr-2"></i> Equipes e Departamentos</li>
+            <li><i class="fas fa-heart mr-2"></i> Endomarketing</li>
+            <a href="../dashboard.html" style="text-decoration: none;"><li><i class="fas fa-chart-pie mr-2"></i> Relatórios de RH</li></a>
+            <li><i class="fas fa-cogs mr-2"></i> Configurações</li>
+          </ul>
+        </nav>
+        
+        <!-- Main Content -->
+        <main id="main-content" class="main-content">
+      
+          <div class="navbar d-flex justify-content-between align-items-center mb-4">
+            <!-- Toggle Button -->
+            <span class="toggle-button" onclick="toggleSidebar()">
+              <i id="toggle-icon" class="fas fa-bars" style="color: #1a2b49;"></i>
+            </span>
+          
+            <!-- Título -->
+            <h3 class="titulo"">RHFacilita</h3>
+          
+            <!-- Usuário -->
+            <div class="d-flex align-items-center user-info">
+              <img src="https://rrsoadvogados.com.br/wp-content/uploads/2023/11/people-1.jpg" alt="User" class="user-image rounded-circle">
+              <div class="user-details">
+                <div class="user-name">Douglas</div>
+              </div>
+            </div>
+          </div>
+          <div class="shortcuts">
+            <h2>Processos Seletivos</h2>
+            
+            <div class="row">
+              <!-- Card 1 -->
+              <div class="col-md-4 mb-3">
+                <div class="shortcut-card p-3">
+                  <i class="fas fa-user-plus fa-2x mb-3 gold-icon"></i>
+                  <a href="../ainda_em_desenvolvimento.html" style="text-decoration: none;"><div class="shortcut-title font-weight-bold">Criar Vaga</div>
+                  </a>
+                  <p class="shortcut-description text-muted">Crie ou edite novas vagas de empregos. </p>
+                </div>
+              </div>
+          
+              <!-- Card 2 -->
+              <div class="col-md-4 mb-3">
+                <div class="shortcut-card p-3">
+                  <i class="fas fa-users fa-2x mb-3 gold-icon"></i>
+                  <a href="../ainda_em_desenvolvimento.html" style="text-decoration: none;"><div class="shortcut-title font-weight-bold">Visualizar Candidatos</div></a>
+                  <p class="shortcut-description text-muted">Visualize os potenciais candidatos as vagas abertas</p>
+                </div>
+              </div>
+          
+              <!-- Card 3 -->
+              <div class="col-md-4 mb-3">
+                <div class="shortcut-card p-3">
+                  <i class="fas fa-folder fa-2x mb-3 gold-icon"></i>
+                  <a href="../ainda_em_desenvolvimento.html" style="text-decoration: none;"><div class="shortcut-title font-weight-bold">Ultimos Processos seletivos</div></a>
+                  <p class="shortcut-description text-muted">Visualize histórico dos ultimos processos seletivos.</p>
+                </div>
+              </div>
+            </div>        
+              
+            </div>
+          </div>
+          <hr>
+          </main>
+          <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+          <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+          <script src="../scripts.js"></script>
+</body>
+</html>

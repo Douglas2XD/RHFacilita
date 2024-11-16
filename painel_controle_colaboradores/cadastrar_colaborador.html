@@ -59,12 +59,23 @@
 
             <!-- Formulário -->
             <form class="employee-form">
+                <div class="hr-text">Dados Pessoais</div>
+        
+                <!-- Foto de Perfil -->
+                <label>Foto de Perfil</label>
+                <div class="photo-preview" id="photo-preview">Prévia da Foto</div>
+                <input type="file" name="foto_perfil" accept="image/*" onchange="previewFoto(this)">
+        
+                <!-- Currículo -->
+                <label>Currículo</label>
+                <input type="file" name="curriculo" accept=".pdf,.doc,.docx">
+        
                 <label>Nome</label>
                 <input type="text" name="nome">
         
                 <label>CPF</label>
                 <input type="text" name="cpf" oninput="mascaraCPF(this)">
-
+        
                 <label>RG</label>
                 <input type="text" name="rg">
         
@@ -78,12 +89,13 @@
                 <input type="text" name="telefone" oninput="mascaraTelefone(this)">
         
                 <label>Sexo</label>
-                <select name="sexo" id="">
+                <select name="sexo">
                     <option>Masculino</option>
                     <option>Feminino</option>
                     <option>Outro</option>
                 </select>
         
+                <!-- Outros campos continuam aqui -->
                 <label>Estado Civil</label>
                 <select name="estado_civil" id="">
                     <option>Solteiro(a)</option>
@@ -132,12 +144,12 @@
             <option value="SE">Sergipe</option>
             <option value="TO">Tocantins</option>
         </select>
-        
+                
                 <label>CEP</label>
-                <input type="text" name="cep">
-        
-                <label>Cargo</label>
-                <select name="cargo">
+                <input type="text" name="cep" oninput="mascaraCep(this)">
+                <div class="hr-text">Area de atuação</div>
+                <label>Departamento</label>
+                <select name="departamento">
                     <option></option>
                     <option>Administração</option>
                     <option>Suporte</option>
@@ -161,9 +173,9 @@
                     <option>Qualidade</option>
                     <option>Gestão de Pessoas</option>
                 </select>
-        
-                <label>Departamento</label>
-                <input type="text" name="departamento">
+
+                <label>Cargo</label>
+                <input type="text" name="cargo">
         
                 <label>Data de Admissão</label>
                 <input type="date" name="data_admissao">
@@ -186,7 +198,7 @@
         
                 <label>PIS/PASEP</label>
                 <input type="text" name="pis_pasep">
-        
+                <div class="hr-text">Dados Bancários</div>
                 <label>Banco</label>
                 <input type="text" name="banco_nome">
         
@@ -201,16 +213,25 @@
                     <option>Corrente</option>
                     <option>Poupança</option>
                 </select>
-        
-                <label>Foto de Perfil</label>
-                <input type="file" name="foto_perfil">
-        
-                <label>Currículo</label>
-                <input type="file" name="curriculo">
-        
+                
+                <div class="hr-text">Exceções</div>
+                
+                <label>PCD (Pessoa com Deficiência)</label>
+                <div style="display: flex; align-items: center; gap: 15px; padding: 10px; border: 1px solid #ccc; border-radius: 5px; background-color: #f9f9f9;">
+                    <div style="display: flex; align-items: center;">
+                        <input type="radio" id="pcd_sim" name="pcd" value="sim" style="margin-right: 6px;">
+                        <label for="pcd_sim">Sim</label>
+                    </div>
+                    <div style="display: flex; align-items: center;">
+                        <input type="radio" id="pcd_nao" name="pcd" value="nao" style="margin-right: 6px;">
+                        <label for="pcd_nao">Não</label>
+                    </div>
+                </div>
+                
                 <label>Observações</label>
-                <textarea name="observacoes"></textarea>
+                <textarea name="observacoes" placeholder="Caso tenha alguma deficiência ou queira adicionar algo a mais, pode usar este campo."></textarea>
                 <button style="background-color: #1a2b49;" type="submit">Salvar</button>
+                
             </form>
         </main>
     </div>

@@ -84,4 +84,37 @@ function mascaraSalario(campo) {
 
   campo.value = valor; // Atualiza o campo com a máscara
 }
+
+
+function mascaraCep(campo) {
+  let valor = campo.value.replace(/\D/g, ''); // Remove tudo que não for número
+  valor = valor.replace(/^(\d{5})(\d{1,3})/, "$1-$2"); // Aplica o formato 00000-000
+  if (valor.length > 8){
+    valor = valor.substring(0,9)
+  }
+  campo.value = valor;
+}
+
+
+
+
   //MASCARAS
+
+
+
+
+
+  function previewFoto(input) {
+    const preview = document.getElementById('photo-preview');
+    const file = input.files[0];
+
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            preview.innerHTML = `<img src="${e.target.result}" alt="Prévia da Foto">`;
+        };
+        reader.readAsDataURL(file);
+    } else {
+        preview.innerHTML = "Prévia da Foto";
+    }
+}
