@@ -30,7 +30,7 @@
                 <a style="text-decoration: none;" href="../recrutamento.html"><li><i class="fas fa-user-plus mr-2"></i> Recrutamento e Seleção</li> </a>
                 <li><i class="fas fa-users mr-2"></i> Equipes e Departamentos</li>
                 <li><i class="fas fa-heart mr-2"></i> Endomarketing</li>
-                <li><i class="fas fa-chart-pie mr-2"></i> Relatórios de RH</li>
+                <a href="../dashboard.html" style="text-decoration: none;"><li><i class="fas fa-chart-pie mr-2"></i> Relatórios de RH</li></a>
                 <li><i class="fas fa-cogs mr-2"></i> Configurações</li>
             </ul>
         </nav>
@@ -63,7 +63,7 @@
                 <input type="text" name="nome">
         
                 <label>CPF</label>
-                <input type="text" name="cpf">
+                <input type="text" name="cpf" oninput="mascaraCPF(this)">
 
                 <label>RG</label>
                 <input type="text" name="rg">
@@ -75,7 +75,7 @@
                 <input type="email" name="email">
         
                 <label>Telefone</label>
-                <input type="text" name="telefone">
+                <input type="text" name="telefone" oninput="mascaraTelefone(this)">
         
                 <label>Sexo</label>
                 <select name="sexo" id="">
@@ -108,7 +108,30 @@
                 <input type="text" name="cep">
         
                 <label>Cargo</label>
-                <input type="text" name="cargo">
+                <select name="cargo">
+                    <option></option>
+                    <option>Administração</option>
+                    <option>Suporte</option>
+                    <option>T.I</option>
+                    <option>Estágio</option>
+                    <option>Recursos Humanos</option>
+                    <option>Marketing</option>
+                    <option>Vendas</option>
+                    <option>Financeiro</option>
+                    <option>Comercial</option>
+                    <option>Design</option>
+                    <option>Desenvolvimento</option>
+                    <option>Gestão de Projetos</option>
+                    <option>Logística</option>
+                    <option>Atendimento ao Cliente</option>
+                    <option>Jurídico</option>
+                    <option>Operações</option>
+                    <option>Engenharia</option>
+                    <option>Produção</option>
+                    <option>Pesquisa e Desenvolvimento</option>
+                    <option>Qualidade</option>
+                    <option>Gestão de Pessoas</option>
+                </select>
         
                 <label>Departamento</label>
                 <input type="text" name="departamento">
@@ -117,7 +140,7 @@
                 <input type="date" name="data_admissao">
         
                 <label>Salário</label>
-                <input type="text" name="salario">
+                <input type="text" name="salario" oninput="mascaraSalario(this)">
         
                 <label>Status do Colaborador</label>
                 <select name="status">
@@ -158,7 +181,6 @@
         
                 <label>Observações</label>
                 <textarea name="observacoes"></textarea>
-        
                 <button style="background-color: #1a2b49;" type="submit">Salvar</button>
             </form>
         </main>
