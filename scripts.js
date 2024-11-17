@@ -118,3 +118,8 @@ function mascaraCep(campo) {
         preview.innerHTML = "Prévia da Foto";
     }
 }
+
+function cadastrado(){
+  window.alert("USUARIO CADASTRADO COM SUCESSO! ");
+}
+
