@@ -1,0 +1,34 @@
+
+.job-card {
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+    font-family: Arial, sans-serif;
+}
+
+.job-title {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.job-description,
+.job-requirements,
+.job-salary,
+.job-contract,
+.job-location,
+.job-benefits {
+    margin: 10px 0;
+    font-size: 1rem;
+    color: #555;
+}
+
+.job-card strong {
+    color: #000;
+}
+
+
