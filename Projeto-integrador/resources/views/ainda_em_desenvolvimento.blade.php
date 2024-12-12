@@ -93,7 +93,7 @@
         <div class="loader"></div>
 
         <!-- Botão de ação, opcional -->
-        <a href="index.html" class="btn">Voltar para a página inicial</a>
+        <a href="{{route('index')}}" class="btn">Voltar para a página inicial</a>
     </div>
 
 </body>

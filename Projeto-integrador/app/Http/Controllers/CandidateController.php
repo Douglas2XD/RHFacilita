@@ -32,6 +32,7 @@ class CandidateController extends Controller
  */
 
     public function index(){
+        
         $vacancies  = Vacancy::paginate(10);
         return view("candidate_portal",["vacancies"=>$vacancies]);
     }
@@ -63,11 +64,10 @@ class CandidateController extends Controller
         $candidate_vacancies->save();
       
 
-        #, ["candidate"=>$candidate,
-        #"vacanciesList"=>$vacanciesList]
         $vacancies  = Vacancy::paginate(10);
         session()->flash('CANDIDATADO COM SUCESSO! ');
-        return view("candidate_portal",["vacancies"=>$vacancies])->with('sucess','CANDIDATADO COM SUCESSO! ');
+        return back()->with('sucess','CANDIDATADO COM SUCESSO! ');
+        #return view("candidate_portal",["vacancies"=>$vacancies])->with('sucess','CANDIDATADO COM SUCESSO! ');
     }
 
 }

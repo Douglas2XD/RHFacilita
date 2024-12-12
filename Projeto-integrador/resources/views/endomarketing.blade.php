@@ -1,5 +1,10 @@
 @extends('layout')
 
+@section('document')
+    Endomarketing
+@endsection
+
+
 @section('content')
 <h2>Endomarketing</h2>
 <hr>

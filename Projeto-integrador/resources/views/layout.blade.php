@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title> @yield('document') </title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('css/teste.css')}}">
@@ -40,11 +40,12 @@
       
         <!-- Usuário -->
         <div class="d-flex align-items-center user-info dropdown">
-          <img src="https://i.pinimg.com/236x/d4/8f/8f/d48f8f59f2de25750b13084b59301201.jpg" alt="User" class="user-image rounded-circle">
           
           <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
           
           @if(auth()->check()) 
+          <img src="{{asset('assets/profile_pic/'.auth()->user()->photo)}}" alt="User" class="user-image rounded-circle">
+
           {{ auth()->user()->name }}
           @else
               
@@ -67,16 +68,6 @@
               </form>
           </div>
 
-
-
-
-
-
-          
-          
-          
-          
-          
           <div class="user-details">
           </div>
         </div>

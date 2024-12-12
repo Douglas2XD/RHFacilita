@@ -87,7 +87,9 @@ class HomeController extends Controller
         return view("show_all_candidates",["candidates"=>$candidates]);
     }
 
-
+    public function desenvolvimento(){
+        return view('ainda_em_desenvolvimento');
+    }
 
 
 

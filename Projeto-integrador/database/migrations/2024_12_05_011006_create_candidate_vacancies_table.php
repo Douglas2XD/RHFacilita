@@ -16,11 +16,10 @@ return new class extends Migration
         Schema::create('candidate_vacancies', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->foreignId("candidate_id")->constrained();
-            $table->foreignId("vacancy_id")->constrained();
+            $table->foreignId('candidate_id')->constrained()->references('id')->on('candidates')->onDelete('restrict');
+            $table->foreignId('vacancy_id')->constrained()->references('id')->on('vacancies')->onDelete('cascade');
         });
     }
-
     /**
      * Reverse the migrations.
      *

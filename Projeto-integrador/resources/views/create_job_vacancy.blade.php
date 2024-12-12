@@ -1,38 +1,66 @@
 @extends('layout')
 
+@section('document')
+    Criar vaga 
+@endsection
+
+
 @section('content')
 
-@if(session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
+
+
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
     </div>
 @endif
 
-<form class="employee-form" action="{{route('store_vacancy')}}" method="post">
+
+
+@if(session('sucess'))
+    <div class="alert alert-success">
+        {{ session('sucess') }}
+        
+    </div>
+@endif
+
+@if (isset($vacancy->id))
+        <form class="employee-form" action="{{route('update_vacancy',$vacancy)}}" method="post">
+            @method('PUT')
+           
+    @else
+    <form class="employee-form" action="{{route('store_vacancy')}}" method="post">
+
+    @endif
+
     @csrf
     <div class="mb-3">
         <label for="titulo" class="form-label">Título da Vaga</label>
-        <input type="text" class="form-control" id="titulo" name="title" required placeholder="Exemplo: Técnico administrativo">
+        <input type="text" class="form-control" id="titulo" name="title"  placeholder="Exemplo: Técnico administrativo" value="{{$vacancy->title ?? " "}}">
     </div>
 
     <div class="mb-3">
         <label for="descricao" class="form-label">Descrição da Vaga</label>
-        <textarea id="descricao" name="description" class="form-control" rows="5" required placeholder="Descreva as responsabilidades e atividades do cargo."></textarea>
+        <textarea id="descricao" name="description" class="form-control" rows="5"  placeholder="Descreva as responsabilidades e atividades do cargo." > {{$vacancy->description ?? " "}} </textarea>
     </div>
 
     <div class="mb-3">
         <label for="requisitos" class="form-label">Requisitos</label>
-        <textarea id="requisitos" name="requirements" class="form-control" rows="5" required placeholder="Descreva as qualificações e habilidades exigidas."></textarea>
+        <textarea id="requisitos" name="requirements" class="form-control" rows="5"  placeholder="Descreva as qualificações e habilidades exigidas.">{{$vacancy->requirements ?? " "}}</textarea>
     </div>
 
     <div class="mb-3">
         <label for="remuneration" class="form-label">Salário</label>
-        <input type="text" class="form-control" id="remuneration" name="remuneration" required placeholder="Exemplo: R$ 1.412 a R$ 5.500">
+        <input type="text" class="form-control" id="remuneration" name="remuneration"  placeholder="Exemplo: R$ 1.412 a R$ 5.500" value="{{$vacancy->remuneration ?? " "}}">
     </div>
 
     <div class="mb-3">
         <label for="contract_type" class="form-label">Tipo de Contrato</label>
-        <select id="contract_type" name="contract_type" class="form-select" required>
+        <select id="contract_type" name="contract_type" class="form-select" value="{{$vacancy->contract_type ?? " "}}">
             <option value="CLT">CLT</option>
             <option value="PJ">PJ</option>
             <option value="Estágio">Estágio</option>
@@ -42,12 +70,12 @@
 
     <div class="mb-3">
         <label for="location" class="form-label">Localização</label>
-        <input type="text" class="form-control" id="location" name="location" required placeholder="Exemplo: Rua 12, Bairro Centro, Teresina, PI. (ou Remoto)">
+        <input type="text" class="form-control" id="location" name="location"  placeholder="Exemplo: Rua 12, Bairro Centro, Teresina, PI. (ou Remoto)" value="{{$vacancy->location ?? " "}}">
     </div>
 
     <div class="mb-3">
         <label for="benefits" class="form-label">Benefícios</label>
-        <textarea id="benefits" name="benefits" class="form-control" rows="3" placeholder="Exemplo: Vale transporte, plano de saúde, etc."></textarea>
+        <textarea id="benefits" name="benefits" class="form-control" rows="3" placeholder="Exemplo: Vale transporte, plano de saúde, etc."> {{$vacancy->benefits ?? " "}} </textarea>
     </div>
 
 

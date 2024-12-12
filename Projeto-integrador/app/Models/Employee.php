@@ -25,9 +25,10 @@ class Employee extends Model
         'address_id',
     ];
     
-    /*public function relationship(){
-        return $this->hasOne(Adress::class);
-    }*/
+    public function address()
+{
+    return $this->hasOne(Address::class);
+}
     
 }
 

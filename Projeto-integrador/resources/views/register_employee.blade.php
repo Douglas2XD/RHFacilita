@@ -1,5 +1,10 @@
 @extends('layout')
 
+@section('document')
+    Registrar Funcionário
+@endsection
+
+
 @section('content')
 <link rel="stylesheet" href="{{asset('css/styles_cadastrar.css')}}">
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
@@ -9,24 +14,35 @@
         {{ session('success') }}
     </div>
 @endif
+
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
 @if (isset($employee->id) and $employee->id)
         <form class="employee-form" action="{{route("update", $employee)}}" enctype="multipart/form-data" method="post">
             @method('PUT')
     @else
         
         <form class="employee-form" action="{{route('store')}}" enctype="multipart/form-data" method="post">
-
+        
     @endif
     @csrf
     <div class="hr-text">Dados Pessoais</div>
     <!-- Foto de Perfil -->
     <label>Foto de Perfil</label>
     <div class="photo-preview" id="photo-preview">Prévia da Foto</div>
-    <input type="file" name="profile_pic" accept="image/*" onchange="previewFoto(this)">
+    <input type="file" name="profile_pic" accept="image/*" onchange="previewFoto(this)" required>
 
     <!-- Currículo -->
     <label>Currículo</label>
-    <input type="file" name="curriculum" accept=".pdf,.doc,.docx">
+    <input type="file" name="curriculum" accept=".pdf,.doc,.docx" value="{{$employee->curriculum ?? ' '}}" required>
 
     <label>Nome</label>
     <input type="text" name="name" value="{{$employee->name ?? " "}}">
@@ -64,8 +80,18 @@
     <label>Quantidade de Filhos</label>
     <input class="form-control" type="number" name="children" value="{{$employee->children ?? " "}}">
 
-    <label>Endereço</label>
-    <input type="text" name="address" value="{{$employee->address ?? " "}}">
+    <label>Cep</label>
+    <input type="text" id="cep" name="cep" value="{{ $employee->address->cep ?? '' }}">
+
+    <label>Estado</label>
+    <input type="text" id="state" name="state" value="{{ $employee->address->state ?? '' }}">
+    <label>Cidade</label>
+    <input type="text" id="city" name="city" value="{{ $employee->address->city ?? '' }}">
+    <label>Logradouro</label>
+    <input type="text" id="street" name="street" value="{{ $employee->address->street ?? '' }}">
+    <label>Número</label>
+    <input type="text" name="number" value="{{ $employee->address->number ?? '' }}">
+
 
     <label>PCD (Pessoa com Deficiência)</label>
     <div style="display: flex; align-items: center; gap: 150px; padding: 10px; border: 1px solid #ccc; border-radius: 5px; background-color: #f9f9f9;">
@@ -152,8 +178,41 @@
     <button type="submit" style="background-color: #1a2b49; width: 100%;">Salvar</button>
 
 </form>
-<a href="{{route('new')}}">new</a>
+<script>
+    
+    const inputCEP = document.getElementById('cep');
+const inputStreet = document.getElementById('street');
+const inputState = document.getElementById('state');
+const inputCity = document.getElementById('city');
+
+inputCEP.addEventListener('focusout', () => {
+    let cep = inputCEP.value.trim(); // Remove espaços em branco
+
+    if (cep.length !== 8 || isNaN(cep)) {
+        alert('CEP inválido!');
+        return;
+    }
+
+    fetch(`https://viacep.com.br/ws/${cep}/json/`)
+        .then(response => {
+            if (!response.ok) throw new Error('CEP não encontrado!');
+            return response.json();
+        })
+        .then(json => {
+            if (json.erro) {
+                alert('CEP inválido!');
+                return;
+            }
+            inputStreet.value = json.logradouro || '';
+            inputCity.value = json.localidade || '';
+            inputState.value = json.uf || '';
+        })
+        .catch(error => console.error('Erro:', error));
+});
+
+</script>
+
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
-
+<script src="{{asset('js/cep.js')}}"></script>
 @endsection

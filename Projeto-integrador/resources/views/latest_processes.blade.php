@@ -1,14 +1,16 @@
 @extends('layout')
 
+@section('document')
+    Ultimos Processos
+@endsection
+
+
 @section('content')
 
 <link rel="stylesheet" href="{{asset('css/styles_processos')}}">
 
-@if(session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
-    </div>
-@endif
+
+
 
 @foreach ($list as $vaga )
 
@@ -39,6 +41,9 @@
     <a class="btn btn-danger" href="{{route('delete_vacancy',$vaga)}}">Delete</a>
 
     <a class="btn btn-warning" href="{{route('show_candidates', $vaga->id)}}">Visualizar Candidatos</a>
+
+    <a class="btn btn-secondary" href="{{route('edit_vacancy',$vaga->id)}}">Editar Vaga</a>
+
 </div>
 
 @endforeach

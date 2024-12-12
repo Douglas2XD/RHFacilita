@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('addresses', function (Blueprint $table) {
             $table->id();
-            $table->integer('cep');
+            $table->foreignId('employee_id')->constrained()->references('id')->on('employees')->onDelete('cascade');
+            $table->string('cep');
             $table->string('street');
             $table->integer('number');
             $table->string('city');

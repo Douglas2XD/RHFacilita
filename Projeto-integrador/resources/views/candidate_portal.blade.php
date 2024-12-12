@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Portal do Candidato</title>
     
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
@@ -18,10 +18,20 @@
             <div class="alert alert-primary py-4">
                 <h2 class="fw-bold">Olá, seja bem-vindo!</h2>
                 <p class="lead">Candidate-se à sua vaga de preferência agora mesmo.</p>
+
+                
+
             </div>
         </div>
     </div>
+    @if(session('sucess'))
+        <div class="alert alert-success">
+            {{ session('sucess') }}
+        </div>
+@endif
 </div>
+
+
 
 @foreach ($vacancies as $vaga )
 <div class="job-card">

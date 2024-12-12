@@ -27,7 +27,7 @@ class AddressValidate extends FormRequest
             
             'cep' => 'required|digits:8',
             'street' => 'required|string|max:255', 
-            'phone' => 'required|integer', 
+            'number' => 'required|integer', 
             'city' => 'required|string|max:255',  
             'state' => 'required|string|max:255',
             

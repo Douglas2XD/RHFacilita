@@ -1,5 +1,8 @@
 @extends('layout')
 
+@section('document')
+    Visualizar Candidatos
+@endsection
 
 @section('content')
 <h2>Candidatos</h2>

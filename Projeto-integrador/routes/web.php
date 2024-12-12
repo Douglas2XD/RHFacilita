@@ -71,12 +71,13 @@ Route::get('/latest_processes/delete/{vacancy}', [VacancyController::class, "del
 
 Route::get('/latest_processes/new_process', [VacancyController::class, "index"])->name('new_process');
 
+Route::get('/create_job_vacancy/{vacancy}', [VacancyController::class, "edit"])->name('edit_vacancy');
+
+Route::put('/create_job_vacancy/{vacancy}', [VacancyController::class, "update"])->name('update_vacancy');
 
 
 
-
-
-
+Route::get('/ainda_em_desenvolvimento', [HomeController::class, "desenvolvimento"])->name('ainda_em_desenvolvimento');
 
 
 Route::get('/home', [HomeController::class,"index"])->name('home');

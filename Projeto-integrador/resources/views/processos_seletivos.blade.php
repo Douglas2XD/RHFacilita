@@ -1,5 +1,9 @@
 @extends('layout')
 
+@section('document')
+    Processos Seletivos
+@endsection
+
 @section('content')
 
 <div class="shortcuts">

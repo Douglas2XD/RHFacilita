@@ -1,6 +1,12 @@
 
 @extends('layout')
 
+
+@section('document')
+    Dashboard
+@endsection
+
+
 @section('content')
 <script src="{{asset('scripts/scripts_dashboard.js')}}"></script>
 <div class="row">
