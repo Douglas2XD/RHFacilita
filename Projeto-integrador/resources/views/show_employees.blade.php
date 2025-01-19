@@ -28,6 +28,13 @@
     </div>
 @endif
 
+@if(session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
+
+
 @if(isset($zero))
     <h2 class="text-warning text-center font-weight-bold">
         {{$zero}}

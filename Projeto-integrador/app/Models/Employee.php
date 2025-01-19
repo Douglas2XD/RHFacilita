@@ -23,12 +23,17 @@ class Employee extends Model
         'children',
         'pwd',
         'address_id',
+        'add_by',
     ];
     
     public function address()
 {
     return $this->hasOne(Address::class);
 }
+    public function addedBy()
+    {
+        return $this->belongsTo(User::class, 'add_by');
+    }
     
 }
 

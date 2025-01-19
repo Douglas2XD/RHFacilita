@@ -9,8 +9,9 @@ use Illuminate\Http\Request;
 class EmployeeController extends Controller
 {
     public function index(){
+        $id = auth()->id();
         $count = Employee::count();
-        $list = Employee::paginate(20);
+        $list = Employee::where('add_by', $id)->paginate(20);
         
         if($count <= 0){
             $zero = "OPA, SEM COLABOLADORES !";
@@ -122,6 +123,7 @@ class EmployeeController extends Controller
         $employee->curriculum = $curr;
         $employee->profile_pic = $profile_pic;
         
+        $employee->add_by = auth()->id();
         $employee->save();
 
         Address::create([
@@ -139,7 +141,10 @@ class EmployeeController extends Controller
     }
 
     public function edit(Employee $employee)
-    {
+    {   
+        if ($employee->add_by != auth()->id()) {
+            return redirect()->route('show_employees')->with('error', 'Você não tem permissão para editar este funcionário.');
+        }
         
         $employee->load('address');
 

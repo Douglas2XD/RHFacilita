@@ -55,7 +55,7 @@
 
     <div class="mb-3">
         <label for="remuneration" class="form-label">Salário</label>
-        <input type="text" class="form-control" id="remuneration" name="remuneration"  placeholder="Exemplo: R$ 1.412 a R$ 5.500" value="{{$vacancy->remuneration ?? " "}}">
+        <input type="text" class="form-control" id="remuneration" name="remuneration" placeholder="R$0,00" onInput="maskMoney(event);" />
     </div>
 
     <div class="mb-3">
@@ -103,7 +103,26 @@
 </form>
 </main>
 </div>
+<script>
+    const maskMoney = (e) => {
+      const onlyDigits = e.target.value
+        .split("") // divide por ""
+        .filter(num => /\d/.test(num)) // realiza o filtro impedindo sair outras coisas além de números
+        .join("") // retorna numa string
+        .padStart(3, "0");
 
+      const digitsFloat = onlyDigits.slice(0, -2) + "." + onlyDigits.slice(-2);
+      e.target.value = dinheiro(digitsFloat);
+    };
+
+    const dinheiro = (valor, locale = 'pt-BR', currency = 'BRL') => {
+      // locale influencia no formato de saída ex: pontos e vírgulas
+      return new Intl.NumberFormat(locale, {
+        style: 'currency',
+        currency
+      }).format(valor);
+    };
+  </script>
 
 
 

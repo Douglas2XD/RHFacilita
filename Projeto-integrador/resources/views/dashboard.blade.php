@@ -47,7 +47,9 @@
         <div class="col-sm-12 col-md-8">
             <div class="card chart-container">
                 <h5>Média/mês</h5>
+                <div id="chart_div" style="width: 100%; height: 500px;"></div>
                 <canvas id="lineChart"></canvas>
+                
             </div>
         </div>
     </div>
@@ -99,61 +101,39 @@
             </div>
         </div>
     </div>
+    
 </main>
-</div>
-   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-   <script>   
-   /*     
-        var ctxP = document.getElementById('pieChart').getContext('2d');
-        var pieChart = new Chart(ctxP, {
-            type: 'pie',
-            data: {
-                labels: ['Suporte', 'Desenv.', 'Adm.'],
-                datasets: [{
-                    data: [16, 90, 7],
-                    backgroundColor: ['#007bff', '#17a2b8', '#6c757d']
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: { position: 'bottom' }
-                }
-            }
-        });
 
-        // Line Chart
-        var ctxL = document.getElementById('lineChart').getContext('2d');
-        var lineChart = new Chart(ctxL, {
-            type: 'line',
-            data: {
-                labels: ['Jul.', 'Ago.', 'Set.', 'Out.'],
-                datasets: [{
-                    label: 'Suporte',
-                    data: [10, 15, 10, 20],
-                    borderColor: '#007bff',
-                    fill: false
-                }, {
-                    label: 'Desenv.',
-                    data: [5, 10, 5, 15],
-                    borderColor: '#17a2b8',
-                    fill: false
-                }, {
-                    label: 'Adm.',
-                    data: [2, 5, 2, 7],
-                    borderColor: '#6c757d',
-                    fill: false
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: { legend: { position: 'bottom' } }
-            }
-        });
-         */
+</div>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Year', 'Sales', 'Expenses'],
+          ['2013',  1000,      400],
+          ['2014',  1170,      460],
+          ['2015',  660,       1120],
+          ['2016',  1030,      540]
+        ]);
+
+        var options = {
+          title: 'Company Performance',
+          hAxis: {title: 'Year',  titleTextStyle: {color: '#333'}},
+          vAxis: {minValue: 0}
+        };
+
+        var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+
+      
+
+
     </script>
+    
 @endsection
 
 

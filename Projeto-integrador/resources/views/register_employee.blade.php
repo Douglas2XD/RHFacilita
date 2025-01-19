@@ -139,7 +139,7 @@
     <input type="date" name="admission_date">
 
     <label>Salário</label>
-    <input type="text" name="salary" oninput="mascaraSalario(this)">
+    <input type="text" name="salary" placeholder="R$0,00" onInput="maskMoney(event);" />
 
     <label>Status do Colaborador</label>
     <select name="status">
@@ -209,6 +209,27 @@ inputCEP.addEventListener('focusout', () => {
         })
         .catch(error => console.error('Erro:', error));
 });
+
+const maskMoney = (e) => {
+      const onlyDigits = e.target.value
+        .split("") // divide por ""
+        .filter(num => /\d/.test(num)) // realiza o filtro impedindo sair outras coisas além de números
+        .join("") // retorna numa string
+        .padStart(3, "0");
+
+      const digitsFloat = onlyDigits.slice(0, -2) + "." + onlyDigits.slice(-2);
+      e.target.value = dinheiro(digitsFloat);
+    };
+
+    const dinheiro = (valor, locale = 'pt-BR', currency = 'BRL') => {
+      // locale influencia no formato de saída ex: pontos e vírgulas
+      return new Intl.NumberFormat(locale, {
+        style: 'currency',
+        currency
+      }).format(valor);
+    };
+
+
 
 </script>
 
