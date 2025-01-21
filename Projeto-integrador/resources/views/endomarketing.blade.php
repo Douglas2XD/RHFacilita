@@ -5,6 +5,7 @@
 @endsection
 
 
+
 @section('content')
 <h2>Endomarketing</h2>
 <hr>
@@ -15,10 +16,10 @@
     <div class="card" style="width: 10rem;" >
     <img src="{{asset('assets/profile_pic/'.$aniversariante->profile_pic)}}" class="card-img-top" alt="...">
         <div class="card-body">
-            <p class="card-text"> {{$aniversariante->name}} 
-            {{$aniversariante->birth_date}}
-            
-            </p>
+            <p class="card-text">  
+                <p><strong>Nome:</strong> {{$aniversariante->name}}</p>
+                <p><strong>Data de Aniversário:</strong> {{$aniversariante->date_birth}}</p>
+                <p><strong>Idade:</strong> {{$aniversariante->age}}</p>
         </div>
     </div>
     
@@ -31,8 +32,10 @@
         <div class="card" style="width: 10rem;">
         <img src="{{asset('assets/profile_pic/'.$aniversariante->profile_pic)}}" class="card-img-top" alt="...">
             <div class="card-body">
-                <p class="card-text"> {{$aniversariante->name}} 
-                    {{$aniversariante->birth_date}}
+                <p class="card-text"> 
+                <p><strong>Nome:</strong> {{$aniversariante->name}}-{{$aniversariante->age}}</p>
+                <p><strong>Data de Aniversário:</strong> {{$aniversariante->date_birth}}</p>
+                
                 </p>
             </div>
         </div>

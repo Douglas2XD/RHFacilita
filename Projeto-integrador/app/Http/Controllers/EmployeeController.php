@@ -13,11 +13,6 @@ class EmployeeController extends Controller
         $count = Employee::count();
         $list = Employee::where('add_by', $id)->paginate(20);
         
-        if($count <= 0){
-            $zero = "OPA, SEM COLABOLADORES !";
-            return view("show_employees", ["employee"=>new Employee(),
-                            "list"=>$list,"zero"=>$zero]);
-        }
         return view("show_employees", ["employee"=>new Employee(),
                             "list"=>$list]);
     }

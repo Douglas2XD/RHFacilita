@@ -6,8 +6,10 @@ use App\Models\Candidate;
 use App\Models\CandidateVacancies;
 use App\Models\Employee;
 use App\Models\Vacancy;
+use Carbon\Carbon;
 use DateTime;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
@@ -52,15 +54,38 @@ class HomeController extends Controller
         return view('create_job_vacancy');
     }
     public function endomarketing(){
+        $id = auth()->id();
         $this_month = date('m');
         $next_month = (new DateTime())->modify('+1 month')->format('m');
-
-        $employees = Employee::whereMonth('birth_date', $this_month)->get();
         
-        $next_employees = Employee::whereMonth('birth_date', $next_month)->get();
 
-        
-        return view('endomarketing',["employees"=>$employees, "next_employees"=>$next_employees]);
+    $employees = Employee::where('add_by', $id)
+        ->whereMonth('birth_date', $this_month)
+        ->selectRaw('*, DATE_FORMAT(birth_date, "%d/%m") as date_birth') // Inclui data formatada
+        ->get()
+        ->map(function ($employee) {
+            $employee->age = $this->calculateAge($employee->birth_date) + 1; // Calcula idade +1
+            return $employee;
+        });
+
+    $next_employees = Employee::where('add_by', $id)
+        ->whereMonth('birth_date', $next_month)
+        ->selectRaw('*, DATE_FORMAT(birth_date, "%d/%m") as date_birth') // Inclui data formatada
+        ->get()
+        ->map(function ($employee) {
+            $employee->age = $this->calculateAge($employee->birth_date) + 1; // Calcula idade +1
+            return $employee;
+        });
+
+
+            return view('endomarketing', ["employees" => $employees, "next_employees" => $next_employees]);
+    }
+    private function  calculateAge($birthDate)
+    {
+        $birthDate = new DateTime($birthDate);
+        $today = new DateTime();
+        $age = $today->diff($birthDate)->y;
+        return $age;
     }
 
     public function latest_processes(){

@@ -56,8 +56,9 @@ class VacancyController extends Controller
         $vacancy = Vacancy::create($request->all());
         
         session()->flash('success', 'Vaga Criada com sucesso!');
-        return redirect(route('edit_vacancy',$vacancy->id));
-        #return back()->with('sucess','Vaga Criada com sucesso! ');
+        #return redirect(route('edit_vacancy',$vacancy->id));
+        return back()->with('success', 'Dados inseridos com sucesso!');
+        
     }
 
     public function edit(Vacancy $vacancy)

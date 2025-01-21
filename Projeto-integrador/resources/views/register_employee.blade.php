@@ -9,11 +9,7 @@
 <link rel="stylesheet" href="{{asset('css/styles_cadastrar.css')}}">
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
-@if(session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
-    </div>
-@endif
+
 
 @if ($errors->any())
     <div class="alert alert-danger">
@@ -31,7 +27,11 @@
     @else
         
         <form class="employee-form" action="{{route('store')}}" enctype="multipart/form-data" method="post">
-        
+            @if(session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
     @endif
     @csrf
     <div class="hr-text">Dados Pessoais</div>
@@ -51,7 +51,7 @@
     <input type="text" name="cpf" oninput="mascaraCPF(this)" value="{{$employee->cpf ?? " "}}">
 
     <label>RG</label>
-    <input type="text" name="rg" value="{{$employee->rg ?? " "}}">
+    <input type="text" name="rg" id="rg" value="{{$employee->rg ?? " "}}" oninput="mascaraRG(this)" >
 
     <label>Data de Nascimento</label>
     <input type="date" name="birth_date" value="{{$employee->birth_date ?? " "}}">
@@ -178,9 +178,26 @@
     <button type="submit" style="background-color: #1a2b49; width: 100%;">Salvar</button>
 
 </form>
-<script>
+
+
     
-    const inputCEP = document.getElementById('cep');
+
+
+<script>
+function mascaraRG(input) {
+  // Remove tudo o que não for número
+  let valor = input.value.replace(/\D/g, '');
+
+  // Limita o valor a 8 dígitos
+  if (valor.length > 8) {
+    valor = valor.substring(0, 8);
+  }
+
+  // Aplica a máscara (formato: 00000000)
+  input.value = valor;
+}
+
+const inputCEP = document.getElementById('cep');
 const inputStreet = document.getElementById('street');
 const inputState = document.getElementById('state');
 const inputCity = document.getElementById('city');

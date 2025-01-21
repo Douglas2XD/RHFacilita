@@ -21,20 +21,19 @@
 
 
 
-@if(session('sucess'))
-    <div class="alert alert-success">
-        {{ session('sucess') }}
-        
-    </div>
-@endif
 
 @if (isset($vacancy->id))
         <form class="employee-form" action="{{route('update_vacancy',$vacancy)}}" method="post">
             @method('PUT')
            
     @else
+    
     <form class="employee-form" action="{{route('store_vacancy')}}" method="post">
-
+        @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+        @endif
     @endif
 
     @csrf
