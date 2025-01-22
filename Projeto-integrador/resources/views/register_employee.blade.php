@@ -184,53 +184,26 @@
 
 
 <script>
+$(function(){
+   $('#cep').mask('00000-000')
+})
+
+
+
+
 function mascaraRG(input) {
-  // Remove tudo o que não for número
   let valor = input.value.replace(/\D/g, '');
 
-  // Limita o valor a 8 dígitos
   if (valor.length > 8) {
     valor = valor.substring(0, 8);
   }
 
-  // Aplica a máscara (formato: 00000000)
   input.value = valor;
 }
-
-const inputCEP = document.getElementById('cep');
-const inputStreet = document.getElementById('street');
-const inputState = document.getElementById('state');
-const inputCity = document.getElementById('city');
-
-inputCEP.addEventListener('focusout', () => {
-    let cep = inputCEP.value.trim(); // Remove espaços em branco
-
-    if (cep.length !== 8 || isNaN(cep)) {
-        alert('CEP inválido!');
-        return;
-    }
-
-    fetch(`https://viacep.com.br/ws/${cep}/json/`)
-        .then(response => {
-            if (!response.ok) throw new Error('CEP não encontrado!');
-            return response.json();
-        })
-        .then(json => {
-            if (json.erro) {
-                alert('CEP inválido!');
-                return;
-            }
-            inputStreet.value = json.logradouro || '';
-            inputCity.value = json.localidade || '';
-            inputState.value = json.uf || '';
-        })
-        .catch(error => console.error('Erro:', error));
-});
-
 const maskMoney = (e) => {
       const onlyDigits = e.target.value
         .split("") // divide por ""
-        .filter(num => /\d/.test(num)) // realiza o filtro impedindo sair outras coisas além de números
+        .filter(num => /\d/.test(num)) 
         .join("") // retorna numa string
         .padStart(3, "0");
 
@@ -239,7 +212,7 @@ const maskMoney = (e) => {
     };
 
     const dinheiro = (valor, locale = 'pt-BR', currency = 'BRL') => {
-      // locale influencia no formato de saída ex: pontos e vírgulas
+      
       return new Intl.NumberFormat(locale, {
         style: 'currency',
         currency
@@ -248,9 +221,13 @@ const maskMoney = (e) => {
 
 
 
-</script>
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+
+</script>
+<script src="{{asset('scripts/jquery-3.7.1.min.js')}}"></script>
+
+<script src="{{asset('scripts/jquery.mask.min.js')}}"></script>
+<script src="{{asset('scripts/cep.js')}}"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
-<script src="{{asset('js/cep.js')}}"></script>
 @endsection
