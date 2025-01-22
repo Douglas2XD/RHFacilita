@@ -208,6 +208,9 @@ class EmployeeController extends Controller
 }
     public function delete( Employee $employee){
 
+        if ($employee->add_by != auth()->id()) {
+            return redirect()->route('show_employees')->with('error', 'Você não tem permissão para deletar este funcionário.');
+        }
         $employee->address->delete();
         
         $employee->delete();

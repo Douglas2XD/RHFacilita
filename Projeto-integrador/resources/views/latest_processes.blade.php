@@ -9,8 +9,11 @@
 
 <link rel="stylesheet" href="{{asset('css/styles_processos')}}">
 
-
-
+@if(session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
 
 @foreach ($list as $vaga )
 

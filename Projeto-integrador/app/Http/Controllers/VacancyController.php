@@ -12,8 +12,8 @@ class VacancyController extends Controller
 {
 
     public function index(){
-    
-        $list = Vacancy::paginate(20);
+        $id = auth()->id();
+        $list = Vacancy::where('created_by',$id)->paginate(20);
         return view("latest_processes", ["vacancy"=>new Vacancy(),
                             "list"=>$list]);
         
@@ -21,6 +21,8 @@ class VacancyController extends Controller
     }
 
     public function store(Request $request){  
+        $id = auth()->id();
+        
         $request->validate([
             'title' => 'required|string|max:255', // Título obrigatório, string e até 255 caracteres
             'description' => 'required|string|max:1000', // Descrição obrigatória, string e até 1000 caracteres
@@ -51,9 +53,19 @@ class VacancyController extends Controller
             'benefits.max' => 'Os benefícios não podem ter mais de 1000 caracteres.',
         ]);
         
-        
+        $vacancy = new Vacancy();
+        $vacancy->created_by = $id;
+        $vacancy->description = $request->input('description');
+        $vacancy->title = $request->input('title');
+        $vacancy->requirements = $request->input('requirements');
+        $vacancy->remuneration = $request->input('remuneration');
+        $vacancy->contract_type = $request->input('contract_type');
+        $vacancy->location = $request->input('location');
+        $vacancy->benefits = $request->input('benefits');
+        $vacancy->save();
 
-        $vacancy = Vacancy::create($request->all());
+
+        #$vacancy = Vacancy::create($request->all());
         
         session()->flash('success', 'Vaga Criada com sucesso!');
         #return redirect(route('edit_vacancy',$vacancy->id));
@@ -64,6 +76,11 @@ class VacancyController extends Controller
     public function edit(Vacancy $vacancy)
     {
         $list = Vacancy::paginate(20);
+
+        if ($vacancy->created_by != auth()->id()) { 
+            return redirect()->route('latest_processes')->with('error', 'Você não tem permissão para editar esta vaga.');
+        }
+
 
         return view("create_job_vacancy", [
             "vacancy"=>$vacancy,
@@ -78,6 +95,11 @@ class VacancyController extends Controller
 
 
     public function delete(Vacancy $vacancy){
+
+        if ($vacancy->created_by != auth()->id()) { 
+            return redirect()->route('latest_processes')->with('error', 'Você não tem permissão para deletar esta vaga.');
+        }
+
         $candidateVacancyIds = CandidateVacancies::where('vacancy_id', $vacancy->id)->pluck('candidate_id');
 
         CandidateVacancies::where('vacancy_id', $vacancy->id)->delete();

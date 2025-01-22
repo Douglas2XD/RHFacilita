@@ -13,11 +13,20 @@ class Vacancy extends Model
                             "remuneration",
                             "contract_type",
                             "location",
-                            "benefits"];
+                            "benefits",
+                            "created_by",];
 
     public function candidates()
     {
         return $this->belongsToMany(Candidate::class, 'candidate_vacancies', 'vacancy_id', 'candidate_id');
     }
+
+    public function createdBy()
+    {
+        return $this->belongsTo(User::class, 'created_by');
+    }
+
+
+
 }
 
