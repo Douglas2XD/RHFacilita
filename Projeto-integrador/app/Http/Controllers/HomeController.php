@@ -35,10 +35,29 @@ class HomeController extends Controller
         
     }
     public function dashboard(){
-    $totalRegistros = Employee::count();
-    $vagas_abertas = Vacancy::count();
+        $totalRegistros = Employee::count();
+        $vagas_abertas = Vacancy::count();
+        
+        $movements = \DB::table('monthly_movements')
+        ->where('year', now()->year)
+        ->get()
+        ->keyBy('month'); // Indexa os resultados pelo mês
 
-        return view('dashboard',["totalRegistros"=>$totalRegistros,"vagas_abertas"=>$vagas_abertas]);
+    // Cria um array contendo os dados organizados por mês (1 a 12)
+    $monthlyData = [];
+
+    for ($month = 1; $month <= 12; $month++) {
+        $monthlyData[$month] = [
+            'hires' => $movements[$month]->hires ?? 0,
+            'terminations' => $movements[$month]->terminations ?? 0,
+        ];
+    }
+
+    return view('dashboard', [
+        'totalRegistros' => $totalRegistros,
+        'vagas_abertas' => $vagas_abertas,
+        'monthlyData' => $monthlyData, // Passando os dados organizados por mês
+    ]);
     }
     public function register_employees(){
         return view('register_employee');

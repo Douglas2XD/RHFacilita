@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('CTPS_number');
             $table->string('CTPS_series');
             $table->string('PIS_PASEP');
+            $table->foreignId('employee_id')->constrained()->references('id')->on('employees');
             $table->timestamps();
         });
     }

@@ -38,7 +38,7 @@
     <!-- Foto de Perfil -->
     <label>Foto de Perfil</label>
     <div class="photo-preview" id="photo-preview">Prévia da Foto</div>
-    <input type="file" name="profile_pic" accept="image/*" onchange="previewFoto(this)" required>
+    <input type="file" name="profile_pic" accept="image/*" onchange="previewFoto(this)" value="{{$employee->photo ?? ' '}}" required>
 
     <!-- Currículo -->
     <label>Currículo</label>
@@ -107,7 +107,7 @@
 
     <div class="hr-text">Área de Atuação</div>
     <label>Departamento</label>
-    <select name="department">
+    <select name="name">
         <option></option>
         <option>Administração</option>
         <option>Suporte</option>
@@ -142,20 +142,20 @@
     <input type="text" name="salary" placeholder="R$0,00" onInput="maskMoney(event);" />
 
     <label>Status do Colaborador</label>
-    <select name="status">
+    <select name="employee_stats">
         <option>Ativo</option>
         <option>Inativo</option>
         <option>Desligado</option>
     </select>
 
     <label>Número da CTPS</label>
-    <input type="text" name="ctps_number">
+    <input type="text" name="CTPS_number">
 
     <label>Série da CTPS</label>
-    <input type="text" name="ctps_series">
+    <input type="text" name="CTPS_series">
 
     <label>PIS/PASEP</label>
-    <input type="text" name="pis_pasep">
+    <input type="text" name="PIS_PASEP">
 
     <div class="hr-text">Dados Bancários</div>
     <label>Banco</label>

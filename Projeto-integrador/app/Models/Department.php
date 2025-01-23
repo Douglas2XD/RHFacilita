@@ -10,13 +10,19 @@ class Department extends Model
     use HasFactory;
 
     protected $fillable = [
+        'employee_id',
         'name',
         'position',
         'admission_date',
-        'salary',
         'employee_stats',
         'CTPS_number',
         'CTPS_series',
         'PIS_PASEP'
     ];
+
+    public function employee()
+    {
+        return $this->belongsTo(Employee::class);
+    }
+
 }

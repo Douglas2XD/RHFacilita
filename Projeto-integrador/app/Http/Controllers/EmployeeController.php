@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Department;
 use App\Models\Employee;    
 use App\Models\Address;                       
 use Illuminate\Http\Request;
@@ -117,7 +118,7 @@ class EmployeeController extends Controller
         $employee->pwd = $request->input('pwd');
         $employee->curriculum = $curr;
         $employee->profile_pic = $profile_pic;
-        
+        $employee->salary = $request->input('salary');
         $employee->add_by = auth()->id();
         $employee->save();
 
@@ -130,13 +131,40 @@ class EmployeeController extends Controller
             'number' => $request->input('number'),
         ]);
 
+        Department::create([
+            'employee_id' => $employee->id,
+            'name' => $request->input('name'),
+            'position' => $request->input('position'),
+            'admission_date' => $request->input('admission_date'),
+            'employee_stats' => $request->input('employee_stats'),
+            'CTPS_number' => $request->input('CTPS_number'),
+            'CTPS_series' => $request->input('CTPS_series'),
+            'PIS_PASEP' => $request->input('PIS_PASEP'),
+        ]);
+
         session()->flash('success', 'Dados inseridos com sucesso!');
+        
+
+
+
+        $year = now()->year;
+        $month = now()->month;
+
+        \DB::table('monthly_movements')->updateOrInsert(
+            ['year' => $year, 'month' => $month],
+            ['hires' => \DB::raw('hires + 1')]
+        );
+
+
+
         return back()->with('success', 'Dados inseridos com sucesso!');
         #return redirect(route("edit", $employee->id))->with('success', 'Employee created successfully!');
+        
     }
 
     public function edit(Employee $employee)
     {   
+        
         if ($employee->add_by != auth()->id()) {
             return redirect()->route('show_employees')->with('error', 'Você não tem permissão para editar este funcionário.');
         }
@@ -214,6 +242,15 @@ class EmployeeController extends Controller
         $employee->address->delete();
         
         $employee->delete();
+
+        $year = now()->year;
+        $month = now()->month;
+
+        // Updates the movements table for terminations
+        \DB::table('monthly_movements')->updateOrInsert(
+            ['year' => $year, 'month' => $month],
+            ['terminations' => \DB::raw('terminations + 1')]
+        );
 
 
 

@@ -24,6 +24,7 @@ class Employee extends Model
         'pwd',
         'address_id',
         'add_by',
+        'salary',
     ];
     
     public function address()
