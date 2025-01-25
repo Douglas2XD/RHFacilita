@@ -11,26 +11,6 @@ use Illuminate\Support\Facades\Validator;
 class CandidateController extends Controller
 {
 
-    /**
-    public function addVacancy($candidateId, $vacancyId)
-    {
-        $candidate = Candidate::find($candidateId);
-        $vacancy = Vacancy::find($vacancyId);
-
-        // Adiciona a vaga ao candidato
-        $candidate->vacancies()->attach($vacancy->id);
-
-        return response()->json(['message' => 'Vaga adicionada com sucesso!']);
-    }
-
-    public function showVacancies($candidateId)
-    {
-        $candidate = Candidate::find($candidateId);
-
-        return response()->json($candidate->vacancies);
-    }
- */
-
     public function index(){
         
         $vacancies  = Vacancy::paginate(10);
