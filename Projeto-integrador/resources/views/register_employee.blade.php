@@ -143,14 +143,13 @@
     <input type="date" name="admission_date" value="{{old('admission_date', $employee->departament->admission_date ?? '')}}">
 
     <label>Salário</label>
-    <input type="text" name="salary" placeholder="R$0,00" onInput="maskMoney(event);" value="{{ old('salary', $employee->departament->salary ?? '') }}" />
+    <input type="text" id="salary" name="salary" placeholder="R$0,00" onInput="maskMoney(event);" value="{{ old('salary', $employee->salary ?? '') }}" />
 
     <label>Status do Colaborador</label>
     <select name="employee_stats">
-        <option value="Ativo" {{ $employee->employee_stats == 'Ativo' ? 'selected' : '' }}>Ativo</option>
-        <option value="Inativo" {{ $employee->employee_stats == 'Inativo' ? 'selected' : '' }}>Inativo</option>
-        <option value="Desligado" {{ $employee->employee_stats == 'Desligado' ? 'selected' : '' }}>Desligado</option>
-
+        <option value="Ativo" {{ old('employee_stats', $employee->employee_stats ?? '') == 'Ativo' ? 'selected' : '' }}>Ativo</option>
+        <option value="Inativo" {{ old('employee_stats', $employee->employee_stats ?? '') == 'Inativo' ? 'selected' : '' }}>Inativo</option>
+        <option value="Desligado" {{ old('employee_stats', $employee->employee_stats ?? '') == 'Desligado' ? 'selected' : '' }}>Desligado</option>
     </select>
 
     <label>Número da CTPS</label>
@@ -192,6 +191,8 @@
 $(function(){
    $('#cep').mask('00000-000')
 })
+
+
 
 
 

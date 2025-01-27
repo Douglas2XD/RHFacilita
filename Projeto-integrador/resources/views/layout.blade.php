@@ -48,8 +48,8 @@
 
           {{ auth()->user()->name }}
           @else
-              
-                <script>window.location = "{{ route('login') }}";</script>
+                
+                {{---<script>window.location = "{{ route('login') }}";</script>---}}  
           @endif
             
           

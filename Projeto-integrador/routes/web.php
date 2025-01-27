@@ -4,7 +4,9 @@ use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HomePageController;
+use App\Http\Controllers\TerminationController;
 use App\Http\Controllers\VacancyController;
+use App\Models\Termination;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -41,6 +43,13 @@ Route::get('/register_employees/{employee}', [EmployeeController::class, "edit"]
 Route::put('/register_employees/{employee}', [EmployeeController::class, "update"])->name('update');
 
 Route::get('/register_employees/delete/{employee}', [EmployeeController::class, "delete"])->name('delete');
+
+
+Route::post('/termination', [TerminationController::class, "store"])->name('store_termination');
+Route::get('/termination/index/{employee}', [TerminationController::class, "index"])->name('analisar_demissao');
+Route::get('/termination/delete/{employee}', [TerminationController::class, "delete"])->name('delete_employee');
+Route::get('/termination/show_ex_employees', [TerminationController::class, "show"])->name('show_ex_employees');
+
 
 Route::get('/register_employees', [App\Http\Controllers\HomeController::class, 'register_employees'])->name(name: 'register_employees');
 
@@ -90,3 +99,4 @@ Route::post('/candidate_portal', [CandidateController::class, "create"])->name('
 
 
 Route::get('/', [HomePageController::class,"index"])->name('home_page');
+

@@ -34,6 +34,10 @@ class HomeController extends Controller
         return view("index");
         
     }
+    public function login(){
+        return view("login");
+    }
+
     public function dashboard(){
         $totalRegistros = Employee::count();
         $vagas_abertas = Vacancy::count();
@@ -99,7 +103,7 @@ class HomeController extends Controller
 
             return view('endomarketing', ["employees" => $employees, "next_employees" => $next_employees]);
     }
-    private function  calculateAge($birthDate)
+    private function calculateAge($birthDate)
     {
         $birthDate = new DateTime($birthDate);
         $today = new DateTime();

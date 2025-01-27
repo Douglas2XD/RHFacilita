@@ -7,11 +7,15 @@ use Illuminate\Http\Request;
 class HomePageController extends Controller
 {
     public function index(Request $request) {
-                    
-        return view("index");
-
-            
-        #return  view('auth.login');
         
+        if(session("status")){
+            return view('index');
+        }
+        else{
+            return redirect()->route('home');
+        }
     }
+
+    
+
 }

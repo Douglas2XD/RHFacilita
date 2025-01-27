@@ -47,15 +47,20 @@
         
         
         <!-- Line Chart -->
-        <div class="col-sm-12 col-md-8">
-            <div class="card chart-container">
-                <h5>Movimentações Admissões/Demissões</h5>
-                <div id="chart_div" style="width: 100%; height: 500px;"></div>
-                <canvas id="lineChart"></canvas>
-                
-            </div>
-        </div>
+        
     </div>
+
+
+    <div id="chart_div" style="width: 100%; height: 400px;"></div>
+            <canvas id="lineChart"></canvas>
+        </div>
+
+<!-- <div class="col-sm-12 col-md-8" >
+        <div class="card chart-container" style="width: 100%">
+            <h5>Movimentações Admissões/Demissões</h5>
+            
+    </div> -->
+    
     
 
     
@@ -77,7 +82,7 @@
             ]);
 
             var options = {
-                title: 'Company Performance',
+                title: 'Total Contratações/Demissões',
                 hAxis: {title: 'Mês', titleTextStyle: {color: '#333'}},
                 vAxis: {minValue: 0}
             };

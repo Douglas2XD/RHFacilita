@@ -20,7 +20,7 @@ class EmployeeController extends Controller
                             "list"=>$list]);
     }
 
-    public function store(Request $request){        
+    public function store(Request $request){       
         $data = $request->all();
         $validation_employee = Employee::Validated($data);
         $validation_address = Address::Validated($data);
@@ -177,14 +177,20 @@ class EmployeeController extends Controller
         session()->flash('success', 'Dados editados com sucesso!');
         return back()->with('success', 'Dados editados com sucesso!');
 }
-    public function delete( Employee $employee){
+
+    public function delete(Employee $employee){
 
         if ($employee->add_by != auth()->id()) {
             return redirect()->route('show_employees')->with('error', 'Você não tem permissão para deletar este funcionário.');
         }
-        $employee->address->delete();
-        
+        $departament = Department::where('id_employee',$employee->id);
+        $employee->departament_id = null;
+
+
+        $employee->save();
+
         $employee->delete();
+        
 
         $year = now()->year;
         $month = now()->month;
@@ -195,10 +201,7 @@ class EmployeeController extends Controller
             ['terminations' => \DB::raw('terminations + 1')]
         );
 
-
-
         session()->flash('success', 'Funcionário desligado com sucesso!');
         return redirect(route('new'))->with('Funcionário desligado com sucesso! ');
     }
-    
 }

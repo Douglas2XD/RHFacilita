@@ -29,6 +29,13 @@
           </div>
           <!--  -->
 
+          <div class="col-md-4 mb-3">
+            <div class="shortcut-card p-3">
+              <i class="fas fa-user-slash fa-2x mb-3 gold-icon"></i>
+              <a href="{{route('show_ex_employees')}}" style="text-decoration: none;"><div class="shortcut-title font-weight-bold">Desligados</div></a>
+              <p class="shortcut-description text-muted">Visualize funcionários desligados</p>
+            </div>
+          </div>
 
         </div>
       </div>

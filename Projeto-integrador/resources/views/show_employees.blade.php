@@ -9,7 +9,7 @@
 
 
 <style>
-        img {
+        img.rounded-circle mr-3 {
               width: 100px; /* Largura da imagem */
               height: 100px; /* Altura da imagem */
               border-radius: 50%; /* Deixa a imagem circular */
@@ -32,13 +32,6 @@
     <div class="alert alert-danger">
         {{ session('error') }}
     </div>
-@endif
-
-
-@if(isset($zero))
-    <h2 class="text-warning text-center font-weight-bold">
-        {{$zero}}
-    </h2>
 @endif
 
 
@@ -74,7 +67,7 @@
     <!-- Botões de ação -->
     <div>
         
-        <a href="{{route('delete',$employee)}}" class="btn btn-danger btn-sm">DESLIGAR</a>
+        <a href="{{route('analisar_demissao',$employee)}}" class="btn btn-danger btn-sm">DESLIGAR</a>
     </div>
 </li>
     <hr>
