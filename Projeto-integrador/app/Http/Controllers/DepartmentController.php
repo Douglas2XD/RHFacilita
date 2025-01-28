@@ -10,7 +10,7 @@ class DepartmentController extends Controller
 {
     public function index(){
         $list = Department::paginate(20);
-        return view("", ["department"=>new Department(),
+        return view("show_departments", ["department"=>new Department(),
                             "list"=>$list]);
     }
 

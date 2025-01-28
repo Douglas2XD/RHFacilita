@@ -12,8 +12,8 @@ class EmployeeController extends Controller
 {
     public function index(){
         $id = auth()->id();
-        $count = Employee::count();
-        #$list = Employee::where('add_by', $id)->paginate(20);
+        $count = Employee::where('add_by', $id)->count();
+        
         $list = Employee::with('departament')->where('add_by', $id)->paginate(20);
         
         return view("show_employees", ["employee"=>new Employee(),

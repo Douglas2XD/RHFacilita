@@ -22,13 +22,14 @@ class TerminationController extends Controller
 
         if($search){
             $list = Termination::where('removed_by',auth()->id())->where("name","LIKE","%".$search."%")->paginate(5);
+            
         }else if($search2){
-            $list = Termination::where('removed_by',auth()->id())->where("cpf","LIKE","%".$search2."%")->paginate(5);
+            $list = Termination::where('removed_by',auth()->id())->where("cpf","LIKE","%".$search2."%")->paginate(5); 
         }else{
             $list = Termination::where('removed_by',auth()->id())->paginate(20);
         }
 
-        return view('show_ex_employees',["list"=>$list]);
+        return view('show_ex_employees',["list"=>$list])->with('success','Encontrado! ');
     }
 
     public function store(Request $request){

@@ -40,7 +40,7 @@ class HomeController extends Controller
 
     public function dashboard(){
         $totalRegistros = Employee::count();
-        $vagas_abertas = Vacancy::count();
+        $vagas_abertas = Vacancy::where('created_by',auth()->id())->count();
         
         $movements = \DB::table('monthly_movements')
         ->where('year', now()->year)

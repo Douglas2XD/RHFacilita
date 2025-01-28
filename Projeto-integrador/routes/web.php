@@ -59,6 +59,7 @@ Route::get('/processos_seletivos', [App\Http\Controllers\HomeController::class, 
 
 Route::get('/show_employees', [App\Http\Controllers\EmployeeController::class, 'index'])->name(name: 'show_employees');
 
+Route::get('/department',[App\Http\Controllers\DepartmentController::class, 'index'])->name(name: 'show_departments');
 
 Route::get('/create_job_vacancy', [App\Http\Controllers\HomeController::class, 'create_job_vacancy'])->name(name: 'create_job_vacancy');
 

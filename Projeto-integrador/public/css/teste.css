@@ -99,9 +99,9 @@ body {
     color: #bbb;
   }
   .sidebar ul li.active, .sidebar ul li:hover {
-    background-color: #e0e5f1; /* Tom intermediário para hover */
-  color: #1a2b49; /* Contraste suave */
-  transition: background-color 0.3s ease, color 0.3s ease; /* Transições mais suaves */
+  background-color: #e0e5f1; 
+  color: #1a2b49; 
+  transition: background-color 0.3s ease, color 0.3s ease; 
   border-radius: 4px; /* Bordas arredondadas para um visual mais moderno */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }

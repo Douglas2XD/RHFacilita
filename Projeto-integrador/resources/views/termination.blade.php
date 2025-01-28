@@ -9,6 +9,11 @@
 
 @section('content')
 
+@if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
 
 <form method="POST" action="{{route('store_termination')}}" class="container mt-4">
     @csrf

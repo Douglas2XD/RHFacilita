@@ -17,10 +17,10 @@
       </div>
       <ul>
         <a style="text-decoration: none;" href="{{route('index')}}"><li class="active"><i class="fas fa-home mr-2"></i> Página inicial</li></a>
-        <li><i class="fas fa-chart-line mr-2"></i> Visão geral</li>
+        {{--<li><i class="fas fa-chart-line mr-2"></i> Visão geral</li>---}}
         <a href="{{route('processos_seletivos')}}" style="text-decoration: none;"><li><i class="fas fa-clipboard-list mr-2"></i> Processos seletivos</li></a>
         <a style="text-decoration: none;" href="{{route('recrutamento')}}"><li><i class="fas fa-user-plus mr-2"></i> Recrutamento e Seleção</li> </a>
-        <li><i class="fas fa-users mr-2"></i> Equipes e Departamentos</li>
+        <a style="text-decoration: none;" href="{{route('show_departments')}}"> <li><i class="fas fa-users mr-2"></i> Equipes e Departamentos</li> </a> 
         <a href="{{route('endomarketing')}}" style="text-decoration: none;"><li><i class="fas fa-heart mr-2"></i> Endomarketing</li></a>
         <a href="{{route('dashboard')}}" style="text-decoration: none;"><li><i class="fas fa-chart-pie mr-2"></i> Relatórios de RH</li></a>
         <li><i class="fas fa-cogs mr-2"></i> Configurações</li>
