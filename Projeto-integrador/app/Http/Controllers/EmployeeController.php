@@ -20,11 +20,11 @@ class EmployeeController extends Controller
                             "list"=>$list]);
     }
 
-    public function store(Request $request){       
+    public function store(Request $request){     
         $data = $request->all();
         $validation_employee = Employee::Validated($data);
         $validation_address = Address::Validated($data);
-        $validation_departament = Department::Validated($data);
+        
 
         if($validation_employee->fails()){
             return back()->withErrors($validation_employee)->withInput();
@@ -34,9 +34,7 @@ class EmployeeController extends Controller
             return back()->withErrors($validation_address)->withInput();
         }
         
-        if($validation_departament->fails()){
-            return back()->withErrors($validation_departament)->withInput();
-        }
+        
         
 
         if ($request->hasFile("profile_pic")){
@@ -81,6 +79,15 @@ class EmployeeController extends Controller
         $employee->profile_pic = $profile_pic;
         $employee->salary = $request->input('salary');
         $employee->add_by = auth()->id();
+
+        $employee->departament_id = $request->input('department_id'); 
+        $employee->position = $request->input('position');
+        $employee->admission_date = $request->input('admission_date');
+        $employee->employee_stats = $request->input('employee_stats');
+        $employee->CTPS_number = $request->input('CTPS_number');
+        $employee->CTPS_series = $request->input('CTPS_series');
+        $employee->PIS_PASEP = $request->input('PIS_PASEP');
+
         $employee->save();
 
         Address::create([
@@ -92,17 +99,6 @@ class EmployeeController extends Controller
             'number' => $request->input('number'),
         ]);
 
-        $departament = Department::create([
-            'employee_id' => $employee->id,
-            'name_departament' => $request->input('name_departament'),
-            'position' => $request->input('position'),
-            'admission_date' => $request->input('admission_date'),
-            'employee_stats' => $request->input('employee_stats'),
-            'CTPS_number' => $request->input('CTPS_number'),
-            'CTPS_series' => $request->input('CTPS_series'),
-            'PIS_PASEP' => $request->input('PIS_PASEP'),
-        ]);
-        $employee->departament_id = $departament->id;
         
         $employee->save();
         session()->flash('success', 'Dados inseridos com sucesso!');
@@ -123,11 +119,13 @@ class EmployeeController extends Controller
         $employee->load('address');
         $employee->load('departament');
         $list = Employee::paginate(20);
-
+        $departments = Department::all();
+        
         
         return view("register_employee", [
             "employee" => $employee,
             "list" => $list,
+            "departments"=>$departments,
         ]);
     }
     

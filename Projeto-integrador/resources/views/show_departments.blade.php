@@ -8,7 +8,9 @@
 
 
 <div class="container mt-5">
-    <h2 class="mb-4">Lista de todos os Departamentos</h2>
+    <h2 class="mb-4">Lista de todos os Departamentos  <a href="{{route('create_department')}}" class="btn btn-primary btn-sm" target="_blank">
+        Criar Novo Departamento
+    </a>  </h2>
     <table class="table table-striped">
         <thead>
             <tr>
@@ -22,11 +24,12 @@
             @foreach ($list as $department)
             <tr>
                 <td>{{$department->name_departament}}</td>
-                <td>total_aqui</td>
+                <td>{{$department->employee_count}}</td>
                 <td>
-                    <a href="" class="btn btn-primary btn-sm" target="_blank">
+                    <a href="{{route('department_info',$department)}}" class="btn btn-primary btn-sm" target="_blank">
                         Visualizar
                     </a>
+
                 </td>
             </tr>
             @endforeach

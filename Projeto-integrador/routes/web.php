@@ -59,7 +59,22 @@ Route::get('/processos_seletivos', [App\Http\Controllers\HomeController::class, 
 
 Route::get('/show_employees', [App\Http\Controllers\EmployeeController::class, 'index'])->name(name: 'show_employees');
 
+Route::get('/create_department',[App\Http\Controllers\HomeController::class, 'create_department'])->name(name: 'create_department');
 Route::get('/department',[App\Http\Controllers\DepartmentController::class, 'index'])->name(name: 'show_departments');
+
+Route::post('/store_department', [App\Http\Controllers\DepartmentController::class, "store"])->name('store_department');
+
+Route::get('/edit_department/{employee}', [App\Http\Controllers\DepartmentController::class, "edit"])->name('edit_department');
+
+Route::put('/update_department/{employee}', [App\Http\Controllers\DepartmentController::class, "update"])->name('update_department');
+
+Route::get('/department_info/{department}', [App\Http\Controllers\HomeController::class, 'department_info'])->name(name: 'department_info');
+
+
+
+
+
+
 
 Route::get('/create_job_vacancy', [App\Http\Controllers\HomeController::class, 'create_job_vacancy'])->name(name: 'create_job_vacancy');
 

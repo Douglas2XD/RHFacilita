@@ -34,7 +34,7 @@
     </div>
 @endif
 
-
+<h2>Todos os Colaboradores</h2>
 @foreach ($list as $employee) 
     @if($employee->pwd == 0 )
     
@@ -49,7 +49,7 @@
     <li class="list-group-item d-flex align-items-center justify-content-between">
     <!-- Coluna com informações e imagem -->
     <div class="d-flex align-items-center">
-        <div><a class="btn btn-warning btn-sm mr-2" href="{{route('edit',$employee->id)}}">EDITAR</a></div>
+        
         <!-- Imagem de perfil -->
         <img 
             src="{{asset('assets/profile_pic/'.$employee->profile_pic)}}" 
@@ -66,7 +66,7 @@
 
     <!-- Botões de ação -->
     <div>
-        
+        <a class="btn btn-warning btn-sm mr-2" href="{{route('edit',$employee->id)}}">EDITAR</a>
         <a href="{{route('analisar_demissao',$employee)}}" class="btn btn-danger btn-sm">DESLIGAR</a>
     </div>
 </li>

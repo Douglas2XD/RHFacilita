@@ -4,22 +4,28 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\DepartmentValidate;
 use App\Models\Department;
+use App\Models\Employee;
 use Illuminate\Http\Request;
 
 class DepartmentController extends Controller
 {
     public function index(){
         $list = Department::paginate(20);
+        foreach ($list as $department) {
+            $department->employee_count = $department->employees()->count();
+        }
         return view("show_departments", ["department"=>new Department(),
                             "list"=>$list]);
     }
 
-    public function store(DepartmentValidate $request){
-        $data = $request->validated();
-        $department = Department::create($data);
+    public function store(Request $request){
+        $department = new Department();
+
+        $department->name_departament = strtoupper($request->name_departament);
         
-        
-        return redirect(route("#", $department->id))->with('success', 'Department created successfully!');
+        $department->save();
+        session()->flash('success', 'Departamento criado com sucesso!');
+        return back()->with('success', 'Departamento criado com sucesso!');
     }
 
     public function edit(Department $department){
@@ -34,4 +40,6 @@ class DepartmentController extends Controller
 
         return back()->with('success', 'Department updated successfully!');
 }
+
+
 }

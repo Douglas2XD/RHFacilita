@@ -26,7 +26,6 @@
             @method('PUT')
             @csrf
     @else
-        
         <form class="employee-form" action="{{route('store')}}" enctype="multipart/form-data" method="post">
             @csrf
             @if(session('success'))
@@ -110,8 +109,19 @@
 
     <div class="hr-text">Área de Atuação</div>
     <label>Departamento</label>
-    <select name="name_departament">
-        <option value=""></option>
+    <select name="department_id">
+        <option value=" "></option>
+        
+        @foreach ($departments as $department)
+            <option value="{{ $department->id ?? '' }}">
+                {{ $department->name_departament ?? ' ' }}
+            </option>
+        @endforeach
+         
+    </select>
+
+    <?php 
+    /*    
     <option value="Administração" {{ old('name_departament', $employee->departament->name_departament ?? '') == 'Administração' ? 'selected' : '' }}>Administração</option>
     <option value="Suporte" {{ old('name_departament', $employee->departament->name_departament ?? '') == 'Suporte' ? 'selected' : '' }}>Suporte</option>
     <option value="T.I" {{ old('name_departament', $employee->departament->name_departament ?? '') == 'T.I' ? 'selected' : '' }}>T.I</option>
@@ -134,7 +144,13 @@
     <option value="Qualidade" {{ old('name_departament', $employee->departament->name_departament ?? '') == 'Qualidade' ? 'selected' : '' }}>Qualidade</option>
     <option value="Gestão de Pessoas" {{ old('name_departament', $employee->departament->name_departament ?? '') == 'Gestão de Pessoas' ? 'selected' : '' }}>Gestão de Pessoas</option>
 
-    </select>
+    
+    */
+    
+    ?>
+
+
+
 
     <label>Cargo</label>
     <input type="text" name="position" value="{{ old('position', $employee->departament->position ?? '') }}" >

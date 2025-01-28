@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Candidate;
 use App\Models\CandidateVacancies;
+use App\Models\Department;
 use App\Models\Employee;
 use App\Models\Vacancy;
 use Carbon\Carbon;
@@ -64,7 +65,8 @@ class HomeController extends Controller
     ]);
     }
     public function register_employees(){
-        return view('register_employee');
+        $departments = Department::all();
+        return view('register_employee',["departments"=>$departments]);
     }
 
     public function recrutamento(){
@@ -76,6 +78,18 @@ class HomeController extends Controller
     public function create_job_vacancy(){
         return view('create_job_vacancy');
     }
+
+    public function create_department(){
+        return view('create_department');
+    }
+
+    public function department_info($id){
+        $departament = Department::find($id);
+        $employees = Employee::where('departament_id',$id)->paginate(20);
+        return view('departament_info',["employees"=>$employees,
+                                        "departament"=>$departament]);
+    }
+
     public function endomarketing(){
         $id = auth()->id();
         $this_month = date('m');

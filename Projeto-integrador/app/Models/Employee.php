@@ -27,6 +27,12 @@ class Employee extends Model
         'add_by',
         'salary',
         'departament_id',
+        'position',
+        'admission_date',   
+        'employee_stats',   
+        'CTPS_number',      
+        'CTPS_series',      
+        'PIS_PASEP',
     ];
     
     public function address()
