@@ -20,9 +20,16 @@ class DepartmentController extends Controller
 
     public function store(Request $request){
         $department = new Department();
-
+        $data = $request->all();
         $department->name_departament = strtoupper($request->name_departament);
         
+        $validation_departament = Department::Validated($data);
+        
+
+        if($validation_departament->fails()){
+            return back()->withErrors($validation_departament)->withInput();
+        }
+
         $department->save();
         session()->flash('success', 'Departamento criado com sucesso!');
         return back()->with('success', 'Departamento criado com sucesso!');
