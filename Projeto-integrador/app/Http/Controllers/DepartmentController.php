@@ -46,7 +46,19 @@ class DepartmentController extends Controller
         $department->update($data);
 
         return back()->with('success', 'Department updated successfully!');
+
+    }
+
+
+    public function delete(Department $department){
+
+        if ($department->employees()->count() > 0) {
+            throw new \Exception('Não é possível excluir este departamento, ele possui empregados associados.');
+        }
+
+        $department->delete();
+        return back()->with('success','Departamento deletado com sucesso! ');
+    }
 }
 
 
-}

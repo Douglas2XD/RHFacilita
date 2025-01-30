@@ -90,7 +90,8 @@ class VacancyController extends Controller
 
     public function update(Vacancy $vacancy,Request $request){
         $vacancy->update($request->all());
-        return back()->with('sucess',"VAGA MODIFICADA COM SUCESSO! ");
+        session()->flash('success', 'Dados editados com sucesso!');
+        return back()->with('success', 'Vaga alterada com sucesso!');
     }
 
 
@@ -108,7 +109,8 @@ class VacancyController extends Controller
 
         $vacancy->delete();
         
-        return redirect(route('new_process'))->with('sucess',"Vaga deletada com sucesso! ");
+        #return redirect(route('new_process'))->with('sucess',"Vaga deletada com sucesso! ");
+        return back()->with('success', 'Vaga deletada com sucesso!');
         
     }
 }

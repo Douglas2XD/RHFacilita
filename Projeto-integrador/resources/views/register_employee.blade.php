@@ -143,20 +143,15 @@
     <option value="Pesquisa e Desenvolvimento" {{ old('name_departament', $employee->departament->name_departament ?? '') == 'Pesquisa e Desenvolvimento' ? 'selected' : '' }}>Pesquisa e Desenvolvimento</option>
     <option value="Qualidade" {{ old('name_departament', $employee->departament->name_departament ?? '') == 'Qualidade' ? 'selected' : '' }}>Qualidade</option>
     <option value="Gestão de Pessoas" {{ old('name_departament', $employee->departament->name_departament ?? '') == 'Gestão de Pessoas' ? 'selected' : '' }}>Gestão de Pessoas</option>
-
-    
     */
-    
     ?>
 
 
-
-
     <label>Cargo</label>
-    <input type="text" name="position" value="{{ old('position', $employee->departament->position ?? '') }}" >
+    <input type="text" name="position" value="{{ old('position', $employee->position ?? '') }}" >
 
     <label>Data de Admissão</label>
-    <input type="date" name="admission_date" value="{{old('admission_date', $employee->departament->admission_date ?? '')}}">
+    <input type="date" name="admission_date" value="{{old('admission_date', $employee->admission_date ?? '')}}">
 
     <label>Salário</label>
     <input type="text" id="salary" name="salary" placeholder="R$0,00" onInput="maskMoney(event);" value="{{ old('salary', $employee->salary ?? '') }}" />
@@ -169,13 +164,13 @@
     </select>
 
     <label>Número da CTPS</label>
-    <input type="text" name="CTPS_number" value="{{ old('CTPS_number', $employee->departament->CTPS_number ?? '' )}}">
+    <input type="text" name="CTPS_number" value="{{ old('CTPS_number', $employee->CTPS_number ?? '' )}}">
 
     <label>Série da CTPS</label>
-    <input type="text" name="CTPS_series" value="{{ old('CTPS_series', $employee->departament->CTPS_series ?? '')}}">
+    <input type="text" name="CTPS_series" value="{{ old('CTPS_series', $employee->CTPS_series ?? '')}}">
     
     <label>PIS/PASEP</label>
-    <input type="text" name="PIS_PASEP" value="{{ old('PIS_PASEP', $employee->departament->PIS_PASEP ?? '') }}">
+    <input type="text" name="PIS_PASEP" value="{{ old('PIS_PASEP', $employee->PIS_PASEP ?? '') }}">
 
     <div class="hr-text">Dados Bancários</div>
     <label>Banco</label>

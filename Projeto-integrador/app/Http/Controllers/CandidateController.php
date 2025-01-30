@@ -13,7 +13,7 @@ class CandidateController extends Controller
 
     public function index(){
         
-        $vacancies  = Vacancy::paginate(10);
+        $vacancies  = Vacancy::orderBy('created_at', 'desc')->get();
         return view("candidate_portal",["vacancies"=>$vacancies]);
     }
 

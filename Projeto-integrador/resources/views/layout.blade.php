@@ -36,7 +36,8 @@
         </span>
       
         <!-- Título -->
-        <h3 class="titulo">RHFacilita</h3>
+        <h3 class="text-center text-primary fw-bold ">RHFacilita</h3>
+
       
         <!-- Usuário -->
         <div class="d-flex align-items-center user-info dropdown">

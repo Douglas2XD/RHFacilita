@@ -131,6 +131,11 @@ class EmployeeController extends Controller
     
     public function update(Employee $employee, Request $request){
         
+        $employee->update($request->all());
+        $employee->departament_id = $request->input('department_id');
+        
+        
+        /*
         $name = $request->input('name');
         $cpf = $request->input('cpf');
         $birth_date = $request->input('birth_date');
@@ -152,7 +157,7 @@ class EmployeeController extends Controller
         $employee->marital_status = $marital_status;
         $employee->children = $children;
         $employee->pwd = $pwd;
-
+        */
         $employee->address->update([
             'cep' => $request->input('cep'),
             'street' => $request->input('street'),
@@ -161,15 +166,6 @@ class EmployeeController extends Controller
             'number' => $request->input('number'),
         ]); 
 
-        Department::where('employee_id', $employee->id)->update([
-            'name_departament' => $request->input('name_departament'),
-            'position' => $request->input('position'),
-            'admission_date' => $request->input('admission_date'),
-            'employee_stats' => $request->input('employee_stats'),
-            'CTPS_number' => $request->input('CTPS_number'),
-            'CTPS_series' => $request->input('CTPS_series'),
-            'PIS_PASEP' => $request->input('PIS_PASEP'),
-        ]);
         
         $employee->update();
         session()->flash('success', 'Dados editados com sucesso!');
@@ -184,12 +180,14 @@ class EmployeeController extends Controller
         $departament = Department::where('id_employee',$employee->id);
         $employee->departament_id = null;
 
+        $id_employee = $employee->id;
 
         $employee->save();
 
+        
         $employee->delete();
         
-
+        
         $year = now()->year;
         $month = now()->month;
 

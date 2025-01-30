@@ -19,20 +19,21 @@
     </div>
 @endif
 
-
-
-
 @if (isset($vacancy->id))
         <form class="employee-form" action="{{route('update_vacancy',$vacancy)}}" method="post">
             @method('PUT')
-           
+            @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
     @else
     
     <form class="employee-form" action="{{route('store_vacancy')}}" method="post">
         @if(session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
         @endif
     @endif
 
@@ -54,7 +55,7 @@
 
     <div class="mb-3">
         <label for="remuneration" class="form-label">Salário</label>
-        <input type="text" class="form-control" id="remuneration" name="remuneration" placeholder="R$0,00" onInput="maskMoney(event);" />
+        <input type="text" class="form-control" id="remuneration" name="remuneration" placeholder="R$0,00" onInput="maskMoney(event);" value="{{$vacancy->remuneration ?? " "}}" />
     </div>
 
     <div class="mb-3">

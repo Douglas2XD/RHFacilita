@@ -39,8 +39,8 @@
                 <li><strong>Motivo:</strong> <span>{{$employee->reason ?? 'Não informado'}}</span></li>
                 <li><strong>Aviso Prévio:</strong> <span>{{$employee->notice_period}}</span></li>
                 <li><strong>Comentários:</strong> <span>{{$employee->comments ?? 'Sem comentários'}}</span></li>
-                <li><strong>Materiais Devolvidos:</strong> <span>{{$employee->materials_returned ? 'Sim' : 'Não'}}</span></li>
-                <li><strong>Documentos Devolvidos:</strong> <span>{{$employee->documents_returned ? 'Sim' : 'Não'}}</span></li>
+                <li><strong>Materiais Devolvidos:</strong> <span>{{$employee->materials_returned }}</span></li>
+                <li><strong>Documentos Devolvidos:</strong> <span>{{$employee->documents_returned}}</span></li>
             </ul>
         </div>
         

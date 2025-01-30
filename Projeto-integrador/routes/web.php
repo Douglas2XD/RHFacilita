@@ -70,6 +70,7 @@ Route::put('/update_department/{employee}', [App\Http\Controllers\DepartmentCont
 
 Route::get('/department_info/{department}', [App\Http\Controllers\HomeController::class, 'department_info'])->name(name: 'department_info');
 
+Route::get('/department/delete/{department}', [App\Http\Controllers\DepartmentController::class, 'delete'])->name(name: 'delete_departament');
 
 
 

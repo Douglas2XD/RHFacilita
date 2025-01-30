@@ -51,8 +51,8 @@
     
     <div class="mb-3">
         <label for="position" class="form-label">Posição</label>
-        <input type="text" id="position_hidden" name="position" value="{{ $employee->departament->position ?? ' ' }}" hidden>
-        <input type="text" id="position" name="position" class="form-control" value="{{ $employee->departament->position ?? ' ' }}" disabled>
+        <input type="text" id="position_hidden" name="position" value="{{ $employee->position ?? ' ' }}" hidden>
+        <input type="text" id="position" name="position" class="form-control" value="{{ $employee->position ?? ' ' }}" disabled>
     </div>
     
     <div class="mb-3">
@@ -63,8 +63,8 @@
     
     <div class="mb-3">
         <label for="hire_date" class="form-label">Data de Admissão</label>
-        <input type="date" id="hire_date_hidden" name="hire_date" value="{{ $employee->departament->admission_date ?? ' ' }}" hidden>
-        <input type="date" id="hire_date" name="hire_date" class="form-control" value="{{ $employee->departament->admission_date ?? ' ' }}" disabled>
+        <input type="date" id="hire_date_hidden" name="hire_date" value="{{ $employee->admission_date ?? ' ' }}" hidden>
+        <input type="date" id="hire_date" name="hire_date" class="form-control" value="{{ $employee->admission_date ?? ' ' }}" disabled>
     </div>
 
     <div class="mb-3">
