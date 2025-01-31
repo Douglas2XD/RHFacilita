@@ -145,7 +145,6 @@ class HomeController extends Controller
 
     public function show_all_candidates(){
         $candidates = Candidate::all(); 
-        
         return view("show_all_candidates",["candidates"=>$candidates]);
     }
 

@@ -44,9 +44,9 @@
         <!-- Card 4 -->
         <div class="col-md-4 mb-3">
           <div class="shortcut-card p-3">
-            <i class="fas fa-chart-line fa-2x mb-3 gold-icon"></i>
-            <a href="{{route('ainda_em_desenvolvimento')}}" style="text-decoration: none;"><div class="shortcut-title font-weight-bold">Planejamento estratégico</div></a>
-            <p class="shortcut-description text-muted">Definição de metas e estratégias para alcançar os objetivos de longo prazo da empresa.</p>
+            <i class="fas fa-smile fa-2x mb-3 gold-icon"></i>
+            <a href="{{route('ainda_em_desenvolvimento')}}" style="text-decoration: none;"><div class="shortcut-title font-weight-bold">Gestão de clima</div> </a>
+            <p class="shortcut-description text-muted">Avaliação da satisfação e motivação dos colaboradores no ambiente de trabalho.</p>
           </div>
         </div>
     
@@ -81,13 +81,7 @@
         </div>
     
         <!-- Card 8 -->
-        <div class="col-md-4 mb-3">
-          <div class="shortcut-card p-3">
-            <i class="fas fa-smile fa-2x mb-3 gold-icon"></i>
-            <a href="{{route('ainda_em_desenvolvimento')}}" style="text-decoration: none;"><div class="shortcut-title font-weight-bold">Gestão de clima</div> </a>
-            <p class="shortcut-description text-muted">Avaliação da satisfação e motivação dos colaboradores no ambiente de trabalho.</p>
-          </div>
-        </div>
+        
     
         
       </div>

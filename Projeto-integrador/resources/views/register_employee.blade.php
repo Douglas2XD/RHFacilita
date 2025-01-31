@@ -154,7 +154,7 @@
     <input type="date" name="admission_date" value="{{old('admission_date', $employee->admission_date ?? '')}}">
 
     <label>Salário</label>
-    <input type="text" id="salary" name="salary" placeholder="R$0,00" onInput="maskMoney(event);" value="{{ old('salary', $employee->salary ?? '') }}" />
+    <input type="text" id="salary" name="salary" placeholder="R$0,00" onInput=maskMoney(event); value="{{ old('salary', $employee->salary ?? '') }}" />
 
     <label>Status do Colaborador</label>
     <select name="employee_stats">
@@ -199,46 +199,34 @@
 
 
 <script>
-$(function(){
-   $('#cep').mask('00000-000')
-})
 
-
-
-
-
-
-function mascaraRG(input) {
-  let valor = input.value.replace(/\D/g, '');
-
-  if (valor.length > 8) {
-    valor = valor.substring(0, 8);
-  }
-
-  input.value = valor;
-}
 const maskMoney = (e) => {
-      const onlyDigits = e.target.value
-        .split("") // divide por ""
-        .filter(num => /\d/.test(num)) 
-        .join("") // retorna numa string
-        .padStart(3, "0");
+    // Remove tudo o que não for número
+    const onlyDigits = e.target.value
+        .split("") // divide por caracteres
+        .filter(num => /\d/.test(num)) // filtra para deixar apenas números
+        .join(""); // retorna numa string
 
-      const digitsFloat = onlyDigits.slice(0, -2) + "." + onlyDigits.slice(-2);
-      e.target.value = dinheiro(digitsFloat);
-    };
+    // Garantir que tenha ao menos dois números decimais
+    const digitsFloat = onlyDigits.slice(0, -2) + "." + onlyDigits.slice(-2);
 
-    const dinheiro = (valor, locale = 'pt-BR', currency = 'BRL') => {
-      
-      return new Intl.NumberFormat(locale, {
+    // Atualizar o campo com a máscara de dinheiro
+    e.target.value = dinheiro(digitsFloat);
+};
+
+const dinheiro = (valor, locale = 'pt-BR', currency = 'BRL') => {
+    // Converter valor para número
+    const numberValue = parseFloat(valor.replace(",", "."));
+    
+    // Se o valor não for um número válido, retorne o valor original
+    if (isNaN(numberValue)) return valor;
+
+    // Formatar como moeda
+    return new Intl.NumberFormat(locale, {
         style: 'currency',
         currency
-      }).format(valor);
-    };
-
-
-
-
+    }).format(numberValue);
+};
 
 </script>
 <script src="{{asset('scripts/jquery-3.7.1.min.js')}}"></script>

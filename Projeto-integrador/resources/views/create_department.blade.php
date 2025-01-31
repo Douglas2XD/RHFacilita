@@ -57,6 +57,14 @@
     document.getElementById("mostrarMsg").style.display = "inline";
     document.getElementById("mostrarBtn").style.display = "none";
     });
+
+
+
+    document.addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+        event.preventDefault(); 
+    }
+});
 </script>
 
 

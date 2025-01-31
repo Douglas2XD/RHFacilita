@@ -62,8 +62,6 @@ class EmployeeController extends Controller
             ['hires' => \DB::raw('hires + 1')]
         );
 
-
-        
         $employee = new Employee();
         $employee->name = $request->input('name');
         $employee->cpf = $request->input('cpf');
@@ -99,13 +97,9 @@ class EmployeeController extends Controller
             'number' => $request->input('number'),
         ]);
 
-        
         $employee->save();
         session()->flash('success', 'Dados inseridos com sucesso!');
         return back()->with('success', 'Dados inseridos com sucesso!');
-        
-        
-        
         
     }
 
@@ -133,31 +127,7 @@ class EmployeeController extends Controller
         
         $employee->update($request->all());
         $employee->departament_id = $request->input('department_id');
-        
-        
-        /*
-        $name = $request->input('name');
-        $cpf = $request->input('cpf');
-        $birth_date = $request->input('birth_date');
-        $rg = $request->input('rg');
-        $email = $request->input('email');
-        $phone = $request->input('phone');
-        $gender = $request->input('gender');
-        $marital_status = $request->input('marital_status');
-        $children = $request->input('children');
-        $pwd = $request->input('pwd');
 
-        $employee->name = $name;
-        $employee->cpf =$cpf;
-        $employee->birth_date = $birth_date;
-        $employee->rg = $rg;
-        $employee->email = $email;
-        $employee->phone = $phone;
-        $employee->gender = $gender;
-        $employee->marital_status = $marital_status;
-        $employee->children = $children;
-        $employee->pwd = $pwd;
-        */
         $employee->address->update([
             'cep' => $request->input('cep'),
             'street' => $request->input('street'),
@@ -187,7 +157,7 @@ class EmployeeController extends Controller
         
         $employee->delete();
         
-        
+        $endereco = Address::where('employee_id',$id_employee);
         $year = now()->year;
         $month = now()->month;
 
