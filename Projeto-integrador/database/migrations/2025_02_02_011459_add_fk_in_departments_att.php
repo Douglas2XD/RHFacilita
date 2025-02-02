@@ -13,12 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('candidate', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('pdf_candidate');
-            $table->timestamps();
+        Schema::table('departments', function (Blueprint $table) {
+            
+            $table->foreignId('created_by')->constrained('users')->onDelete('cascade');
+            
         });
     }
 
@@ -29,6 +27,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('candidates');
+        Schema::table('departments', function (Blueprint $table) {
+            $table->dropForeign(['created_by']);
+        });
     }
 };

@@ -16,8 +16,7 @@ class AddressController extends Controller
 
     public function store(AddressValidate $request){
         $data = $request->validated();
-    
-    
+
         $address = Address::create($data);
     
         return redirect(route("#", $address->id))->with('success', 'Address created successfully!');

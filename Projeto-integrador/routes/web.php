@@ -30,7 +30,7 @@ Auth::routes();
 
 Route::middleware(['auth'])->group(function () {
 
-Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'dashboard'])->name('dashboard');
+Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'dashboard'])->name('dashboard');
 
 Route::get('/index', [App\Http\Controllers\HomeController::class, 'index'])->name(name: 'index');
 
@@ -51,7 +51,7 @@ Route::get('/termination/delete/{employee}', [TerminationController::class, "del
 Route::get('/termination/show_ex_employees', [TerminationController::class, "show"])->name('show_ex_employees');
 
 
-Route::get('/register_employees', [App\Http\Controllers\HomeController::class, 'register_employees'])->name(name: 'register_employees');
+Route::get('/register_employees', [App\Http\Controllers\EmployeeController::class, 'register_employees'])->name(name: 'register_employees');
 
 Route::get('/recrutamento', [App\Http\Controllers\HomeController::class, 'recrutamento'])->name(name: 'recrutamento');
 
@@ -68,13 +68,9 @@ Route::get('/edit_department/{employee}', [App\Http\Controllers\DepartmentContro
 
 Route::put('/update_department/{employee}', [App\Http\Controllers\DepartmentController::class, "update"])->name('update_department');
 
-Route::get('/department_info/{department}', [App\Http\Controllers\HomeController::class, 'department_info'])->name(name: 'department_info');
+Route::get('/department_info/{department}', [App\Http\Controllers\DepartmentController::class, 'department_info'])->name(name: 'department_info');
 
 Route::get('/department/delete/{department}', [App\Http\Controllers\DepartmentController::class, 'delete'])->name(name: 'delete_departament');
-
-
-
-
 
 
 Route::get('/create_job_vacancy', [App\Http\Controllers\HomeController::class, 'create_job_vacancy'])->name(name: 'create_job_vacancy');

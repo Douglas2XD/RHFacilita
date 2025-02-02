@@ -16,8 +16,8 @@
                 <li><strong>Nome:</strong> <span>{{$employee->name}}</span></li>
                 <li><strong>CPF:</strong> <span>{{$employee->cpf}}</span></li>
                 <li><strong>Email:</strong> <span>{{$employee->email}}</span></li>
-                <li><strong>Cargo:</strong> <span>{{$employee->position}}</span></li>
-                <li><strong>Salário:</strong> <span>R$ {{ number_format($employee->salary, 2, ',', '.') }}</span></li>
+                <li><strong>Cargo:</strong> <span>{{$employee->professional_data->position}}</span></li>
+                <li><strong>Salário:</strong> <span>R$ {{ $employee->professional_data->salary }}</span></li>
                 <li><strong>Data de Contratação:</strong> <span>{{ \Carbon\Carbon::parse($employee->hire_date)->format('d/m/Y') }}</span></li>
             </ul>
         </div>

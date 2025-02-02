@@ -5,29 +5,33 @@ namespace App\Http\Controllers;
 use App\Http\Requests\DepartmentValidate;
 use App\Models\Department;
 use App\Models\Employee;
+use App\Models\professional_data;
 use Illuminate\Http\Request;
 
 class DepartmentController extends Controller
 {
     public function index(){
-        $list = Department::paginate(20);
+        
+        $list = Department::where('created_by',auth()->id())->paginate(20);
+        
         foreach ($list as $department) {
-            $department->employee_count = $department->employees()->count();
+            $department->employee_count = $department->professional_data()->count();
         }
-        return view("show_departments", ["department"=>new Department(),
-                            "list"=>$list]);
+        return view("show_departments", ["list"=>$list]);
     }
 
     public function store(Request $request){
         $department = new Department();
         $data = $request->all();
-        $department->name_departament = strtoupper($request->name_departament);
-        
-        $validation_departament = Department::Validated($data);
+        $department->created_by = auth()->id();
+        $department->name_department = strtoupper($request->name_department);
         
 
-        if($validation_departament->fails()){
-            return back()->withErrors($validation_departament)->withInput();
+        $validation_department = Department::Validated($data);
+        
+
+        if($validation_department->fails()){
+            return back()->withErrors($validation_department)->withInput();
         }
 
         $department->save();
@@ -52,13 +56,32 @@ class DepartmentController extends Controller
 
     public function delete(Department $department){
 
-        if ($department->employees()->count() > 0) {
+        if ($department->professional_data()->count() > 0) {
             throw new \Exception('Não é possível excluir este departamento, ele possui empregados associados.');
         }
 
         $department->delete();
         return back()->with('success','Departamento deletado com sucesso! ');
     }
+
+
+    public function department_info($id) {
+        $departament = Department::findOrFail($id);
+        
+        // Pegando os funcionários através da relação estabelecida
+        #$employees = $departament->employees()->paginate(20);
+        
+        $employees = Employee::join('professional_data', 'employees.id', '=', 'professional_data.employee_id')
+                     ->where('professional_data.department_id', $id)
+                     ->select('employees.*')
+                     ->paginate(20);
+
+        return view('departament_info', [
+            "employees" => $employees,
+            "departament" => $departament
+        ]);
+    }
+
 }
 
 

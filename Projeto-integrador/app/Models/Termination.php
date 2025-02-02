@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Termination extends Model
 {
-    protected $table = 'terminate';
+    protected $table = 'terminations';
     protected $fillable = [
         'removed_by',
         'name',
@@ -17,7 +17,7 @@ class Termination extends Model
         'position',
         'salary',
         'hire_date',
-        'dismissal_date', // Está correto aqui
+        'dismissal_date', 
         'reason',
         'notice_period',
         'comments',

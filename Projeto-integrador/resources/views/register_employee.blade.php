@@ -114,63 +114,36 @@
         
         @foreach ($departments as $department)
             <option value="{{ $department->id ?? '' }}">
-                {{ $department->name_departament ?? ' ' }}
+                {{ $department->name_department ?? ' ' }}
             </option>
         @endforeach
          
-    </select>
-
-    <?php 
-    /*    
-    <option value="Administração" {{ old('name_departament', $employee->departament->name_departament ?? '') == 'Administração' ? 'selected' : '' }}>Administração</option>
-    <option value="Suporte" {{ old('name_departament', $employee->departament->name_departament ?? '') == 'Suporte' ? 'selected' : '' }}>Suporte</option>
-    <option value="T.I" {{ old('name_departament', $employee->departament->name_departament ?? '') == 'T.I' ? 'selected' : '' }}>T.I</option>
-    <option value="Estágio" {{ old('name_departament', $employee->departament->name_departament ?? '') == 'Estágio' ? 'selected' : '' }}>Estágio</option>
-    <option value="Recursos Humanos" {{ old('name_departament', $employee->departament->name_departament ?? '') == 'Recursos Humanos' ? 'selected' : '' }}>Recursos Humanos</option>
-    <option value="Marketing" {{ old('name_departament', $employee->departament->name_departament ?? '') == 'Marketing' ? 'selected' : '' }}>Marketing</option>
-    <option value="Vendas" {{ old('name_departament', $employee->departament->name_departament ?? '') == 'Vendas' ? 'selected' : '' }}>Vendas</option>
-    <option value="Financeiro" {{ old('name_departament', $employee->departament->name_departament ?? '') == 'Financeiro' ? 'selected' : '' }}>Financeiro</option>
-    <option value="Comercial" {{ old('name_departament', $employee->departament->name_departament ?? '') == 'Comercial' ? 'selected' : '' }}>Comercial</option>
-    <option value="Design" {{ old('name_departament', $employee->departament->name_departament ?? '') == 'Design' ? 'selected' : '' }}>Design</option>
-    <option value="Desenvolvimento" {{ old('name_departament', $employee->departament->name_departament ?? '') == 'Desenvolvimento' ? 'selected' : '' }}>Desenvolvimento</option>
-    <option value="Gestão de Projetos" {{ old('name_departament', $employee->departament->name_departament ?? '') == 'Gestão de Projetos' ? 'selected' : '' }}>Gestão de Projetos</option>
-    <option value="Logística" {{ old('name_departament', $employee->departament->name_departament ?? '') == 'Logística' ? 'selected' : '' }}>Logística</option>
-    <option value="Atendimento ao Cliente" {{ old('name_departament', $employee->departament->name_departament ?? '') == 'Atendimento ao Cliente' ? 'selected' : '' }}>Atendimento ao Cliente</option>
-    <option value="Jurídico" {{ old('name_departament', $employee->departament->name_departament ?? '') == 'Jurídico' ? 'selected' : '' }}>Jurídico</option>
-    <option value="Operações" {{ old('name_departament', $employee->departament->name_departament ?? '') == 'Operações' ? 'selected' : '' }}>Operações</option>
-    <option value="Engenharia" {{ old('name_departament', $employee->departament->name_departament ?? '') == 'Engenharia' ? 'selected' : '' }}>Engenharia</option>
-    <option value="Produção" {{ old('name_departament', $employee->departament->name_departament ?? '') == 'Produção' ? 'selected' : '' }}>Produção</option>
-    <option value="Pesquisa e Desenvolvimento" {{ old('name_departament', $employee->departament->name_departament ?? '') == 'Pesquisa e Desenvolvimento' ? 'selected' : '' }}>Pesquisa e Desenvolvimento</option>
-    <option value="Qualidade" {{ old('name_departament', $employee->departament->name_departament ?? '') == 'Qualidade' ? 'selected' : '' }}>Qualidade</option>
-    <option value="Gestão de Pessoas" {{ old('name_departament', $employee->departament->name_departament ?? '') == 'Gestão de Pessoas' ? 'selected' : '' }}>Gestão de Pessoas</option>
-    */
-    ?>
-
+    </select>   
 
     <label>Cargo</label>
-    <input type="text" name="position" value="{{ old('position', $employee->position ?? '') }}" >
+    <input type="text" name="position" value="{{ old('position', $employee->professional_data->position ?? '') }}" >
 
     <label>Data de Admissão</label>
-    <input type="date" name="admission_date" value="{{old('admission_date', $employee->admission_date ?? '')}}">
+    <input type="date" name="admission_date" value="{{old('admission_date', $employee->professional_data->admission_date ?? '')}}">
 
     <label>Salário</label>
-    <input type="text" id="salary" name="salary" placeholder="R$0,00" onInput=maskMoney(event); value="{{ old('salary', $employee->salary ?? '') }}" />
+    <input type="text" id="salary" name="salary" placeholder="R$0,00" onInput=maskMoney(event); value="{{ old('salary', $employee->professional_data->salary ?? '') }}" />
 
     <label>Status do Colaborador</label>
     <select name="employee_stats">
-        <option value="Ativo" {{ old('employee_stats', $employee->employee_stats ?? '') == 'Ativo' ? 'selected' : '' }}>Ativo</option>
-        <option value="Inativo" {{ old('employee_stats', $employee->employee_stats ?? '') == 'Inativo' ? 'selected' : '' }}>Inativo</option>
-        <option value="Desligado" {{ old('employee_stats', $employee->employee_stats ?? '') == 'Desligado' ? 'selected' : '' }}>Desligado</option>
+        <option value="Ativo" {{ old('employee_stats', $employee->professional_data->employee_stats ?? '') == 'Ativo' ? 'selected' : '' }}>Ativo</option>
+        <option value="Inativo" {{ old('employee_stats', $employee->professional_data->employee_stats ?? '') == 'Inativo' ? 'selected' : '' }}>Inativo</option>
+        <option value="Desligado" {{ old('employee_stats', $employee->professional_data->employee_stats ?? '') == 'Desligado' ? 'selected' : '' }}>Desligado</option>
     </select>
 
     <label>Número da CTPS</label>
-    <input type="text" name="CTPS_number" value="{{ old('CTPS_number', $employee->CTPS_number ?? '' )}}">
+    <input type="text" name="CTPS_number" value="{{ old('CTPS_number', $employee->professional_data->CTPS_number ?? '' )}}">
 
     <label>Série da CTPS</label>
-    <input type="text" name="CTPS_series" value="{{ old('CTPS_series', $employee->CTPS_series ?? '')}}">
+    <input type="text" name="CTPS_series" value="{{ old('CTPS_series', $employee->professional_data->CTPS_series ?? '')}}">
     
     <label>PIS/PASEP</label>
-    <input type="text" name="PIS_PASEP" value="{{ old('PIS_PASEP', $employee->PIS_PASEP ?? '') }}">
+    <input type="text" name="PIS_PASEP" value="{{ old('PIS_PASEP', $employee->professional_data->PIS_PASEP ?? '') }}">
 
     <div class="hr-text">Dados Bancários</div>
     <label>Banco</label>

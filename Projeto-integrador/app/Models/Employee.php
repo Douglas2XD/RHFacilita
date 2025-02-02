@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-
+use App\Http\Controllers\Professional_dataController;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Validator;
@@ -25,14 +25,6 @@ class Employee extends Model
         'pwd',
         'address_id',
         'add_by',
-        'salary',
-        'departament_id',
-        'position',
-        'admission_date',   
-        'employee_stats',   
-        'CTPS_number',      
-        'CTPS_series',      
-        'PIS_PASEP',
     ];
     
     public function address()
@@ -47,6 +39,11 @@ class Employee extends Model
     public function departament()
     {
         return $this->belongsTo(Department::class);
+    }
+
+    public function professional_data()
+    {
+        return $this->hasOne(professional_data::class);
     }
  
     public static function Validated($data){
@@ -107,6 +104,9 @@ class Employee extends Model
         return $validator;
     }
     
+
+    
+
 
 }
 

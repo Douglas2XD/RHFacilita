@@ -39,8 +39,9 @@
         <tbody>
             
             @foreach ($list as $department)
+            
             <tr>
-                <td>{{$department->name_departament}}</td>
+                <td>{{$department->name_department}}</td>
                 <td>{{$department->employee_count}}</td>
                 <td>
                     <a href="{{route('department_info',$department)}}" class="btn btn-primary btn-sm" target="_blank">

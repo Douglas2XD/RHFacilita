@@ -61,6 +61,7 @@
         <div class="ml-3">
             <strong>{{$employee->name}}</strong><br>
             <span>{{$employee->cpf}} - {{$employee->marital_status}} - {{$employee->pwd}}</span>
+            
         </div>
     </div>
 

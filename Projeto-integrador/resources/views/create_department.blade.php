@@ -16,9 +16,6 @@
 
 @section('content')
         
-
-    
-
     <form class="employee-form" action="{{route('store_department')}}" method="post">
         @if ($errors->any())
         <div class="alert alert-danger">
@@ -44,7 +41,7 @@
         Por favor, confirme os dados
     </div>
     <label>Nome</label>
-    <input type="text" name="name_departament">
+    <input type="text" name="name_department">
     <button id="invisivelBtn" class="btn btn-success w-100" style="display: none;">Confirmar Departamento</button>
 
     <br><br>
@@ -66,6 +63,36 @@
     }
 });
 </script>
+
+<?php 
+$departamentos = [
+    'Administração',
+    'Suporte',
+    'T.I',
+    'Estágio',
+    'Recursos Humanos',
+    'Marketing',
+    'Vendas',
+    'Financeiro',
+    'Comercial',
+    'Design',
+    'Desenvolvimento',
+    'Gestão de Projetos',
+    'Logística',
+    'Atendimento ao Cliente',
+    'Jurídico',
+    'Operações',
+    'Engenharia',
+    'Produção',
+    'Pesquisa e Desenvolvimento',
+    'Qualidade',
+    'Gestão de Pessoas'
+];
+
+
+
+?>
+
 
 
 

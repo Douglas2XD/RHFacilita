@@ -7,6 +7,7 @@
 
 @section('content')
 <hr>
+  
     <div class="shortcuts">
       <h2>Atalhos rápidos</h2>
       

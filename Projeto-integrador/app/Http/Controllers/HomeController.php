@@ -39,36 +39,6 @@ class HomeController extends Controller
         return view("login");
     }
 
-    public function dashboard(){
-        $totalRegistros = Employee::count();
-        $vagas_abertas = Vacancy::where('created_by',auth()->id())->count();
-        
-        $movements = \DB::table('monthly_movements')
-        ->where('year', now()->year)
-        ->get()
-        ->keyBy('month'); // Indexa os resultados pelo mês
-
-    // Cria um array contendo os dados organizados por mês (1 a 12)
-    $monthlyData = [];
-
-    for ($month = 1; $month <= 12; $month++) {
-        $monthlyData[$month] = [
-            'hires' => $movements[$month]->hires ?? 0,
-            'terminations' => $movements[$month]->terminations ?? 0,
-        ];
-    }
-
-    return view('dashboard', [
-        'totalRegistros' => $totalRegistros,
-        'vagas_abertas' => $vagas_abertas,
-        'monthlyData' => $monthlyData, // Passando os dados organizados por mês
-    ]);
-    }
-    public function register_employees(){
-        $departments = Department::all();
-        return view('register_employee',["departments"=>$departments]);
-    }
-
     public function recrutamento(){
         return view('recrutamento');
     }
@@ -81,13 +51,6 @@ class HomeController extends Controller
 
     public function create_department(){
         return view('create_department');
-    }
-
-    public function department_info($id){
-        $departament = Department::find($id);
-        $employees = Employee::where('departament_id',$id)->paginate(20);
-        return view('departament_info',["employees"=>$employees,
-                                        "departament"=>$departament]);
     }
 
     public function endomarketing(){

@@ -9,29 +9,161 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('css/teste.css')}}">
     <link rel="stylesheet" href="{{asset('css/styles_processos')}}">
+
+    
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f5f5f5;
+    }
+    .navbar {
+        display: flex;
+        justify-content: center;
+        background-color: white;
+        padding: 10px 0;
+        border-bottom: 1px solid #ddd;
+    }
+    .navbar a {
+        margin: 0 15px;
+        text-decoration: none;
+        color: black;
+        font-weight: bold;
+    }
+    .navbar a.active {
+        color: green;
+    }
+    .container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 20px;
+    }
+    .job-card {
+        background-color: white;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        width: 300px;
+        margin: 10px;
+        padding: 15px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .job-card .date-time {
+        color: #666;
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+    .job-card .title {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+    .job-card .category {
+        display: inline-block;
+        background-color: green;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 3px;
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+    .job-card .category.marketing {
+        background-color: #28a745;
+    }
+    .job-card .category.administrativo {
+        background-color: #007bff;
+    }
+    .job-card .category.educacao {
+        background-color: #ffc107;
+    }
+    .job-card .location {
+        color: #007bff;
+        font-size: 14px;
+    }
+    @media (max-width: 768px) {
+        .job-card {
+            width: 100%;
+            margin: 10px 0;
+        }
+    }
+</style>
     
 </head>
+
 <body>
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-8 text-center">
-            <div class="alert alert-primary py-4">
-                <h2 class="fw-bold">Olá, seja bem-vindo!</h2>
-                <p class="lead">Candidate-se à sua vaga de preferência agora mesmo.</p>
-
-                
-
-            </div>
-        </div>
+    
+<div class="navbar">
+    <a href="#" class="active">TODAS VAGAS</a>
+    <a href="#">DIARISTA</a>
+    <a href="#">EMPREGO</a>
+    <a href="#">ESTÁGIO</a>
+    <a href="#">HOME OFFICE</a>
+    <a href="#">JOVEM APRENDIZ</a>
+    <a href="#">PCD</a>
+    <a href="#">RCA</a>
+    <a href="#">TRAINEE</a>
+</div>
+<div class="container">
+    <div class="job-card">
+        <div class="date-time"><i class="fas fa-calendar-alt"></i> 31/01 <i class="fas fa-clock"></i> 11:15</div>
+        <div class="title">Mecânico(a) | Teresina – PI | 01 vaga(s)</div>
+        <div class="category">Operacional</div>
+        <div class="location">Emprego em Teresina / PI</div>
     </div>
-    @if(session('sucess'))
-        <div class="alert alert-success">
-            {{ session('sucess') }}
-        </div>
-@endif
+    <div class="job-card">
+        <div class="date-time"><i class="fas fa-calendar-alt"></i> 31/01 <i class="fas fa-clock"></i> 11:15</div>
+        <div class="title">Estágio em Marketing | Teresina – PI | 01 vaga(s)</div>
+        <div class="category marketing">Marketing</div>
+        <div class="location">Estágio em Teresina / PI</div>
+    </div>
+    <div class="job-card">
+        <div class="date-time"><i class="fas fa-calendar-alt"></i> 31/01 <i class="fas fa-clock"></i> 11:12</div>
+        <div class="title">Gerente | Teresina – PI | 01 vaga(s)</div>
+        <div class="category administrativo">Administrativo</div>
+        <div class="location">Emprego em Teresina / PI</div>
+    </div>
+    <div class="job-card">
+        <div class="date-time"><i class="fas fa-calendar-alt"></i> 31/01 <i class="fas fa-clock"></i> 10:49</div>
+        <div class="title">Assistente de Precificação | Teresina – PI | 01 vaga(s)</div>
+        <div class="category administrativo">Administrativo</div>
+        <div class="location">Emprego em Teresina / PI</div>
+    </div>
+    <div class="job-card">
+        <div class="date-time"><i class="fas fa-calendar-alt"></i> 31/01 <i class="fas fa-clock"></i> 10:49</div>
+        <div class="title">Fiscal de Loja | Teresina – PI | 01 vaga(s)</div>
+        <div class="category">Operacional</div>
+        <div class="location">Emprego em Teresina / PI</div>
+    </div>
+    <div class="job-card">
+        <div class="date-time"><i class="fas fa-calendar-alt"></i> 31/01 <i class="fas fa-clock"></i> 10:41</div>
+        <div class="title">Engenheiro(a) Civil | Parnaíba – PI | 01 vaga(s)</div>
+        <div class="category">Operacional</div>
+        <div class="location">Emprego em Parnaíba / PI</div>
+    </div>
+    <div class="job-card">
+        <div class="date-time"><i class="fas fa-calendar-alt"></i> 31/01 <i class="fas fa-clock"></i> 10:38</div>
+        <div class="title">Estágio em Biblioteconomia | Teresina – PI | 01 vaga(s)</div>
+        <div class="category educacao">Educação</div>
+        <div class="location">Estágio em Teresina / PI</div>
+    </div>
+    <div class="job-card">
+        <div class="date-time"><i class="fas fa-calendar-alt"></i> 31/01 <i class="fas fa-clock"></i> 10:35</div>
+        <div class="title">Assistente de Licitações | Teresina – PI | 01 vaga(s)</div>
+        <div class="category administrativo">Administrativo</div>
+        <div class="location">Emprego em Teresina / PI</div>
+    </div>
 </div>
 
 
+
+
+
+
+
+
+
+{{---
 
 @foreach ($vacancies as $vaga )
 <div class="job-card">
@@ -99,3 +231,5 @@
 
 </body>
 </html>
+
+---}}

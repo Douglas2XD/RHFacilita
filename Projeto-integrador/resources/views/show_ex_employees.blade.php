@@ -33,7 +33,7 @@
                 <li><strong>Email:</strong> <span>{{$employee->email}}</span></li>
                 <li><strong>Departamento:</strong> <span>{{$employee->name_department}}</span></li>
                 <li><strong>Cargo:</strong> <span>{{$employee->position}}</span></li>
-                <li><strong>Salário:</strong> <span>R$ {{ number_format($employee->salary, 2, ',', '.') }}</span></li>
+                <li><strong>Salário:</strong> <span>R$ {{ $employee->salary }}</span></li>
                 <li><strong>Data de Contratação:</strong> <span>{{ \Carbon\Carbon::parse($employee->hire_date)->format('d/m/Y') }}</span></li>
                 <li><strong>Data de Demissão:</strong> <span>{{ $employee->dismissal_date ? \Carbon\Carbon::parse($employee->dismissal_date)->format('d/m/Y') : 'N/A' }}</span></li>
                 <li><strong>Motivo:</strong> <span>{{$employee->reason ?? 'Não informado'}}</span></li>

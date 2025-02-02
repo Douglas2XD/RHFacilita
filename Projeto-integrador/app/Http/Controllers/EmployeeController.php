@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\EmployeeValidate;
 use App\Models\Department;
 use App\Models\Employee;    
-use App\Models\Address;                       
+use App\Models\Address;
+use App\Models\professional_data;
 use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
@@ -13,9 +14,10 @@ class EmployeeController extends Controller
     public function index(){
         $id = auth()->id();
         $count = Employee::where('add_by', $id)->count();
+
+        $list = Employee::with('professional_data')->where('add_by',$id)->paginate(10);
         
-        $list = Employee::with('departament')->where('add_by', $id)->paginate(20);
-        
+
         return view("show_employees", ["employee"=>new Employee(),
                             "list"=>$list]);
     }
@@ -34,9 +36,6 @@ class EmployeeController extends Controller
             return back()->withErrors($validation_address)->withInput();
         }
         
-        
-        
-
         if ($request->hasFile("profile_pic")){
             
             $file = $request->file("profile_pic");
@@ -52,15 +51,7 @@ class EmployeeController extends Controller
             $curriculum_name = time()."_".$curriculum->getClientOriginalName();
             $curriculum->move(public_path("assets/curriculum"),$curriculum_name);
             $curr = $curriculum_name;
-        }        
-
-        $year = now()->year;
-        $month = now()->month;
-
-        \DB::table('monthly_movements')->updateOrInsert(
-            ['year' => $year, 'month' => $month],
-            ['hires' => \DB::raw('hires + 1')]
-        );
+        }              
 
         $employee = new Employee();
         $employee->name = $request->input('name');
@@ -75,9 +66,9 @@ class EmployeeController extends Controller
         $employee->pwd = $request->input('pwd');
         $employee->curriculum = $curr;
         $employee->profile_pic = $profile_pic;
-        $employee->salary = $request->input('salary');
         $employee->add_by = auth()->id();
-
+        
+        /*
         $employee->departament_id = $request->input('department_id'); 
         $employee->position = $request->input('position');
         $employee->admission_date = $request->input('admission_date');
@@ -85,7 +76,7 @@ class EmployeeController extends Controller
         $employee->CTPS_number = $request->input('CTPS_number');
         $employee->CTPS_series = $request->input('CTPS_series');
         $employee->PIS_PASEP = $request->input('PIS_PASEP');
-
+        */
         $employee->save();
 
         Address::create([
@@ -96,7 +87,26 @@ class EmployeeController extends Controller
             'state' => $request->input('state'),
             'number' => $request->input('number'),
         ]);
+        
+        
+        Professional_data::create([
+            'employee_id' => $employee->id,
+            'salary' => $request->input('salary'),
+            'department_id' => $request->input('department_id'),
+            'position' => $request->input('position'),
+            'admission_date' => $request->input('admission_date'),   
+            'employee_stats' => $request->input('employee_stats'),       
+            'CTPS_number' => $request->input('CTPS_number'),      
+            'CTPS_series' => $request->input('CTPS_series'),      
+            'PIS_PASEP' => $request->input('PIS_PASEP'),
+        ]);
 
+
+        #aqui cadastra a movimentação
+        
+        DashboardController::hire(auth()->id());
+        
+        #aqui cadastra a movimentação
         $employee->save();
         session()->flash('success', 'Dados inseridos com sucesso!');
         return back()->with('success', 'Dados inseridos com sucesso!');
@@ -148,7 +158,7 @@ class EmployeeController extends Controller
             return redirect()->route('show_employees')->with('error', 'Você não tem permissão para deletar este funcionário.');
         }
         $departament = Department::where('id_employee',$employee->id);
-        $employee->departament_id = null;
+        $employee->professional_data->departament_id = null;
 
         $id_employee = $employee->id;
 
@@ -158,16 +168,15 @@ class EmployeeController extends Controller
         $employee->delete();
         
         $endereco = Address::where('employee_id',$id_employee);
-        $year = now()->year;
-        $month = now()->month;
 
-        // Updates the movements table for terminations
-        \DB::table('monthly_movements')->updateOrInsert(
-            ['year' => $year, 'month' => $month],
-            ['terminations' => \DB::raw('terminations + 1')]
-        );
+        DashboardController::termination(auth()->id());
 
         session()->flash('success', 'Funcionário desligado com sucesso!');
         return redirect(route('new'))->with('Funcionário desligado com sucesso! ');
+    }
+
+    public function register_employees(){
+        $departments = Department::all()->where('created_by',auth()->id());
+        return view('register_employee',["departments"=>$departments]);
     }
 }

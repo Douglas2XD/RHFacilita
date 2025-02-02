@@ -8,21 +8,22 @@ use Illuminate\Support\Facades\Validator;
 class Department extends Model
 {
     use HasFactory;
+    protected $table = 'departments';
 
     protected $fillable = [
-        'name_departament',
+        'name_department',
+        'user_id',
     ];
 
     public static function Validated($data){
 
         $rules = [
-            'name_departament' => 'required|unique:departments,name_departament',
+            'name_department' => 'required|unique:departments,name_department',
         ];
 
-
         $messages = [
-            'name_departament.required' => 'O departamento é obrigatório.',
-            'name_departament.in' => 'Selecione um departamento válido.',
+            'name_department.required' => 'O departamento é obrigatório.',
+            'name_department.in' => 'Selecione um departamento válido.',
         ];
         
         $validator = Validator::make($data, $rules, $messages );
@@ -35,5 +36,13 @@ class Department extends Model
     return $this->hasMany(Employee::class, 'departament_id');
 }
 
+public function employeesThroughProfessionalData() {
+    return $this->hasManyThrough(Employee::class, professional_data::class, 'department_id', 'id', 'id', 'employee_id');
+}
+
+
+public function professional_data() {
+    return $this->hasMany(professional_data::class, 'department_id');
+}
 
 }
