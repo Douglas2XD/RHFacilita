@@ -46,8 +46,8 @@ class DepartmentController extends Controller
     }
     
     public function update(Department $department, DepartmentValidate $request){
-        $data = $request->except(['profile_pic', 'curriculum']);
-        $department->update($data);
+        #$data = $request->except(['profile_pic', 'curriculum']);
+        $department->update($request->all());
 
         return back()->with('success', 'Department updated successfully!');
 
@@ -66,7 +66,7 @@ class DepartmentController extends Controller
 
 
     public function department_info($id) {
-        $departament = Department::findOrFail($id);
+        $department = Department::findOrFail($id);
         
         // Pegando os funcionários através da relação estabelecida
         #$employees = $departament->employees()->paginate(20);
@@ -76,9 +76,9 @@ class DepartmentController extends Controller
                      ->select('employees.*')
                      ->paginate(20);
 
-        return view('departament_info', [
+        return view('department_info', [
             "employees" => $employees,
-            "departament" => $departament
+            "department" => $department
         ]);
     }
 

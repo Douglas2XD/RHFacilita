@@ -75,9 +75,75 @@
       </div>
       @yield('content')  <!-- A seção content será preenchida pelas páginas que estendem este layout -->
     </main>
+
+    
   </div>
+  
   <script src="{{asset('scripts/scripts.js') }}"></script> <!-- Ajuste se necessário -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
+  <footer class="footer bg-dark text-white py-5">
+    <div class="container">
+        <div class="row">
+            <!-- About Section -->
+            <div class="col-md-4 mb-4">
+                <h5>Sobre Nós</h5>
+                <p class="text-muted">
+                    Nossa empresa se dedica a fornecer os melhores produtos e serviços para nossos clientes, sempre com qualidade e excelência.
+                </p>
+                <div class="social-icons">
+                    <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-white me-3"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-white"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+  
+            <!-- Quick Links -->
+            <div class="col-md-4 mb-4">
+                <h5>Links Rápidos</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#" class="text-white text-decoration-none">Início</a></li>
+                    <li><a href="#" class="text-white text-decoration-none">Sobre</a></li>
+                    <li><a href="#" class="text-white text-decoration-none">Serviços</a></li>
+                    <li><a href="#" class="text-white text-decoration-none">Contato</a></li>
+                    <li><a href="#" class="text-white text-decoration-none">FAQ</a></li>
+                </ul>
+            </div>
+  
+            <!-- Contact Info -->
+            <div class="col-md-4 mb-4">
+                <h5>Contato</h5>
+                <ul class="list-unstyled">
+                    <li>
+                        <i class="fas fa-map-marker-alt me-2"></i>
+                        Av. Principal, 123, São Paulo - SP
+                    </li>
+                    <li>
+                        <i class="fas fa-phone me-2"></i>
+                        (11) 1234-5678
+                    </li>
+                    <li>
+                        <i class="fas fa-envelope me-2"></i>
+                        contato@empresa.com
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+  
+    <!-- Copyright -->
+    <div class="footer-bottom text-center bg-dark text-white py-3">
+        <div class="container">
+            <p class="mb-0">
+                &copy; 2025 Sua Empresa. Todos os direitos reservados.
+            </p>
+        </div>
+    </div>
+  </footer>
 </body>
+
+
+
+
+
 </html>
