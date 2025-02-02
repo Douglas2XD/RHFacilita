@@ -64,34 +64,7 @@
 });
 </script>
 
-<?php 
-$departamentos = [
-    'Administração',
-    'Suporte',
-    'T.I',
-    'Estágio',
-    'Recursos Humanos',
-    'Marketing',
-    'Vendas',
-    'Financeiro',
-    'Comercial',
-    'Design',
-    'Desenvolvimento',
-    'Gestão de Projetos',
-    'Logística',
-    'Atendimento ao Cliente',
-    'Jurídico',
-    'Operações',
-    'Engenharia',
-    'Produção',
-    'Pesquisa e Desenvolvimento',
-    'Qualidade',
-    'Gestão de Pessoas'
-];
 
-
-
-?>
 
 
 

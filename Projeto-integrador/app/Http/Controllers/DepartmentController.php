@@ -10,8 +10,12 @@ use Illuminate\Http\Request;
 
 class DepartmentController extends Controller
 {
+
     public function index(){
         
+        if(Department::where('created_by',auth()->id())->count() == 0){
+            Department::add_defaults_departments();
+        }
         $list = Department::where('created_by',auth()->id())->paginate(20);
         
         foreach ($list as $department) {
@@ -21,6 +25,7 @@ class DepartmentController extends Controller
     }
 
     public function store(Request $request){
+
         $department = new Department();
         $data = $request->all();
         $department->created_by = auth()->id();
@@ -66,16 +71,15 @@ class DepartmentController extends Controller
 
 
     public function department_info($id) {
-        $department = Department::findOrFail($id);
         
-        // Pegando os funcionários através da relação estabelecida
-        #$employees = $departament->employees()->paginate(20);
+        $department = Department::findOrFail($id);
         
         $employees = Employee::join('professional_data', 'employees.id', '=', 'professional_data.employee_id')
                      ->where('professional_data.department_id', $id)
                      ->select('employees.*')
                      ->paginate(20);
 
+        
         return view('department_info', [
             "employees" => $employees,
             "department" => $department

@@ -4,7 +4,7 @@
     Departamento-info
 @endsection
 @section('content')
-<h2>Departamento:   {{$departament->name_departament}}</h2>
+<h2>Departamento:   {{$department->name_department}}</h2>
 @foreach ($employees as $employee)
 <li class="list-group-item d-flex align-items-center justify-content-between">
     <div class="d-flex align-items-center">
@@ -23,7 +23,7 @@
         </div>
     </div>
 </li>
-    <hr>
+    
 @endforeach
 <br><br><br>
 <hr>

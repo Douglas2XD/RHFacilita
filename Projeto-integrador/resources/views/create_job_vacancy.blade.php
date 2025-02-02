@@ -59,6 +59,11 @@
     </div>
 
     <div class="mb-3">
+        <label for="total_vacancies" class="form-label">Total de Vagas</label>
+        <input type="number" class="form-control" id="total_vacancies" name="total_vacancies" placeholder="Total de vagas.Ex: 2 (obs caso não queira mostrar, deixe este campo limpo)." value="{{$vacancy->total_vacancies ?? " "}}" />
+    </div>
+
+    <div class="mb-3">
         <label for="contract_type" class="form-label">Tipo de Contrato</label>
         <select id="contract_type" name="contract_type" class="form-select" value="{{$vacancy->contract_type ?? " "}}">
             <option value="CLT">CLT</option>
