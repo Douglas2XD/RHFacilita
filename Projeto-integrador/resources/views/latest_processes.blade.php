@@ -44,14 +44,36 @@
     <p class="job-benefits">
         <strong>Benefícios:</strong> {{$vaga->benefits}}
     </p>
+
+    <p class="job-benefits">
+        <strong>Departamento</strong> {{$vaga->department}}
+    </p>
+
+    <p class="job-benefits">
+        <strong>Total de Vagas:</strong> {{$vaga->total_vacancies}}
+    </p>
+
+    <p class="job-benefits">
+        <strong>Aceita PCD:</strong> {{$vaga->pwd_vacancy}}
+    </p>
+    <p class="job-benefits">
+        <strong>Escala:</strong> {{$vaga->time_work}}
+    </p>
+    
     <p class="job-benefits">
         <strong>Criado:</strong> {{$vaga->created_at}}
     </p>
+
+
+
+
     <a class="btn btn-danger" href="{{route('delete_vacancy',$vaga)}}">Delete</a>
 
     <a class="btn btn-warning" href="{{route('show_candidates', $vaga->id)}}">Visualizar Candidatos</a>
 
     <a class="btn btn-secondary" href="{{route('edit_vacancy',$vaga->id)}}">Editar Vaga</a>
+
+
 
 </div>
 

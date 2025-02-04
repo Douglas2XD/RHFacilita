@@ -11,9 +11,38 @@ use Illuminate\Support\Facades\Validator;
 class CandidateController extends Controller
 {
 
+    public function freelancer(){
+        $vacancies = Vacancy::where("contract_type","FREELANCER")->paginate(5);
+        return view('candidate_portal',["vacancies"=>$vacancies]);
+    }
+    public function jovem_aprendiz(){
+        $vacancies = Vacancy::where("contract_type","JOVEM APRENDIZ")->paginate(5);
+        return view('candidate_portal',["vacancies"=>$vacancies]);
+    }
+    public function estagio(){
+        $vacancies = Vacancy::where("contract_type","ESTAGIO")->paginate(5);
+        return view('candidate_portal',["vacancies"=>$vacancies]);
+    }
+    public function pwd_vacancy(){
+        $vacancies = Vacancy::where("pwd_vacancy","SIM")->paginate(5);
+        return view('candidate_portal',["vacancies"=>$vacancies]);
+    }
+
     public function index(){
+        $search = request("search");
+        if($search){
+            $vacancies = Vacancy::all()->where("title","LIKE","%".$search."%")->paginate(5);
+        }
+        else{
+            $vacancies  = Vacancy::orderBy('created_at', 'desc')->get();
+        }
+
         
-        $vacancies  = Vacancy::orderBy('created_at', 'desc')->get();
+    
+        foreach ($vacancies as $vacancy) {
+            $vacancy->day_month = $vacancy->created_at->format('d/m');
+        }
+        
         return view("candidate_portal",["vacancies"=>$vacancies]);
     }
 

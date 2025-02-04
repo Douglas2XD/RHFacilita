@@ -161,56 +161,66 @@
                 margin: 10px 0;
             }
         }
+        #typing-text {
+        min-height: 2em; /* Mantém a altura mínima */
+        font-weight: bold;
+        display: inline-block; /* Evita colapso do elemento */
+
+        .green {
+            color: green;
+        }
+    }
     </style>
 </head>
 <body>
 
-
-    
     <div class="navbar">
         <div class="navbar-links">
-            <a href="#" class="active">TODAS VAGAS</a>
-            <a href="#">DIARISTA</a>
-            <a href="#">EMPREGO</a>
-            <a href="#">ESTÁGIO</a>
-            <a href="#">HOME OFFICE</a>
-            <a href="#">JOVEM APRENDIZ</a>
-            <a href="#">PCD</a>
-            <a href="#">RCA</a>
-            <a href="#">TRAINEE</a>
+            <a href="{{route('candidate_portal')}}" class="active">TODAS VAGAS</a>
+            <a href="{{route('estagio')}}">ESTÁGIO</a>
+            <a href="{{route('jovem_aprendiz')}}">JOVEM APRENDIZ</a>
+            <a href="{{route('pwd_vacancy')}}">PCD</a>
+            <a href="{{route('freelancer')}}">FREELANCER</a>
+            
         </div>
         <select class="navbar-select">
             <option selected>TODAS VAGAS</option>
-            <option>DIARISTA</option>
-            <option>EMPREGO</option>
+            <option>FREELANCER</option>
             <option>ESTÁGIO</option>
-            <option>HOME OFFICE</option>
             <option>JOVEM APRENDIZ</option>
             <option>PCD</option>
-            <option>RCA</option>
-            <option>TRAINEE</option>
+            
         </select>
     </div>
 <br><br>
-    <!-- Campo de pesquisa -->
     <div class="search-container">
-        <input type="text" id="search" placeholder="Pesquisar vagas...">
+         <h2 id="typing-text"></h2>
+    </div>
+    <!-- Campo de pesquisa -->
+    <div class="search-container"> 
+        <input type="text" name="search" id="search" placeholder="Pesquisar vaga">
         <button id="searchButton"><i class="fas fa-search"></i> Buscar</button>
     </div>
-
     <div class="container">
         @foreach($vacancies as $vacancy)
         
         <div class="job-card">
             <a data-bs-toggle="modal" data-bs-target="#candidaturaModal{{$vacancy->id}}">
                 <div class="date-time">
-                    <i class="fas fa-calendar-alt"></i> 02/02 
-                    <i class="fas fa-clock"></i> 14:30
+                    <i class="fas fa-calendar-alt"></i> {{$vacancy->day_month}}
+                    @if ($vacancy->pwd_vacancy == "SIM")
+                    <i class="fas fa-wheelchair "></i> PCD
+                    @endif
+
                 </div>
-                <div class="title">{{$vacancy->title ?? ' '}} | {{$vacancy->location ?? 'Localização não informada'}} | {{$vacancy->total_vacancies ?? '0'}} vaga(s)</div>
-                <div class="category">Tecnologia</div>
+                <div class="title">{{$vacancy->title ?? ' '}} | {{$vacancy->location ?? 'Localização não informada'}} @if(!is_null($vacancy->total_vacancies))
+                    | {{$vacancy->total_vacancies }} vaga(s)
+                @endif   </div>
+                
+                
+                <div class="category">{{$vacancy->department}}</div>
                 <div class="location">
-                    {{$vacancy->work_schedule ?? 'Jornada não informada'}}
+                    toque para saber mais.
                 </div>
             </a>
         </div>
@@ -224,9 +234,27 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <p class="modal-title" id="candidaturaModalLabel{{$vacancy->id}}"><strong>Descrição:</strong> {{ $vacancy->description }}</p>
+                    
+                                <p><strong>Título:</strong> {{ $vacancy->title }}</p>
+
+                                <p><strong>Descrição:</strong> {{ $vacancy->description }}</p>
+
+                                <p><strong>Requisitos:</strong> {{ $vacancy->requirements }}</p>
+
+                                <p><strong>Remuneração:</strong> {{ $vacancy->remuneration }}</p>
+
+                                <p><strong>Tipo de contrato:</strong> {{ $vacancy->contract_type }}</p>
+
+                                <p><strong>Localização:</strong> {{ $vacancy->location }}</p>
+
+                                <p><strong>Benefícios:</strong> {{ $vacancy->benefits }}</p>
+
+                                <p><strong>Horário de trabalho:</strong> {{ $vacancy->time_work }}</p>
+                            
+    
                             <hr>
                             <!-- Formulário -->
+                            <h2>Candidate-se</h2>
                             <form action="{{route('create_candidate')}}" method="post" enctype="multipart/form-data">
                                 
                                 @csrf
@@ -251,12 +279,6 @@
                     </div>
                 </div>
             </div>
-
-
-
-
-
-
         @endforeach
     </div>
 
@@ -286,6 +308,49 @@
                 }
             });
         });
+
+        const textElement = document.getElementById("typing-text");
+        const textArray = ["Aproveite sem precisar criar conta! ",
+                            "Descubra o futuro das vagas de emprego! ",
+                            "Rápido, prático e fácil de usar! ",
+                            "Sem anúncios irritantes! ",
+                            "E o melhor: tudo isso é grátis! "
+                        ];
+        let textIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+
+        function typeEffect() {
+            const currentText = textArray[textIndex];
+            
+            if (isDeleting) {
+                charIndex--;
+                textElement.innerHTML = charIndex === 0 ? "&nbsp;" : currentText.substring(0, charIndex);
+            } else {
+                let currentTextWithGreenExclamation = currentText.substring(0, charIndex);
+                
+                // Substitui o "!" por um <span> com a classe para colorir de verde
+                currentTextWithGreenExclamation = currentTextWithGreenExclamation.replace(/!$/, '<span class="green">!</span>');
+
+                textElement.innerHTML = currentTextWithGreenExclamation;
+                charIndex++;
+            }
+            
+            let typeSpeed = isDeleting ? 50 : 100;
+            
+            if (!isDeleting && charIndex === currentText.length) {
+                isDeleting = true;
+                typeSpeed = 1000;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                textIndex = (textIndex + 1) % textArray.length;
+                typeSpeed = 500;
+            }
+            
+            setTimeout(typeEffect, typeSpeed);
+        }
+
+        typeEffect();
     </script>
 </body>
 </html>

@@ -73,7 +73,7 @@ Route::get('/department_info/{department}', [App\Http\Controllers\DepartmentCont
 Route::get('/department/delete/{department}', [App\Http\Controllers\DepartmentController::class, 'delete'])->name(name: 'delete_departament');
 
 
-Route::get('/create_job_vacancy', [App\Http\Controllers\HomeController::class, 'create_job_vacancy'])->name(name: 'create_job_vacancy');
+Route::get('/create_job_vacancy', [App\Http\Controllers\VacancyController::class, 'create_job_vacancy'])->name(name: 'create_job_vacancy');
 
 Route::get('/endomarketing', [App\Http\Controllers\HomeController::class, 'endomarketing'])->name(name: 'endomarketing');
 
@@ -108,6 +108,11 @@ Route::get('/home', [HomeController::class,"index"])->name('home');
 Route::get('/candidate_portal', [CandidateController::class, "index"])->name('candidate_portal');
 
 Route::post('/candidate_portal', [CandidateController::class, "create"])->name('create_candidate');
+
+Route::get('/candidate_portal/contract_type', [CandidateController::class, "freelancer"])->name('freelancer');
+Route::get('/candidate_portal/jovem_aprendiz', [CandidateController::class, "jovem_aprendiz"])->name('jovem_aprendiz');
+Route::get('/candidate_portal/estagio', [CandidateController::class, "estagio"])->name('estagio');
+Route::get('/candidate_portal/pwd_vacancy', [CandidateController::class, "pwd_vacancy"])->name('pwd_vacancy');
 
 
 

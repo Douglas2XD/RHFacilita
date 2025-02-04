@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Candidate;
 use App\Models\CandidateVacancies;
+use App\Models\Department;
 use App\Models\Vacancy;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -11,11 +12,21 @@ use Illuminate\Support\Facades\DB;
 class VacancyController extends Controller
 {
 
+
+    public function create_job_vacancy(){
+        $departments = Department::all()->where('created_by',auth()->id());
+
+        
+
+        return view('create_job_vacancy',['departments'=>$departments]);
+    }
+
     public function index(){
+        
         $id = auth()->id();
         $list = Vacancy::where('created_by',$id)->paginate(20);
         return view("latest_processes", ["vacancy"=>new Vacancy(),
-                            "list"=>$list]);
+                            "list"=>$list,]);
         
         
     }
@@ -62,6 +73,11 @@ class VacancyController extends Controller
         $vacancy->contract_type = $request->input('contract_type');
         $vacancy->location = $request->input('location');
         $vacancy->benefits = $request->input('benefits');
+        $vacancy->department = $request->input('department');
+        $vacancy->total_vacancies = $request->input('total_vacancies');
+        $vacancy->pwd_vacancy = $request->input('pwd_vacancy');
+        $vacancy->time_work = $request->input('time_work');
+
         $vacancy->save();
 
 
@@ -76,7 +92,7 @@ class VacancyController extends Controller
     public function edit(Vacancy $vacancy)
     {
         $list = Vacancy::paginate(20);
-
+        $departments = Department::all()->where('created_by',auth()->id());
         if ($vacancy->created_by != auth()->id()) { 
             return redirect()->route('latest_processes')->with('error', 'Você não tem permissão para editar esta vaga.');
         }
@@ -84,7 +100,8 @@ class VacancyController extends Controller
 
         return view("create_job_vacancy", [
             "vacancy"=>$vacancy,
-            "list" => $list
+            "list" => $list,
+            "departments"=>$departments
         ]);
     }
 

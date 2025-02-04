@@ -38,32 +38,36 @@
     @endif
 
     @csrf
+    
     <div class="mb-3">
-        <label for="pwd_vacancy" class="form-label">Vaga para PCD</label>
-        <select id="pwd_vacancy" name="pwd_vacancy" class="form-select" value="{{$vacancy->pwd_vacancy ?? " "}}">
-            <option value="Vespertino">NÃO</option>
-            <option value="Matutino">SIM</option>
+        <label for="titulo" class="form-label">Título da Vaga</label>
+        <input type="text" class="form-control" id="titulo" name="title"  placeholder="Exemplo: Técnico administrativo"value="{{$vacancy->title ?? ""}}">
+    </div>
+
+    <div class="mb-3">
+        <label for="department" class="form-label">Departamento</label>
+        <select id="department" name="department" class="form-select">
+                @foreach ($departments as $department)
+                    <option selected="{{$department->name_department}}">
+                        {{$department->name_department}}  
+                    </option>
+                @endforeach
         </select>
     </div>
 
     <div class="mb-3">
-        <label for="titulo" class="form-label">Título da Vaga</label>
-        <input type="text" class="form-control" id="titulo" name="title"  placeholder="Exemplo: Técnico administrativo" value="{{$vacancy->title ?? " "}}">
-    </div>
-
-    <div class="mb-3">
         <label for="descricao" class="form-label">Descrição da Vaga</label>
-        <textarea id="descricao" name="description" class="form-control" rows="5"  placeholder="Descreva as responsabilidades e atividades do cargo." > {{$vacancy->description ?? " "}} </textarea>
+        <textarea id="descricao" name="description" class="form-control"rows="5"placeholder="Descreva as responsabilidades e atividades do cargo." >{{$vacancy->description ?? ""}}</textarea>
     </div>
 
     <div class="mb-3">
         <label for="requisitos" class="form-label">Requisitos</label>
-        <textarea id="requisitos" name="requirements" class="form-control" rows="5"  placeholder="Descreva as qualificações e habilidades exigidas.">{{$vacancy->requirements ?? " "}}</textarea>
+        <textarea id="requisitos" name="requirements" class="form-control" rows="5"  placeholder="Descreva as qualificações e habilidades exigidas.">{{$vacancy->requirements ?? ""}}</textarea>
     </div>
 
     <div class="mb-3">
         <label for="remuneration" class="form-label">Salário</label>
-        <input type="text" class="form-control" id="remuneration" name="remuneration" placeholder="R$0,00" onInput="maskMoney(event);" value="{{$vacancy->remuneration ?? " "}}" />
+        <input type="text" class="form-control" id="remuneration" name="remuneration" placeholder="R$0,00" onInput="maskMoney(event);" value="{{$vacancy->remuneration ?? ""}}" />
     </div>
 
     <div class="mb-3">
@@ -72,12 +76,25 @@
     </div>
 
     <div class="mb-3">
+        <label for="pwd_vacancy" class="form-label">Vaga para PCD</label>
+        <select id="pwd_vacancy" name="pwd_vacancy" class="form-select" value="{{$vacancy->pwd_vacancy ?? " "}}">
+            <option value="NAO">NÃO</option>
+            <option value="SIM">SIM</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
         <label for="contract_type" class="form-label">Tipo de Contrato</label>
         <select id="contract_type" name="contract_type" class="form-select" value="{{$vacancy->contract_type ?? " "}}">
             <option value="CLT">CLT</option>
             <option value="PJ">PJ</option>
-            <option value="Estágio">Estágio</option>
-            <option value="Freelancer">Freelancer</option>
+            <option value="Estágio">ESTÁGIO</option>
+            <option value="Freelancer">FREELANCER</option>
+            <option value="DIARISTA">DIARISTA</option>
+            <option value="JOVEM APRENDIZ">JOVEM APRENDIZ</option>
+            <option value="PCD">PCD</option>
+            <option value="TRAINEE">TRAINEE</option>
+
         </select>
     </div>
 
@@ -87,27 +104,14 @@
     </div>
 
     <div class="mb-3">
-        <label for="work_schedule" class="form-label">Jornada</label>
-        <select id="work_schedule" name="work_schedule" class="form-select" value="{{$vacancy->work_schedule ?? " "}}">
-            <option value="Matutino">Matutino</option>
-            <option value="Vespertino">Vespertino</option>
-            <option value="Noturno">Noturno</option>
-            <option value="Integral">Integral</option>
-        </select>
-    </div>
-
-    <div class="mb-3">
         <label for="time_work" class="form-label">Horário</label>
-        <input type="text" class="form-control" id="location" name="location"  placeholder="Ex: 8:30 até 18:00" value="{{$vacancy->time_work ??""}}">
+        <input type="text" class="form-control" id="time_work" name="time_work"  placeholder="Ex: 8:30 até 18:00" value="{{$vacancy->time_work ??""}}">
     </div>
 
     <div class="mb-3">
         <label for="benefits" class="form-label">Benefícios</label>
         <textarea id="benefits" name="benefits" class="form-control" rows="3" placeholder="Exemplo: Vale transporte, plano de saúde, etc.">{{$vacancy->benefits ?? ""}}</textarea>
     </div>
-
-    
-
 
     <button type="submit" data-toggle="modal" data-target="#exampleModal" style="background-color: #1a2b49; width: 100%;" type="submit">Salvar</button>                    
     
@@ -131,6 +135,11 @@
     </div>
     </div>
 </form>
+
+
+
+
+
 </main>
 </div>
 <script>
@@ -158,80 +167,3 @@
 
 @endsection
 
-
-
-
-<!--
-<hr>
-<form>
-                    <div class="mb-3">
-                        <label for="titulo" class="form-label">Título da Vaga</label>
-                        <input type="text" class="form-control" id="titulo" name="titulo" required placeholder="Exemplo: Desenvolvedor Front-End">
-                    </div>
-        
-                    <div class="mb-3">
-                        <label for="descricao" class="form-label">Descrição da Vaga</label>
-                        <textarea id="descricao" name="descricao" class="form-control" rows="5" required placeholder="Descreva as responsabilidades e atividades do cargo."></textarea>
-                    </div>
-        
-                    <div class="mb-3">
-                        <label for="requisitos" class="form-label">Requisitos</label>
-                        <textarea id="requisitos" name="requisitos" class="form-control" rows="5" required placeholder="Descreva as qualificações e habilidades exigidas."></textarea>
-                    </div>
-        
-                    <div class="mb-3">
-                        <label for="salario" class="form-label">Salário</label>
-                        <input type="text" class="form-control" id="salario" name="salario" required placeholder="Exemplo: R$ 4.000 a R$ 5.500">
-                    </div>
-        
-                    <div class="mb-3">
-                        <label for="tipo_contrato" class="form-label">Tipo de Contrato</label>
-                        <select id="tipo_contrato" name="tipo_contrato" class="form-select" required>
-                            <option value="CLT">CLT</option>
-                            <option value="PJ">PJ</option>
-                            <option value="Estágio">Estágio</option>
-                            <option value="Freelancer">Freelancer</option>
-                        </select>
-                    </div>
-        
-                    <div class="mb-3">
-                        <label for="localizacao" class="form-label">Localização</label>
-                        <input type="text" class="form-control" id="localizacao" name="localizacao" required placeholder="Exemplo: São Paulo, SP (ou Remoto)">
-                    </div>
-        
-                    <div class="mb-3">
-                        <label for="beneficios" class="form-label">Benefícios</label>
-                        <textarea id="beneficios" name="beneficios" class="form-control" rows="3" placeholder="Exemplo: Vale transporte, plano de saúde, etc."></textarea>
-                    </div>
-        
-                    <div class="mb-3">
-                        <label for="como_candidatar" class="form-label">Como se Candidatar</label>
-                        <textarea id="como_candidatar" name="como_candidatar" class="form-control" rows="3" placeholder="Instruções de como o candidato deve se inscrever."></textarea>
-                    </div>
-        
-                    <button type="button" data-toggle="modal" data-target="#exampleModal" style="background-color: #1a2b49; width: 100%;" type="submit">Salvar</button>                    
-                    
-                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Quer mesmo cadastrar esta vaga?</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <p>Por favor, confirme os dados antes de cadastrar.</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Confirmar Dados</button>
-                            <button type="button" class="btn btn-primary">Cadastrar Vaga</button>
-                        </div>
-                        </div>
-                    </div>
-                    </div>
-                </form>
-
-
-
--->

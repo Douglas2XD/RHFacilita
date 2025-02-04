@@ -14,7 +14,12 @@ class Vacancy extends Model
                             "contract_type",
                             "location",
                             "benefits",
-                            "created_by",];
+                            "created_by",
+                            "department",
+                            "total_vacancies",
+                            "pwd_vacancy",
+                            "time_work",
+                        ];
 
     public function candidates()
     {

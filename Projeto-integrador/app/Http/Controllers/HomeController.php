@@ -45,9 +45,7 @@ class HomeController extends Controller
     public function processos_seletivos(){
         return view('processos_seletivos');
     }
-    public function create_job_vacancy(){
-        return view('create_job_vacancy');
-    }
+    
 
     public function create_department(){
         return view('create_department');
