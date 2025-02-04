@@ -164,6 +164,9 @@
     </style>
 </head>
 <body>
+
+
+    
     <div class="navbar">
         <div class="navbar-links">
             <a href="#" class="active">TODAS VAGAS</a>
@@ -197,16 +200,63 @@
 
     <div class="container">
         @foreach($vacancies as $vacancy)
-            <div class="job-card">
+        
+        <div class="job-card">
+            <a data-bs-toggle="modal" data-bs-target="#candidaturaModal{{$vacancy->id}}">
                 <div class="date-time">
                     <i class="fas fa-calendar-alt"></i> 02/02 
                     <i class="fas fa-clock"></i> 14:30
                 </div>
-                <div class="title">{{$vacancy->title?? ' '}} | São Paulo – SP | 02 vaga(s)</div>
+                <div class="title">{{$vacancy->title ?? ' '}} | {{$vacancy->location ?? 'Localização não informada'}} | {{$vacancy->total_vacancies ?? '0'}} vaga(s)</div>
                 <div class="category">Tecnologia</div>
-                <div class="location">vespertino</div>
-                <a href="#" class="btn-apply">Candidatar-se</a>
+                <div class="location">
+                    {{$vacancy->work_schedule ?? 'Jornada não informada'}}
+                </div>
+            </a>
+        </div>
+            <!--INICIO DO CARD-->
+            <div class="modal fade" id="candidaturaModal{{$vacancy->id}}" tabindex="-1" aria-labelledby="candidaturaModalLabel{{$vacancy->id}}" aria-hidden="true">
+                
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="candidaturaModalLabel{{$vacancy->id}}">Candidatar-se à Vaga: {{ $vacancy->title }}</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p class="modal-title" id="candidaturaModalLabel{{$vacancy->id}}"><strong>Descrição:</strong> {{ $vacancy->description }}</p>
+                            <hr>
+                            <!-- Formulário -->
+                            <form action="{{route('create_candidate')}}" method="post" enctype="multipart/form-data">
+                                
+                                @csrf
+                                <!-- Campo oculto para enviar o ID da vaga -->
+                                <input type="hidden" name="vaga_id" value="{{ $vacancy->id }}">
+                                
+                                <div class="mb-3">
+                                    <label for="nome{{$vacancy->id}}" class="form-label">Nome Completo</label>
+                                    <input type="text" class="form-control" id="nome{{$vacancy->id}}" name="name" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="email{{$vacancy->id}}" class="form-label">E-mail</label>
+                                    <input type="email" class="form-control" id="email{{$vacancy->id}}" name="email" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="curriculum{{$vacancy->id}}" class="form-label">Currículo (PDF)</label>
+                                    <input type="file" class="form-control" name="curriculum" accept=".pdf" required >
+                                </div>
+                                <button type="submit" class="btn-apply" onclick="click()">Enviar Candidatura</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
+
+
+
+
+
+
         @endforeach
     </div>
 

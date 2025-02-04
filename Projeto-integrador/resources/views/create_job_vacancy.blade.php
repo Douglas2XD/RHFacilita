@@ -39,6 +39,14 @@
 
     @csrf
     <div class="mb-3">
+        <label for="pwd_vacancy" class="form-label">Vaga para PCD</label>
+        <select id="pwd_vacancy" name="pwd_vacancy" class="form-select" value="{{$vacancy->pwd_vacancy ?? " "}}">
+            <option value="Vespertino">NÃO</option>
+            <option value="Matutino">SIM</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
         <label for="titulo" class="form-label">Título da Vaga</label>
         <input type="text" class="form-control" id="titulo" name="title"  placeholder="Exemplo: Técnico administrativo" value="{{$vacancy->title ?? " "}}">
     </div>
@@ -79,9 +87,26 @@
     </div>
 
     <div class="mb-3">
-        <label for="benefits" class="form-label">Benefícios</label>
-        <textarea id="benefits" name="benefits" class="form-control" rows="3" placeholder="Exemplo: Vale transporte, plano de saúde, etc."> {{$vacancy->benefits ?? " "}} </textarea>
+        <label for="work_schedule" class="form-label">Jornada</label>
+        <select id="work_schedule" name="work_schedule" class="form-select" value="{{$vacancy->work_schedule ?? " "}}">
+            <option value="Matutino">Matutino</option>
+            <option value="Vespertino">Vespertino</option>
+            <option value="Noturno">Noturno</option>
+            <option value="Integral">Integral</option>
+        </select>
     </div>
+
+    <div class="mb-3">
+        <label for="time_work" class="form-label">Horário</label>
+        <input type="text" class="form-control" id="location" name="location"  placeholder="Ex: 8:30 até 18:00" value="{{$vacancy->time_work ??""}}">
+    </div>
+
+    <div class="mb-3">
+        <label for="benefits" class="form-label">Benefícios</label>
+        <textarea id="benefits" name="benefits" class="form-control" rows="3" placeholder="Exemplo: Vale transporte, plano de saúde, etc.">{{$vacancy->benefits ?? ""}}</textarea>
+    </div>
+
+    
 
 
     <button type="submit" data-toggle="modal" data-target="#exampleModal" style="background-color: #1a2b49; width: 100%;" type="submit">Salvar</button>                    
