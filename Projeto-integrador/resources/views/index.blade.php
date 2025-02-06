@@ -7,7 +7,6 @@
 
 @section('content')
 <hr>
-  
     <div class="shortcuts">
       <h2>Atalhos rápidos</h2>
       
@@ -54,37 +53,19 @@
         <!-- Card 5 -->
         <div class="col-md-4 mb-3">
           <div class="shortcut-card p-3">
-            <i class="fas fa-user-check fa-2x mb-3 gold-icon"></i>
-            <a href="{{route('show_all_candidates')}}" style="text-decoration: none;"><div class="shortcut-title font-weight-bold">Recrutamento e seleção por competências</div>
-            </a>
-            <p class="shortcut-description text-muted">Seleção de candidatos com habilidades e atitudes alinhadas à empresa.</p>
-          </div>
-        </div>
-    
-        <!-- Card 6 -->
-        <div class="col-md-4 mb-3">
-          <div class="shortcut-card p-3">
             <i class="fas fa-bullhorn fa-2x mb-3 gold-icon"></i>
             <a href="{{route('endomarketing')}}" style="text-decoration: none;"><div class="shortcut-title font-weight-bold">Plano de endomarketing</div></a>
             <p class="shortcut-description text-muted">Estratégias internas para engajar e motivar os colaboradores.</p>
           </div>
         </div>
-      </div>
-    
-      <div class="row">
-        <!-- Card 7 -->
         <div class="col-md-4 mb-3">
           <div class="shortcut-card p-3">
             <i class="fas fa-user-times fa-2x mb-3 gold-icon"></i>
             <a href="{{route('ainda_em_desenvolvimento')}}" style="text-decoration: none;"> <div class="shortcut-title font-weight-bold">Gestão de desligamento</div></a>
             <p class="shortcut-description text-muted">Processo de desligamento de colaboradores com suporte adequado.</p>
           </div>
-        </div>
-    
-        <!-- Card 8 -->
         
-    
-        
+      </div>        
       </div>
     </div>
 

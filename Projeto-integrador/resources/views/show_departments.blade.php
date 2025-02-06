@@ -27,6 +27,13 @@
     <h2 class="mb-4">Lista de todos os Departamentos  <a href="{{route('create_department')}}" class="btn btn-success " target="_blank">
         Criar Novo Departamento
     </a>  </h2>
+
+    <div class="alert alert-info">
+        <p>  Departamentos com funcionários não podem ser deletados</p>
+    </div>
+
+
+    
     <table class="table table-striped">
         <thead>
             <tr>

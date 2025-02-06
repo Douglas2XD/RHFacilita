@@ -280,8 +280,11 @@
                 </div>
             </div>
         @endforeach
+        
     </div>
-
+    <div class="d-flex justify-content-center">
+        {{ $vacancies->links() }}
+    </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
     <script>
         // Sincroniza a seleção entre a navbar e o select
@@ -312,6 +315,7 @@
         const textElement = document.getElementById("typing-text");
         const textArray = ["Aproveite sem precisar criar conta! ",
                             "Descubra o futuro das vagas de emprego! ",
+                            "Conquiste seu próximo emprego agora mesmo!",
                             "Rápido, prático e fácil de usar! ",
                             "Sem anúncios irritantes! ",
                             "E o melhor: tudo isso é grátis! "
@@ -331,7 +335,7 @@
                 
                 // Substitui o "!" por um <span> com a classe para colorir de verde
                 currentTextWithGreenExclamation = currentTextWithGreenExclamation.replace(/!$/, '<span class="green">!</span>');
-
+                
                 textElement.innerHTML = currentTextWithGreenExclamation;
                 charIndex++;
             }

@@ -22,13 +22,7 @@
             <h2>{{$vagas_abertas}}</h2>
         </div>
     </div>
-    <div class="col-md-4">
-        <div class="card text-center p-4">
-            <i class="fas fa-chart-line fa-2x mb-2"></i>
-            <h5>Crescimento média/mês</h5>
-            <h2>??</h2>
-        </div>
-    </div>
+    
 </div>
         
     

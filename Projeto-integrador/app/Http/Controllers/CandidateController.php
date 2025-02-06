@@ -34,11 +34,10 @@ class CandidateController extends Controller
             $vacancies = Vacancy::all()->where("title","LIKE","%".$search."%")->paginate(5);
         }
         else{
-            $vacancies  = Vacancy::orderBy('created_at', 'desc')->get();
+            $vacancies = Vacancy::orderBy('created_at', 'desc')->paginate(10);
+
         }
 
-        
-    
         foreach ($vacancies as $vacancy) {
             $vacancy->day_month = $vacancy->created_at->format('d/m');
         }

@@ -6,6 +6,7 @@ use App\Models\Address;
 use App\Models\Department;
 use App\Models\Employee;
 use App\Models\Termination;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class TerminationController extends Controller
@@ -16,6 +17,8 @@ class TerminationController extends Controller
     }
 
     public function show(){
+        Termination::where('dismissal_date', '<=', Carbon::now()->subYears(5))->forceDelete();
+        
         $search = request("search");
         $search2 = request("search2");
 

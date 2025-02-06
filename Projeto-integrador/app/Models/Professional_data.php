@@ -21,7 +21,6 @@ class professional_data extends Model
                             'CTPS_series',      
                             'PIS_PASEP',];
 
-
     public function employee(){
         return $this->belongsTo(Employee::class,'employee_id');
     }

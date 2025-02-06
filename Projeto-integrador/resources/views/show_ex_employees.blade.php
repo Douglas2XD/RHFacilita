@@ -23,6 +23,11 @@
 <br><br><br>    
 </div>
 
+<div class="alert alert-warning">
+    <p>obs: Os dados serão apagados após 5 anos a partir da data de demissão.</p>
+</div>
+
+
 @foreach ($list as $employee) 
     <li class="list-group-item d-flex align-items-center justify-content-between">
     <div class="d-flex align-items-center">

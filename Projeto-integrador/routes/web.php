@@ -34,6 +34,8 @@ Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'dash
 
 Route::get('/index', [App\Http\Controllers\HomeController::class, 'index'])->name(name: 'index');
 
+Route::get('/show_info_employee/{employee}', [EmployeeController::class, "Show_info_employee"])->name('info_employee');
+
 Route::get('/register_employees/new', [EmployeeController::class, "index"])->name('new');
 
 Route::post('/register_employees', [EmployeeController::class, "store"])->name('store');
@@ -75,8 +77,8 @@ Route::get('/department/delete/{department}', [App\Http\Controllers\DepartmentCo
 
 Route::get('/create_job_vacancy', [App\Http\Controllers\VacancyController::class, 'create_job_vacancy'])->name(name: 'create_job_vacancy');
 
-Route::get('/endomarketing', [App\Http\Controllers\HomeController::class, 'endomarketing'])->name(name: 'endomarketing');
-
+Route::get('/endomarketing', [App\Http\Controllers\EndomarketingController::class, 'endomarketing'])->name(name: 'endomarketing');
+Route::get('/endomarketing/sorteio', [App\Http\Controllers\EndomarketingController::class, 'Draw'])->name(name: 'draw');
 
 //rotas das vagas
 
@@ -86,7 +88,6 @@ Route::get('/latest_processes', [VacancyController::class, "index"])->name('late
 
 Route::get('/show_candidates/{id_vancancy}', [HomeController::class, "show_candidates"])->name('show_candidates');
 
-Route::get('/show_all_candidates', [HomeController::class, "show_all_candidates"])->name('show_all_candidates');
 
 
 Route::get('/latest_processes/delete/{vacancy}', [VacancyController::class, "delete"])->name('delete_vacancy');

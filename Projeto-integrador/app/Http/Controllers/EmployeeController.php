@@ -3,11 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\EmployeeValidate;
+use App\Mail\SendEmail;
 use App\Models\Department;
 use App\Models\Employee;    
 use App\Models\Address;
 use App\Models\professional_data;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use PharIo\Manifest\Email;
 
 class EmployeeController extends Controller
 {
@@ -17,10 +21,38 @@ class EmployeeController extends Controller
 
         $list = Employee::with('professional_data')->where('add_by',$id)->paginate(10);
         
-
         return view("show_employees", ["employee"=>new Employee(),
                             "list"=>$list]);
     }
+
+    public function Show_info_employee(Employee $employee){
+        
+        $professional_data = professional_data::where('employee_id',$employee->id)->first();
+        
+        $data = ['name' => $employee->name,
+                'pic'=>$employee->profile_pic,
+                'cpf'=>$employee->cpf,
+                'department_id' => $employee->department_id,
+                'salary' => $professional_data->salary,
+                'position' => $professional_data->position,
+                'admission_date' => $professional_data->admission_date,
+                'employee_stats' => $professional_data->employee_stats,
+                'CTPS_number' => $professional_data->CTPS_number,
+                'CTPS_series' => $professional_data->CTPS_series,
+                'PIS_PASEP' => $professional_data->PIS_PASEP,
+                'cep'=> $employee->address->cep,
+                'street' => $employee->address->street,
+                'city' => $employee->address->city,
+                'state' => $employee->address->state,
+                'number'=>$employee->address->number,
+
+            ];
+        
+        $pdf = Pdf::loadView('Pdf_employee', compact('data'));
+        return $pdf->download("informacoes_{$employee->id}.pdf");
+
+    }
+
 
     public function store(Request $request){     
         $data = $request->all();
@@ -68,15 +100,6 @@ class EmployeeController extends Controller
         $employee->profile_pic = $profile_pic;
         $employee->add_by = auth()->id();
         
-        /*
-        $employee->departament_id = $request->input('department_id'); 
-        $employee->position = $request->input('position');
-        $employee->admission_date = $request->input('admission_date');
-        $employee->employee_stats = $request->input('employee_stats');
-        $employee->CTPS_number = $request->input('CTPS_number');
-        $employee->CTPS_series = $request->input('CTPS_series');
-        $employee->PIS_PASEP = $request->input('PIS_PASEP');
-        */
         $employee->save();
 
         Address::create([
@@ -108,6 +131,7 @@ class EmployeeController extends Controller
         
         #aqui cadastra a movimentação
         $employee->save();
+        
         session()->flash('success', 'Dados inseridos com sucesso!');
         return back()->with('success', 'Dados inseridos com sucesso!');
         
