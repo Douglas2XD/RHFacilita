@@ -39,22 +39,27 @@ return new class extends Migration
             $table->string('marital_status', 50);
             $table->integer('children');
             $table->boolean('pwd'); // Pessoa com deficiência
-            $table->timestamps();
-            $table->unsignedBigInteger('add_by')->nullable(); // ID do usuário que adicionou
-        });
+            
 
-        Schema::create('address', function (Blueprint $table) {
-            $table->id();
+            $table->string('salary')->nullable();
+            $table->unsignedBigInteger('department_id')->nullable();
+            $table->string('position')->nullable();
+            $table->date('admission_date')->nullable();
+            $table->enum('employee_stats', ['ativo', 'inativo'])->default('ativo');
+            $table->string('CTPS_number')->nullable();
+            $table->string('CTPS_series')->nullable();
+            $table->string('PIS_PASEP')->nullable();
+             // ID do usuário que adicionou
+
             $table->string('cep');
             $table->string('street');
             $table->string('city');
             $table->string('state');
-            $table->timestamps();
-            $table->unsignedBigInteger('employee_id')->nullable(); // Alterado para unsignedBigInteger
             $table->integer('number')->nullable();
 
-            // Definindo chave estrangeira para a tabela employees
-            $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
+            $table->unsignedBigInteger('add_by')->nullable();
+            
+            $table->timestamps();
         });
 
         Schema::create('candidate', function (Blueprint $table) {
@@ -75,24 +80,9 @@ return new class extends Migration
         Schema::create('departments', function (Blueprint $table) {
             $table->id();
             $table->string('name_department')->nullable();
+            $table->unsignedBigInteger('created_by')->nullable();
+            $table->foreign('created_by')->references('id')->on('users')->onDelete('set null');
             $table->timestamps();
-        });
-
-        Schema::create('professional_data', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('employee_id'); // Chave estrangeira para a tabela employees
-            $table->string('salary')->nullable();
-            $table->unsignedBigInteger('department_id')->nullable();
-            $table->string('position')->nullable();
-            $table->date('admission_date')->nullable();
-            $table->enum('employee_stats', ['ativo', 'inativo'])->default('ativo');
-            $table->string('CTPS_number')->nullable();
-            $table->string('CTPS_series')->nullable();
-            $table->string('PIS_PASEP')->nullable();
-            $table->timestamps();
-
-            // Definindo a chave estrangeira
-            $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
         });
 
         Schema::create('monthly_movements', function (Blueprint $table) {
@@ -119,7 +109,7 @@ return new class extends Migration
             $table->string('email')->nullable();
             $table->string('name_department')->nullable();
             $table->string('position')->nullable();
-            $table->float('salary', 10, 2)->nullable();
+            $table->string('salary')->nullable();
             $table->date('hire_date')->nullable();
             $table->unsignedBigInteger('removed_by')->nullable();
         });
@@ -133,6 +123,12 @@ return new class extends Migration
             $table->string('contract_type');
             $table->string('location');
             $table->string('benefits', 1000)->nullable();
+
+            $table->integer('total_vacancies')->nullable();
+            $table->string('department');
+            $table->string('pwd_vacancy');
+            $table->string('time_work');
+
             $table->timestamps(); // Cria as colunas 'created_at' e 'updated_at'
             $table->integer('created_by')->nullable();
         });

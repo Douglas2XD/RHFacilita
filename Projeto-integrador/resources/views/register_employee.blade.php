@@ -25,6 +25,11 @@
         <form class="employee-form" action="{{route("update", $employee)}}" enctype="multipart/form-data" method="post">
             @method('PUT')
             @csrf
+            @if(session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
     @else
         <form class="employee-form" action="{{route('store')}}" enctype="multipart/form-data" method="post">
             @csrf
@@ -83,16 +88,15 @@
     <input class="form-control" type="number" name="children" value="{{old('children',$employee->children ?? " ")}}">
 
     <label>Cep</label>
-    <input type="text" id="cep" name="cep" value="{{ old('cep', $employee->address->cep ?? '' )}}">
-
+    <input type="text" id="cep" name="cep" value="{{ old('cep', $employee->cep ?? '' )}}">
     <label>Estado</label>
-    <input type="text" id="state" name="state" value="{{ old('state', $employee->address->state ?? '') }}">
+    <input type="text" id="state" name="state" value="{{ old('state', $employee->state ?? '') }}">
     <label>Cidade</label>
-    <input type="text" id="city" name="city" value="{{ old('city', $employee->address->city ?? '') }}">
+    <input type="text" id="city" name="city" value="{{ old('city', $employee->city ?? '') }}">
     <label>Logradouro</label>
-    <input type="text" id="street" name="street" value="{{ old('street', $employee->address->street ?? '') }}">
+    <input type="text" id="street" name="street" value="{{ old('street', $employee->street ?? '') }}">
     <label>Número</label>
-    <input type="text" name="number" value="{{ old('number', $employee->address->number ?? '' )}}">
+    <input type="text" name="number" value="{{ old('number', $employee->number ?? '' )}}">
 
 
     <label>PCD (Pessoa com Deficiência)</label>
@@ -109,41 +113,52 @@
 
     <div class="hr-text">Área de Atuação</div>
     <label>Departamento</label>
-    <select name="department_id">
-        <option value=" "></option>
-        
+    
+    <select name="department_id"> 
+        @if(isset($employee->id))
+        <option value=""></option>
         @foreach ($departments as $department)
-            <option value="{{ $department->id ?? '' }}">
-                {{ $department->name_department ?? ' ' }}
-            </option>
+        <option value="{{ $department->id }}" {{ old('department_id', $department->id ?? '') == $department_user->id ? 'selected' : '' }}>
+            {{ $department->name_department}}
+        </option>
         @endforeach
-         
+
+        @else
+
+        <option value=""></option>
+        @foreach ($departments as $department)
+        <option value="{{ $department->id }}" {{ old('department_id', $employee->department ?? '') == $department->id ? 'selected' : '' }}>
+            {{ $department->name_department }}
+        </option>
+        @endforeach
+
+        @endif        
     </select>   
 
     <label>Cargo</label>
-    <input type="text" name="position" value="{{ old('position', $employee->professional_data->position ?? '') }}" >
+    <input type="text" name="position" value="{{ old('position', $employee->position ?? '') }}" >
 
     <label>Data de Admissão</label>
-    <input type="date" name="admission_date" value="{{old('admission_date', $employee->professional_data->admission_date ?? '')}}">
+    <input type="date" name="admission_date" value="{{old('admission_date', $employee->admission_date ?? '')}}">
 
     <label>Salário</label>
-    <input type="text" id="salary" name="salary" placeholder="R$0,00" onInput=maskMoney(event); value="{{ old('salary', $employee->professional_data->salary ?? '') }}" />
+    <input type="text" id="salary" name="salary" placeholder="R$0,00" onInput=maskMoney(event); value="{{ old('salary', $employee->salary ?? '') }}" />
 
     <label>Status do Colaborador</label>
     <select name="employee_stats">
-        <option value="Ativo" {{ old('employee_stats', $employee->professional_data->employee_stats ?? '') == 'Ativo' ? 'selected' : '' }}>Ativo</option>
-        <option value="Inativo" {{ old('employee_stats', $employee->professional_data->employee_stats ?? '') == 'Inativo' ? 'selected' : '' }}>Inativo</option>
-        <option value="Desligado" {{ old('employee_stats', $employee->professional_data->employee_stats ?? '') == 'Desligado' ? 'selected' : '' }}>Desligado</option>
+        <option value="Ativo" {{ old('employee_stats', $employee->employee_stats ?? '') == 'Ativo' ? 'selected' : '' }}>Ativo</option>
+        <option value="Inativo" {{ old('employee_stats', $employee->employee_stats ?? '') == 'Inativo' ? 'selected' : '' }}>Inativo</option>
+        <option value="Desligado" {{ old('employee_stats', $employee->employee_stats ?? '') == 'Desligado' ? 'selected' : '' }}>Desligado</option>
     </select>
 
     <label>Número da CTPS</label>
-    <input type="text" name="CTPS_number" value="{{ old('CTPS_number', $employee->professional_data->CTPS_number ?? '' )}}">
+    <input type="text" name="CTPS_number" value="{{ old('CTPS_number', $employee->CTPS_number ?? '' )}}">
 
     <label>Série da CTPS</label>
-    <input type="text" name="CTPS_series" value="{{ old('CTPS_series', $employee->professional_data->CTPS_series ?? '')}}">
+    <input type="text" name="CTPS_series" value="{{ old('CTPS_series', $employee->CTPS_series ?? '')}}">
     
     <label>PIS/PASEP</label>
-    <input type="text" name="PIS_PASEP" value="{{ old('PIS_PASEP', $employee->professional_data->PIS_PASEP ?? '') }}">
+    <input type="text" name="PIS_PASEP" value="{{ old('PIS_PASEP', $employee->PIS_PASEP ?? '') }}">
 
     <div class="hr-text">Dados Bancários</div>
     <label>Banco</label>
@@ -167,11 +182,12 @@
 
 </form>
 
-
-    
-
-
 <script>
+
+document.getElementById('rg').addEventListener('input', function (e) {
+    e.target.value = e.target.value.replace(/\D/g, '').slice(0, 7);
+});
+
 
 const maskMoney = (e) => {
     // Remove tudo o que não for número

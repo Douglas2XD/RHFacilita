@@ -25,12 +25,22 @@ class Employee extends Model
         'pwd',
         'address_id',
         'add_by',
+        'employee_id',
+        'department_id',                    
+        'salary',
+        'position',
+        'admission_date',   
+        'employee_stats',       
+        'CTPS_number',      
+        'CTPS_series',      
+        'PIS_PASEP',
+        'employee_id',
+        'cep', 
+        'street', 
+        'number',
+        'city', 
+        'state'
     ];
-    
-    public function address()
-{
-    return $this->hasOne(Address::class);
-}
     public function addedBy()
     {
         return $this->belongsTo(User::class, 'add_by');
@@ -41,10 +51,6 @@ class Employee extends Model
         return $this->belongsTo(Department::class);
     }
 
-    public function professional_data()
-    {
-        return $this->hasOne(professional_data::class);
-    }
  
     public static function Validated($data){
 
@@ -61,6 +67,13 @@ class Employee extends Model
                 'pwd' => 'required|string|max:255',
                 'curriculum' => 'required|file|mimes:pdf|max:2048',
                 'profile_pic' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+
+
+                'cep' => 'required|string', // CEP obrigatório, string e com exatamente 8 caracteres
+                'street' => 'required|string|max:255', // Rua obrigatória, string e com até 255 caracteres
+                'number' => 'required|integer|min:1', // Número obrigatório, inteiro e maior que 0
+                'city' => 'required|string|max:100', // Cidade obrigatória, string e com até 100 caracteres
+                'state' => 'required|string',
         ];
             
         $messages = [
@@ -98,6 +111,22 @@ class Employee extends Model
                 'profile_pic.required' => 'A foto de perfil é obrigatória.',
                 'profile_pic.mimes' => 'A foto de perfil deve ser nos formatos: JPEG, PNG, JPG ou GIF.',
                 'profile_pic.max' => 'A foto de perfil não pode exceder 2 MB.',
+
+                'cep.required' => 'O campo CEP é obrigatório.',
+                'cep.string' => 'O CEP deve ser um texto.',
+                'cep.size' => 'O CEP deve ter exatamente 8 caracteres.',
+                'street.required' => 'O campo rua é obrigatório.',
+                'street.string' => 'A rua deve ser um texto válido.',
+                'street.max' => 'A rua não pode ter mais de 255 caracteres.',
+                'number.required' => 'O campo número é obrigatório.',
+                'number.integer' => 'O número deve ser um valor inteiro.',
+                'number.min' => 'O número deve ser maior que 0.',
+                'city.required' => 'O campo cidade é obrigatório.',
+                'city.string' => 'A cidade deve ser um texto válido.',
+                'city.max' => 'A cidade não pode ter mais de 100 caracteres.',
+                'state.required' => 'O campo estado é obrigatório.',
+                'state.string' => 'O estado deve ser um texto válido.',
+                'state.size' => 'O estado deve ter exatamente 2 caracteres.',
         ];
         $validator = Validator::make($data, $rules, $messages);
 

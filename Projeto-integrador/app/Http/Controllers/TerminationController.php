@@ -13,7 +13,10 @@ class TerminationController extends Controller
 {   
 
     public function index(Employee $employee){
-        return view('termination',["employee"=>$employee]);
+        
+        $department = Department::where('id',$employee->department_id)->first();
+        
+        return view('termination',["employee"=>$employee,"department"=>$department]);
     }
 
     public function show(){

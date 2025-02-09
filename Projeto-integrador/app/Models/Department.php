@@ -51,7 +51,6 @@ class Department extends Model
                             );
         }
         
-    
     }
 
 
@@ -74,15 +73,6 @@ class Department extends Model
     public function employees()
 {
     return $this->hasMany(Employee::class, 'departament_id');
-}
-
-public function employeesThroughProfessionalData() {
-    return $this->hasManyThrough(Employee::class, professional_data::class, 'department_id', 'id', 'id', 'employee_id');
-}
-
-
-public function professional_data() {
-    return $this->hasMany(professional_data::class, 'department_id');
 }
 
 }

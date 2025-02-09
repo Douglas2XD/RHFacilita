@@ -40,11 +40,12 @@
 
 @section('content')
 <h2>Endomarketing</h2>
+
+@if($employees->count() > 0)
 <hr>
 <h3>Próximos aniversariantes: </h3>   
 <div class="card-container" style="display:flex">    
     @foreach ($employees as $aniversariante)
-
 
     <div class="card">
         <img src="{{asset('assets/profile_pic/'.$aniversariante->profile_pic)}}" class="card-img-top" alt="...">
@@ -59,6 +60,7 @@
     
     @endforeach
     </div>
+@endif
 @if($next_employees->count() > 0)
 
 <h3>Aniversariantes do próximo mês: </h3>   

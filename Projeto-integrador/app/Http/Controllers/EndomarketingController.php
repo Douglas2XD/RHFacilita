@@ -50,17 +50,18 @@ class EndomarketingController extends Controller
         $department = Department::find($request->id_department);
        
         if ($department == null){
+            $total_departments = Employee::where('add_by',auth()->id())->count();
             $department = "GERAL";
             $employee_contempled = Employee::where('add_by',auth()->id())->inRandomOrder()->first();
-            return view('draw',["employee_contempled"=>$employee_contempled,"total_departments"=>1,"department"=>$department]);
+            
+            return view('draw',["employee_contempled"=>$employee_contempled,"total_departments"=>$total_departments,"department"=>$department]);
         }
         else{
-            
-            $total_departments = professional_data::where('department_id',$department->id)->count();
+            $total_departments = Employee::where('department_id',$department->id)->count();
 
-            $employee_contempled = Employee::join('professional_data', 'employees.id', '=', 'professional_data.employee_id')
-                     ->where('professional_data.department_id', $department->id)
-                     ->inRandomOrder()->first();
+            $employee_contempled = Employee::where('department_id',$department->id)->inRandomOrder()->first();;
+
+            #         
 
             return view('draw',["employee_contempled"=>$employee_contempled,"department"=>$department,"total_departments"=>$total_departments]); 
         }

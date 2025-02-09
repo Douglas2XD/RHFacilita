@@ -45,26 +45,26 @@
     
     <div class="mb-3">
         <label for="name_departament" class="form-label">Departamento</label>
-        <input type="text" id="name_departament_hidden" name="name_departament" value="{{ $employee->professional_data->departament->name_departament ?? ' ' }}" hidden>
-        <input type="text" id="name_departament" name="name_departament" class="form-control" value="{{ $employee->professional_data->department->name_department ?? ' ' }}" disabled>
+        <input type="text" id="name_departament_hidden" name="name_departament" value="{{ $employee->name_departament ?? ' ' }}" hidden>
+        <input type="text" id="name_departament" name="name_departament" class="form-control" value="{{ $department->name_department ?? ' ' }}" disabled>
     </div>
     
     <div class="mb-3">
         <label for="position" class="form-label">Posição</label>
-        <input type="text" id="position_hidden" name="position" value="{{ $employee->professional_data->position ?? '' }}" hidden>
-        <input type="text" id="position" name="position" class="form-control" value="{{$employee->professional_data->position ?? '' }}" disabled>
+        <input type="text" id="position_hidden" name="position" value="{{ $employee->position ?? '' }}" hidden>
+        <input type="text" id="position" name="position" class="form-control" value="{{$employee->position ?? '' }}" disabled>
     </div>
     
     <div class="mb-3">
         <label for="salary" class="form-label">Salário</label>
-        <input type="text" id="salary_hidden" name="salary" value="{{ $employee->professional_data->salary ?? '' }}" hidden>
-        <input type="text" id="salary" name="salary" class="form-control" value="R$ {{ $employee->professional_data->salary ?? ' ' }}" disabled>
+        <input type="text" id="salary_hidden" name="salary" value="{{ $employee->salary ?? '' }}" hidden>
+        <input type="text" id="salary" name="salary" class="form-control" value="R$ {{ $employee->salary ?? ' ' }}" disabled>
     </div>
     
     <div class="mb-3">
         <label for="hire_date" class="form-label">Data de Admissão</label>
-        <input type="date" id="hire_date_hidden" name="hire_date" value="{{ $employee->professional_data->admission_date ?? ' ' }}" hidden>
-        <input type="date" id="hire_date" name="hire_date" class="form-control" value="{{ $employee->professional_data->admission_date ?? ' ' }}" disabled>
+        <input type="date" id="hire_date_hidden" name="hire_date" value="{{ $employee->admission_date ?? ' ' }}" hidden>
+        <input type="date" id="hire_date" name="hire_date" class="form-control" value="{{ $employee->admission_date ?? ' ' }}" disabled>
     </div>
 
     <div class="mb-3">

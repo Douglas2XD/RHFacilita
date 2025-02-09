@@ -73,7 +73,7 @@
 
 
 
-
+{{ $list->links() }}
 
 
 @endsection

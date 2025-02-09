@@ -67,11 +67,11 @@
 
 
 
-    <a class="btn btn-danger" href="{{route('delete_vacancy',$vaga)}}">Delete</a>
+    <a class="btn btn-danger" href="{{route('delete_vacancy',$vaga)}}">Deletar</a>
 
     <a class="btn btn-warning" href="{{route('show_candidates', $vaga->id)}}">Visualizar Candidatos</a>
 
-    <a class="btn btn-secondary" href="{{route('edit_vacancy',$vaga->id)}}">Editar Vaga</a>
+    <a class="btn btn-info" href="{{route('edit_vacancy',$vaga->id)}}">Editar Vaga</a>
 
 
 
