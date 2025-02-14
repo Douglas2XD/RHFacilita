@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\GoalsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\TerminationController;
@@ -99,6 +100,14 @@ Route::get('/create_job_vacancy/{vacancy}', [VacancyController::class, "edit"])-
 Route::put('/create_job_vacancy/{vacancy}', [VacancyController::class, "update"])->name('update_vacancy');
 
 
+Route::get('/goals_index', [GoalsController::class,"index"])->name('goals_index');
+Route::get('/form_goals', [GoalsController::class,"form_goals"])->name('form_goals');
+Route::get('/show_goals', [GoalsController::class,"show_goals"])->name('show_goals');
+Route::post('/create_goals', [GoalsController::class,"store"])->name('create_goals');
+Route::get('/edit_goal/{goal}', [GoalsController::class,"edit"])->name('edit_goal');
+Route::put('/create_goal/{goal}', [GoalsController::class,"update"])->name('update_goal');
+
+Route::get('/delete_goal/{goal}', [GoalsController::class,"delete"])->name('delete_goal');
 
 Route::get('/ainda_em_desenvolvimento', [HomeController::class, "desenvolvimento"])->name('ainda_em_desenvolvimento');
 

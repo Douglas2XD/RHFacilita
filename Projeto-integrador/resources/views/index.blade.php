@@ -25,7 +25,7 @@
         <div class="col-md-4 mb-3">
           <div class="shortcut-card p-3">
             <i class="fas fa-bullseye fa-2x mb-3 gold-icon"></i>
-            <a href="{{route('ainda_em_desenvolvimento')}}" style="text-decoration: none;"><div class="shortcut-title font-weight-bold">Planejamento estratégico</div></a>
+            <a href="{{route('goals_index')}}" style="text-decoration: none;"><div class="shortcut-title font-weight-bold">Planejamento estratégico</div></a>
             <p class="shortcut-description text-muted">Definição de metas e estratégias para os objetivos de longo prazo.</p>
           </div>
         </div>

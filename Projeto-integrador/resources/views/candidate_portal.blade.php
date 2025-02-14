@@ -170,6 +170,78 @@
             color: green;
         }
     }
+
+
+    .feedback-container {
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 20px;
+      background: linear-gradient(to right, #4CAF50, #45a049);
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+      animation: 
+        slideIn 0.5s ease-out,
+        fadeOut 0.5s ease-in 2.5s forwards;
+    }
+
+    @keyframes slideIn {
+      from { 
+        transform: translateY(-20px);
+        opacity: 0;
+      }
+      to { 
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .feedback-header {
+      color: white;
+      font-family: Arial, sans-serif;
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 15px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .feedback-text {
+      color: white;
+      font-family: Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+
+    .feedback-button {
+      background-color: white;
+      color: #4CAF50;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .feedback-button:hover {
+      transform: scale(1.05);
+      background-color: #f0f0f0;
+    }
+
+    .heart {
+      font-size: 30px;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
     </style>
 </head>
 <body>
@@ -192,6 +264,19 @@
             
         </select>
     </div>
+
+    @if(session('sucess'))
+    <div class="feedback-container">
+        <div class="feedback-header">
+          <span class="heart">💚</span>
+          Candidatado com sucesso! 
+        </div>
+        <div class="feedback-text">
+          Muito obrigado por se candidatar, confira seu email com frequência! 
+        </div>
+      </div>
+
+    @endif
 <br><br>
     <div class="search-container">
          <h2 id="typing-text"></h2>

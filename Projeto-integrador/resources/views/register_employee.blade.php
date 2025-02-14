@@ -6,9 +6,9 @@
 
 
 @section('content')
-<link rel="stylesheet" href="{{asset('css/styles_cadastrar.css')}}">
-<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
+
+<link rel="stylesheet" href="{{asset('css/styles_cadastrar.css')}}">
 
 
 @if ($errors->any())
@@ -159,7 +159,7 @@
     
     <label>PIS/PASEP</label>
     <input type="text" name="PIS_PASEP" value="{{ old('PIS_PASEP', $employee->PIS_PASEP ?? '') }}">
-
+<!--
     <div class="hr-text">Dados Bancários</div>
     <label>Banco</label>
     <input type="text" name="bank_name">
@@ -178,8 +178,9 @@
 
     <label>Observações</label>
     <textarea name="observations" style="opacity: 0.5;" placeholder="Caso tenha alguma deficiência ou queira adicionar algo a mais, pode usar este campo."></textarea>
+    -->
     <button type="submit" style="background-color: #1a2b49; width: 100%;">Salvar</button>
-
+    
 </form>
 
 <script>

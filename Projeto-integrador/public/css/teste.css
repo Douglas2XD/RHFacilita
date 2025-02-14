@@ -54,7 +54,16 @@ body {
   background-color: white;
   box-shadow: 0 2px 4px rgba(0,0,0,0.2);
   padding: 1rem;
+  display: block;
+  gap: 100%;
+  width: 100%;
+  
 }
+.nav-link{
+  right: 0;
+  position: relative;
+}
+
 
 .menu-btn {
   cursor: pointer;
@@ -85,11 +94,14 @@ body {
 .user-info {
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
-
-
-
+#nav_hamburguer{
+  justify-content: space-between;
+  width: 100%;
+  position: relative;
+}
 
 .user-image {
   width: 40px;

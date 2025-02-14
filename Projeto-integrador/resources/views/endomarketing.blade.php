@@ -83,7 +83,7 @@
 <h3>Sorteio Geral (Todos concorrem) </h3>
     <form action="{{route('draw')}}" method="GET">
         @csrf
-        <select name="id_department">
+        <select name="id_department" class="form-select">
             <option value="">TODOS</option>
             @foreach($departments as $department)
             <option value="{{$department->id}}">

@@ -13,45 +13,26 @@
   </style>
 </head>
 <body>
-<div class="container-fluid">
-  <nav class="navbar">
-    <div class="container">
-        <div class="menu-btn" onclick="toggleSidebar()">
-            <i class="fas fa-bars"></i>
-        </div>
-        
 
-        @if(auth()->check()) 
-          
-          <div class="d-flex align-items-center user-info dropdown">
-          
-            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-            
-            @if(auth()->check()) 
-            <img src="{{asset('assets/profile_pic/'.auth()->user()->photo)}}" alt="User" class="user-image rounded-circle">
-  
-            {{ auth()->user()->name }}
-            @endif
-              
-            
-            
-            </a>
-  
-            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="{{ route('logout') }}"
-                    onclick="event.preventDefault();
-                                  document.getElementById('logout-form').submit();">
-                    {{ __('Logout') }}
-                </a>
-  
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                    @csrf
-                </form>
+    <div class="container-fluid">
+        <nav class="navbar">
+            <div class="container_top">
+                @if(auth()->check()) 
+                <div class="user-info dropdown" id="nav_hamburguer">
+                    <div class="menu-btn" onclick="toggleSidebar()">
+                        <i id="burguer" class="fas fa-bars"></i>
+                    </div>
+        
+                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" 
+                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        <img src="{{asset('assets/profile_pic/'.auth()->user()->photo)}}" 
+                            alt="User" class="user-image rounded-circle">
+                        {{ auth()->user()->name }}
+                    </a>
+                </div>
+                @endif
             </div>
-          @endif
-          
-    </div>
-</nav>
+        </nav>
     
     <!-- Main Content -->
     <main id="main-content" class="main-content">
@@ -80,6 +61,26 @@
         <a href="#" class="sidebar-link" style="text-decoration: none">
             <i class="fas fa-cogs"></i> Configurações
         </a>
+
+        <a class="sidebar-link" href="{{ route('logout') }}"
+            onclick="event.preventDefault(); document.getElementById('logout-form').submit();"style="text-decoration:none">
+            <i class="fas fa-sign-out-alt"></i>
+
+             {{ __('Sair') }}
+        </a>
+
+
+        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="{{ route('logout') }}">    
+                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                {{ __('Logout') }}
+            </a>
+
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                @csrf
+            </form>
+        </div>
+
     </div>
     <div class="overlay" onclick="toggleSidebar()"></div>
       @yield('content')  <!-- A seção content será preenchida pelas páginas que estendem este layout -->
