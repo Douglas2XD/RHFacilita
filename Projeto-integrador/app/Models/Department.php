@@ -70,9 +70,12 @@ class Department extends Model
         return $validator;
 
     }
+
     public function employees()
 {
     return $this->hasMany(Employee::class, 'departament_id');
 }
+
+
 
 }

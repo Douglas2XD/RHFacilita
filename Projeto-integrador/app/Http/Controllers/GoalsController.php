@@ -15,12 +15,12 @@ class GoalsController extends Controller
         return view('create_goals');
     }
     public function show_goals(){
-        $list = Goals::all();
+        $list = Goals::where('user_id',auth()->id())->get();
         
         return view('show_goals',["list"=>$list]);
     }
 
-    public function store(Request $request){
+    public function storeGoal(Request $request){
         $goal = new Goals();
         $goal->user_id = auth()->id();
         $goal->name = $request->input('name');
@@ -34,13 +34,21 @@ class GoalsController extends Controller
         return back()->with('success', 'Meta criada com sucesso! ');
     }
 
-    public function edit($id){
-        $goal = Goals::where('id',$id)->first();                
+    public function editGoal($id){
+        $goal = Goals::where('id',$id)->first(); 
+        
+        if($goal->user_id != auth()->id()){
+            $list = Goals::where('user_id',auth()->id())->get();
+            session()->flash('error','Não foi possível alterar esta meta.'  );
+            return view('show_goals',["list"=>$list]);
+        }
+        
+                       
         return view('create_goals',["goal"=>$goal]);
     }
-    public function update(Request $request, Goals $goal){
+    public function updateGoal(Request $request, Goals $goal){
         
-        $goal->user_id = auth()->id();
+        
         $goal->name = $request->name;
         $goal->description = $request->description;
         $goal->start_date = $request->start_date;
@@ -55,12 +63,22 @@ class GoalsController extends Controller
         return back()->with('success', 'Meta alterada com sucesso! ');
     }
 
-    public function delete(Goals $goal){
-        $goal->delete();
+    public function deleteGoal(Goals $goal){
+        $list = Goals::where('user_id',auth()->id())->get();
 
-        $list = Goals::all();
+        if($goal->user_id != auth()->id()){
+            
+            session()->flash('error','Não foi possível Deletar esta meta.'  );
+            return view('show_goals',["list"=>$list]);
+        }else{
+            $goal->delete();
+            
+            
+            return redirect()->route('show_goals')->with('success','Meta Deletada com sucesso! ');
+        }
         
-        return view('show_goals',["list"=>$list]);
+        
+        
     }
 
 }

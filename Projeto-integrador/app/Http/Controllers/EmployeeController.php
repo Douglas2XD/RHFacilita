@@ -54,7 +54,7 @@ class EmployeeController extends Controller
     }
 
 
-    public function store(Request $request){     
+    public function storeEmployee(Request $request){     
         $data = $request->all();
         $validation_employee = Employee::Validated($data);
         
@@ -132,7 +132,7 @@ class EmployeeController extends Controller
         
     }
 
-    public function edit(Employee $employee)
+    public function editEmployee(Employee $employee)
     {   
         $departments = Department::all()->where('created_by',auth()->id());
 
@@ -153,7 +153,7 @@ class EmployeeController extends Controller
         ]);
     }
     
-    public function update(Employee $employee, Request $request){
+    public function updateEmployee(Employee $employee, Request $request){
         
         $employee->update($request->all());     
         
@@ -162,7 +162,7 @@ class EmployeeController extends Controller
         return back()->with('success', 'Dados editados com sucesso!');
 }
 
-    public function delete(Employee $employee){
+    public function deleteEmployee(Employee $employee){
         
         if ($employee->add_by != auth()->id()) {
             return redirect()->route('show_employees')->with('error', 'Você não tem permissão para deletar este funcionário.');

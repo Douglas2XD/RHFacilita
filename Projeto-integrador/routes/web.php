@@ -39,13 +39,13 @@ Route::get('/show_info_employee/{employee}', [EmployeeController::class, "Show_i
 
 Route::get('/register_employees/new', [EmployeeController::class, "index"])->name('new');
 
-Route::post('/register_employees', [EmployeeController::class, "store"])->name('store');
+Route::post('/register_employees', [EmployeeController::class, "storeEmployee"])->name('store');
 
-Route::get('/register_employees/{employee}', [EmployeeController::class, "edit"])->name('edit');
+Route::get('/register_employees/{employee}', [EmployeeController::class, "editEmployee"])->name('edit');
 
-Route::put('/register_employees/{employee}', [EmployeeController::class, "update"])->name('update');
+Route::put('/register_employees/{employee}', [EmployeeController::class, "updateEmployee"])->name('update');
 
-Route::get('/register_employees/delete/{employee}', [EmployeeController::class, "delete"])->name('delete');
+Route::get('/register_employees/delete/{employee}', [EmployeeController::class, "deleteEmployee"])->name('delete');
 
 
 Route::post('/termination', [TerminationController::class, "store"])->name('store_termination');
@@ -65,15 +65,15 @@ Route::get('/show_employees', [App\Http\Controllers\EmployeeController::class, '
 Route::get('/create_department',[App\Http\Controllers\HomeController::class, 'create_department'])->name(name: 'create_department');
 Route::get('/department',[App\Http\Controllers\DepartmentController::class, 'index'])->name(name: 'show_departments');
 
-Route::post('/store_department', [App\Http\Controllers\DepartmentController::class, "store"])->name('store_department');
+Route::post('/store_department', [App\Http\Controllers\DepartmentController::class, "storeDepartment"])->name('store_department');
 
-Route::get('/edit_department/{employee}', [App\Http\Controllers\DepartmentController::class, "edit"])->name('edit_department');
+Route::get('/edit_department/{employee}', [App\Http\Controllers\DepartmentController::class, "editDepartment"])->name('edit_department');
 
-Route::put('/update_department/{employee}', [App\Http\Controllers\DepartmentController::class, "update"])->name('update_department');
+Route::put('/update_department/{employee}', [App\Http\Controllers\DepartmentController::class, "updateDepartment"])->name('update_department');
 
 Route::get('/department_info/{department}', [App\Http\Controllers\DepartmentController::class, 'department_info'])->name(name: 'department_info');
 
-Route::get('/department/delete/{department}', [App\Http\Controllers\DepartmentController::class, 'delete'])->name(name: 'delete_departament');
+Route::get('/department/delete/{department}', [App\Http\Controllers\DepartmentController::class, 'deleteDepartment'])->name(name: 'delete_departament');
 
 
 Route::get('/create_job_vacancy', [App\Http\Controllers\VacancyController::class, 'create_job_vacancy'])->name(name: 'create_job_vacancy');
@@ -83,7 +83,7 @@ Route::get('/endomarketing/sorteio', [App\Http\Controllers\EndomarketingControll
 
 //rotas das vagas
 
-Route::post('/create_job_vacancy', [VacancyController::class, "store"])->name('store_vacancy');
+Route::post('/create_job_vacancy', [VacancyController::class, "storeVacancy"])->name('store_vacancy');
 
 Route::get('/latest_processes', [VacancyController::class, "index"])->name('latest_processes');
 
@@ -91,23 +91,23 @@ Route::get('/show_candidates/{id_vancancy}', [HomeController::class, "show_candi
 
 
 
-Route::get('/latest_processes/delete/{vacancy}', [VacancyController::class, "delete"])->name('delete_vacancy');
+Route::get('/latest_processes/delete/{vacancy}', [VacancyController::class, "deleteVacancy"])->name('delete_vacancy');
 
 Route::get('/latest_processes/new_process', [VacancyController::class, "index"])->name('new_process');
 
-Route::get('/create_job_vacancy/{vacancy}', [VacancyController::class, "edit"])->name('edit_vacancy');
+Route::get('/create_job_vacancy/{vacancy}', [VacancyController::class, "editVacancy"])->name('edit_vacancy');
 
-Route::put('/create_job_vacancy/{vacancy}', [VacancyController::class, "update"])->name('update_vacancy');
+Route::put('/create_job_vacancy/{vacancy}', [VacancyController::class, "updateVacancy"])->name('update_vacancy');
 
 
 Route::get('/goals_index', [GoalsController::class,"index"])->name('goals_index');
 Route::get('/form_goals', [GoalsController::class,"form_goals"])->name('form_goals');
 Route::get('/show_goals', [GoalsController::class,"show_goals"])->name('show_goals');
-Route::post('/create_goals', [GoalsController::class,"store"])->name('create_goals');
-Route::get('/edit_goal/{goal}', [GoalsController::class,"edit"])->name('edit_goal');
-Route::put('/create_goal/{goal}', [GoalsController::class,"update"])->name('update_goal');
+Route::post('/create_goals', [GoalsController::class,"storeGoal"])->name('create_goals');
+Route::get('/edit_goal/{goal}', [GoalsController::class,"editGoal"])->name('edit_goal');
+Route::put('/create_goal/{goal}', [GoalsController::class,"updateGoal"])->name('update_goal');
 
-Route::get('/delete_goal/{goal}', [GoalsController::class,"delete"])->name('delete_goal');
+Route::get('/delete_goal/{goal}', [GoalsController::class,"deleteGoal"])->name('delete_goal');
 
 Route::get('/ainda_em_desenvolvimento', [HomeController::class, "desenvolvimento"])->name('ainda_em_desenvolvimento');
 

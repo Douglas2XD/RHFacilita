@@ -25,7 +25,7 @@ class DepartmentController extends Controller
         return view("show_departments", ["list"=>$list]);
     }
 
-    public function store(Request $request){
+    public function storeDepartment(Request $request){
 
         $department = new Department();
         $data = $request->all();
@@ -45,20 +45,20 @@ class DepartmentController extends Controller
         return back()->with('success', 'Departamento criado com sucesso!');
     }
 
-    public function edit(Department $department){
+    public function editDepartment(Department $department){
         $list = Department::paginate(20);
         return view("#", ["department"=>$department,
                                 "list"=>$list]);
     }
     
-    public function update(Department $department, DepartmentValidate $request){
+    public function updateDepartment(Department $department, DepartmentValidate $request){
         $department->update($request->all());
 
         return back()->with('success', 'Department updated successfully!');
 
     }
 
-    public function delete(Department $department){
+    public function deleteDepartment(Department $department){
         $department_count = Employee::where('department_id',$department->id)->count();
         
         if ($department_count > 0) {

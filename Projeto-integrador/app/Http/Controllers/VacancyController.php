@@ -31,7 +31,7 @@ class VacancyController extends Controller
         
     }
 
-    public function store(Request $request){  
+    public function storeVacancy(Request $request){  
         $id = auth()->id();
         
         $validated_vacancy = Vacancy::Validated($request->all());
@@ -61,7 +61,7 @@ class VacancyController extends Controller
         
     }
 
-    public function edit(Vacancy $vacancy)
+    public function editVacancy(Vacancy $vacancy)
     {
         $list = Vacancy::paginate(20);
         $departments = Department::all()->where('created_by',auth()->id());
@@ -77,14 +77,14 @@ class VacancyController extends Controller
         ]);
     }
 
-    public function update(Vacancy $vacancy,Request $request){
+    public function updateVacancy(Vacancy $vacancy,Request $request){
         $vacancy->update($request->all());
         session()->flash('success', 'Dados editados com sucesso!');
         return back()->with('success', 'Vaga alterada com sucesso!');
     }
 
 
-    public function delete(Vacancy $vacancy){
+    public function deleteVacancy(Vacancy $vacancy){
 
         if ($vacancy->created_by != auth()->id()) { 
             return redirect()->route('latest_processes')->with('error', 'Você não tem permissão para deletar esta vaga.');
