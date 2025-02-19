@@ -67,9 +67,9 @@ Route::get('/department',[App\Http\Controllers\DepartmentController::class, 'ind
 
 Route::post('/store_department', [App\Http\Controllers\DepartmentController::class, "storeDepartment"])->name('store_department');
 
-Route::get('/edit_department/{employee}', [App\Http\Controllers\DepartmentController::class, "editDepartment"])->name('edit_department');
+Route::get('/edit_department/{department}', [App\Http\Controllers\DepartmentController::class, "editDepartment"])->name('edit_department');
 
-Route::put('/update_department/{employee}', [App\Http\Controllers\DepartmentController::class, "updateDepartment"])->name('update_department');
+Route::put('/update_department/{department}', [App\Http\Controllers\DepartmentController::class, "updateDepartment"])->name('update_department');
 
 Route::get('/department_info/{department}', [App\Http\Controllers\DepartmentController::class, 'department_info'])->name(name: 'department_info');
 

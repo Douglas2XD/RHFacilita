@@ -6,15 +6,11 @@
 
 @section('content')
 
-@if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
- @endif
+@if(session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
 
     
 @if(session('success'))
@@ -41,6 +37,7 @@
                 <th>Total de Funcionários</th>
                 <th>Acessar</th>
                 <th>Deletar</th>
+                <th>Editar</th>
             </tr>
         </thead>
         <tbody>
@@ -63,6 +60,12 @@
                 @else
                     <p>Não pode deletar</p>
                 @endif
+
+                <td>
+                    <a href="{{route('edit_department',$department)}}" class="btn btn-info btn-sm mr-2" target="_blank">
+                        Editar
+                    </a>
+                </td>
                 
             </td>
             </tr>

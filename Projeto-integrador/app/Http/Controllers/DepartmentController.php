@@ -45,16 +45,25 @@ class DepartmentController extends Controller
         return back()->with('success', 'Departamento criado com sucesso!');
     }
 
-    public function editDepartment(Department $department){
-        $list = Department::paginate(20);
-        return view("#", ["department"=>$department,
-                                "list"=>$list]);
+    public function editDepartment($id){
+        $department = Department::where('id',$id)->first();
+
+        if (!$department) {
+            return redirect()->route('show_departments')->with('error', 'Você não tem permissão para editar este Departamento.');
+        }
+
+        if($department->created_by == auth()->id()){
+            return view("create_department",["department"=>$department]);
+        }
+        return redirect()->route('show_departments')->with('error', 'Você não tem permissão para editar este Departamento.');
+
     }
     
-    public function updateDepartment(Department $department, DepartmentValidate $request){
-        $department->update($request->all());
+    public function updateDepartment(Department $department, Request $request){
+        $department->name_department = $request->name_department;
+        $department->save();
 
-        return back()->with('success', 'Department updated successfully!');
+        return back()->with('success', 'Departamento atualizado com sucesso!');
 
     }
 
@@ -64,9 +73,15 @@ class DepartmentController extends Controller
         if ($department_count > 0) {
             throw new \Exception('Não é possível excluir este departamento, ele possui empregados associados.');
         }
+
+        if($department->created_by == auth()->id()){
+            $department->delete();
+            return back()->with('success','Departamento deletado com sucesso! ');
+        }else{
+            return back()->with('error','Departamento Não encontrado! ');
+        }
+
         
-        $department->delete();
-        return back()->with('success','Departamento deletado com sucesso! ');
     }
 
 

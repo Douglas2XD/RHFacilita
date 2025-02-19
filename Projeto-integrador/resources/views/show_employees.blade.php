@@ -68,7 +68,7 @@
 
     <!-- Botões de ação -->
     <div>
-        <a class="btn btn-warning btn-sm mr-2" href="{{route('edit',$employee->id)}}">EDITAR</a>
+        <a class="btn btn-info btn-sm mr-2" href="{{route('edit',$employee->id)}}">EDITAR</a>
         
         <a href="{{route('analisar_demissao',$employee)}}" class="btn btn-danger btn-sm">DESLIGAR</a>
 

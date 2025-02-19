@@ -137,7 +137,7 @@ class EmployeeController extends Controller
         $departments = Department::all()->where('created_by',auth()->id());
 
         $department_user = Department::where('id',$employee->department_id)->first();
-        if ($employee->add_by != auth()->id()) {
+        if ($employee->add_by != auth()->id())  {
             return redirect()->route('show_employees')->with('error', 'Você não tem permissão para editar este funcionário.');
         }
         
