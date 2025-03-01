@@ -16,6 +16,13 @@
 
 @section('content')
 
+@if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
+
+
 @if (isset($department->id) and $department->id)
         <form class="employee-form" action="{{route('update_department',$department)}}" method="post">
             @method('PUT')
@@ -27,6 +34,7 @@
             @endif
     @else
     <form class="employee-form" action="{{route('store_department')}}" method="post">
+        @csrf    
         @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
