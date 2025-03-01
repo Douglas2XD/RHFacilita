@@ -60,6 +60,10 @@ class DepartmentController extends Controller
     }
     
     public function updateDepartment(Department $department, Request $request){
+        $validation_department = Department::Validated($request->all());
+        if($validation_department->fails()){
+            return back()->withErrors($validation_department)->withInput();
+        }
         $department->name_department = $request->name_department;
         $department->save();
 

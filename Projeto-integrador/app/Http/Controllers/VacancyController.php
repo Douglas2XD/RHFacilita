@@ -78,7 +78,12 @@ class VacancyController extends Controller
     }
 
     public function updateVacancy(Vacancy $vacancy,Request $request){
-        $vacancy->update($request->all());
+        $validated_vacancy = Vacancy::Validated($request->all());
+        if($validated_vacancy->fails()){
+            return back()->withErrors($validated_vacancy)->withInput();
+        }
+
+        $vacancy->fill($request->all());
         session()->flash('success', 'Dados editados com sucesso!');
         return back()->with('success', 'Vaga alterada com sucesso!');
     }

@@ -57,7 +57,7 @@ class Department extends Model
     public static function Validated($data){
 
         $rules = [
-            'name_department' => 'required|unique:departments,name_department',
+            'name_department' => 'required|max:255',
         ];
 
         $messages = [

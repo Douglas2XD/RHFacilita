@@ -21,6 +21,12 @@ class GoalsController extends Controller
     }
 
     public function storeGoal(Request $request){
+
+        $validation_goal = Goals::Validated($request->all());
+        if($validation_goal->fails()){
+            return back()->withErrors($validation_goal)->withInput();
+        }
+
         $goal = new Goals();
         $goal->user_id = auth()->id();
         $goal->name = $request->input('name');
@@ -29,6 +35,9 @@ class GoalsController extends Controller
         $goal->end_date = $request->input('end_date');
         $goal->participants = $request->input('participants');
         $goal->situation = $request->input('situation');
+
+        
+
         $goal->save();
         session()->flash('success', 'Meta criada com sucesso! ');
         return back()->with('success', 'Meta criada com sucesso! ');
@@ -47,7 +56,10 @@ class GoalsController extends Controller
         return view('create_goals',["goal"=>$goal]);
     }
     public function updateGoal(Request $request, Goals $goal){
-        
+        $validation_goal = Goals::Validated($request->all());
+        if($validation_goal->fails()){
+            return back()->withErrors($validation_goal)->withInput();
+        }
         
         $goal->name = $request->name;
         $goal->description = $request->description;

@@ -155,8 +155,12 @@ class EmployeeController extends Controller
     
     public function updateEmployee(Employee $employee, Request $request){
         
-        $employee->update($request->all());     
-        
+        $validation_employee = Employee::Validated($request->all(), $employee->id);
+        if($validation_employee->fails()){
+            return back()->withErrors($validation_employee)->withInput();
+        }        
+
+        $employee->fill($request->all());
         $employee->update();
         session()->flash('success', 'Dados editados com sucesso!');
         return back()->with('success', 'Dados editados com sucesso!');

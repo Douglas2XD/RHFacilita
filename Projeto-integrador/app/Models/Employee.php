@@ -52,21 +52,22 @@ class Employee extends Model
     }
 
  
-    public static function Validated($data){
+    public static function Validated($data, $id = null){
 
         $rules = [
                 'name' => 'required|string|max:255',
-                'cpf' => 'required|unique:employees,cpf',
+                'cpf' => 'required|unique:employees,cpf' . ($id ? ",$id" : ''),
                 'birth_date' => 'required|date|before:'.now()->subYears(16)->format('Y-m-d'),
                 'rg' => 'required|string|max:20',
-                'email' => 'required|email|unique:employees,email',
+                'email' => 'required|email|unique:employees,email' . ($id ? ",$id" : ''),
                 'phone' => 'required|string|max:15',
                 'gender' => 'required|string',
                 'marital_status' => 'required|string',
                 'children' => 'required|integer|min:0',
                 'pwd' => 'required|string|max:255',
-                'curriculum' => 'required|file|mimes:pdf|max:2048',
-                'profile_pic' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+                'curriculum' => $id ? 'nullable|file|mimes:pdf|max:2048' : 'required|file|mimes:pdf|max:2048',
+                'profile_pic' => $id ? 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048' : 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+
 
 
                 'cep' => 'required|string', // CEP obrigatório, string e com exatamente 8 caracteres
@@ -132,6 +133,7 @@ class Employee extends Model
 
         return $validator;
     }
+    
     
 
     

@@ -7,6 +7,15 @@
 
 @section('content')
 
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 
 @if (isset($goal->id) and $goal->id)
         <form class="employee-form" action="{{route("update_goal", $goal)}}" method="post">
